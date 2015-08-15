@@ -24,6 +24,8 @@ void genmove()
 
 	float score = gnugo_estimate_score(0,0);
 	printf("\nScore: %d\n", score);
+
+	printf("White captured: %d\n", white_captured);
 }
 
 int _tmain(int argc, _TCHAR* argv[])

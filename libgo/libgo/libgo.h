@@ -10,5 +10,15 @@
 #define LIBGO_API __declspec(dllimport)
 #endif
 
-LIBGO_API void init(void);
-LIBGO_API int cb_genmove(int color);
+extern "C" {
+LIBGO_API void cb_init_gnugo(void);
+LIBGO_API void cb_gnugo_play_move(int i, int j, int color );
+LIBGO_API void cb_genmove(int color);
+LIBGO_API bool cb_gnugo_is_legal(int i, int j, int color);
+LIBGO_API int  cb_get_board_color(int i, int j);
+LIBGO_API bool cb_gnugo_undo_move(int n);
+LIBGO_API float cb_get_score(void);
+LIBGO_API int   cb_gnugo_get_move_number(void);
+LIBGO_API int   cb_get_white_captured(void);
+LIBGO_API int   cb_get_black_captured(void);
+}

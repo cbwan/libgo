@@ -84,15 +84,18 @@
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
       <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;_USRDLL;LIBGO_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>C:\Code\Projects\Cb_Projects\libgo\gnugo-3.8\engine;C:\Code\Projects\Cb_Projects\libgo\gnugo-3.8\build;C:\Code\Projects\Cb_Projects\libgo\gnugo-3.8\sgf;C:\Code\Projects\Cb_Projects\libgo\gnugo-3.8\utils;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <CompileAs>CompileAsC</CompileAs>
+      <AdditionalIncludeDirectories>..\..\gnugo-3.6\;..\..\gnugo-3.6\engine;..\..\gnugo-3.6\build;..\..\gnugo-3.6\sgf;..\..\gnugo-3.6\utils;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <CompileAs>Default</CompileAs>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalLibraryDirectories>C:\Code\Projects\Cb_Projects\libgo\gnugo-3.8\build\engine\Debug;C:\Code\Projects\Cb_Projects\libgo\gnugo-3.8\build\sgf\Debug;C:\Code\Projects\Cb_Projects\libgo\gnugo-3.8\build\utils\Debug;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>engine.lib;board.lib;sgf.lib;utils.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>..\..\gnugo-3.6\engine\Debug;..\..\gnugo-3.6\patterns\Debug;..\..\gnugo-3.6\sgf\Debug;..\..\gnugo-3.6\utils\Debug;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>engine.lib;board.lib;sgf.lib;utils.lib;dfa.lib;patterns.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
+    <PostBuildEvent>
+      <Command>copy $(TargetPath) C:\Users\Cb\Documents\VRGo.git\Assets\Plugins\x86</Command>
+    </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>
