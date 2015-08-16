@@ -12,6 +12,7 @@
 
 extern "C" {
 LIBGO_API void cb_init_gnugo(void);
+LIBGO_API void cb_gnugo_clear_board( int boardsize );
 LIBGO_API void cb_gnugo_play_move(int i, int j, int color );
 LIBGO_API void cb_genmove(int color);
 LIBGO_API bool cb_gnugo_is_legal(int i, int j, int color);

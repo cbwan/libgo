@@ -8,14 +8,17 @@ extern "C" {
 #include "gnugo.h"
 //#include "board.h"
 
-
 static int ri=-1;
 static int rj=-1;
 
-// This is an example of an exported function.
 LIBGO_API void cb_init_gnugo(void)
 {
 	init_gnugo(500,13951);
+}
+
+LIBGO_API void cb_gnugo_clear_board(int size)
+{
+	gnugo_clear_board( size );
 }
 
 LIBGO_API bool cb_gnugo_is_legal(int i, int j, int color)
