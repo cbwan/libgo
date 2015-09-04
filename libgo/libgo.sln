@@ -5,6 +5,13 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "libgo", "libgo\libgo.vcxpro
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Go", "Go\Go.vcxproj", "{E1A2E84F-B596-444A-8A92-8C2AE75D03DD}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ConsoleGo", "ConsoleGo\ConsoleGo.vcxproj", "{3A568787-C1AC-4BC1-94A3-77E293945FE7}"
+	ProjectSection(ProjectDependencies) = postProject
+		{A35F6466-D50A-4E1D-BD8B-8028CD96B81A} = {A35F6466-D50A-4E1D-BD8B-8028CD96B81A}
+	EndProjectSection
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "libigs", "libigs\libigs.vcxproj", "{D920C417-3FF0-4B50-B0D3-A11B728F63EC}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Mixed Platforms = Debug|Mixed Platforms
@@ -39,6 +46,26 @@ Global
 		{E1A2E84F-B596-444A-8A92-8C2AE75D03DD}.Release|Win32.Build.0 = Release|Win32
 		{E1A2E84F-B596-444A-8A92-8C2AE75D03DD}.Release|x64.ActiveCfg = Release|x64
 		{E1A2E84F-B596-444A-8A92-8C2AE75D03DD}.Release|x64.Build.0 = Release|x64
+		{3A568787-C1AC-4BC1-94A3-77E293945FE7}.Debug|Mixed Platforms.ActiveCfg = Debug|Win32
+		{3A568787-C1AC-4BC1-94A3-77E293945FE7}.Debug|Mixed Platforms.Build.0 = Debug|Win32
+		{3A568787-C1AC-4BC1-94A3-77E293945FE7}.Debug|Win32.ActiveCfg = Debug|Win32
+		{3A568787-C1AC-4BC1-94A3-77E293945FE7}.Debug|Win32.Build.0 = Debug|Win32
+		{3A568787-C1AC-4BC1-94A3-77E293945FE7}.Debug|x64.ActiveCfg = Debug|Win32
+		{3A568787-C1AC-4BC1-94A3-77E293945FE7}.Release|Mixed Platforms.ActiveCfg = Release|Win32
+		{3A568787-C1AC-4BC1-94A3-77E293945FE7}.Release|Mixed Platforms.Build.0 = Release|Win32
+		{3A568787-C1AC-4BC1-94A3-77E293945FE7}.Release|Win32.ActiveCfg = Release|Win32
+		{3A568787-C1AC-4BC1-94A3-77E293945FE7}.Release|Win32.Build.0 = Release|Win32
+		{3A568787-C1AC-4BC1-94A3-77E293945FE7}.Release|x64.ActiveCfg = Release|Win32
+		{D920C417-3FF0-4B50-B0D3-A11B728F63EC}.Debug|Mixed Platforms.ActiveCfg = Debug|Win32
+		{D920C417-3FF0-4B50-B0D3-A11B728F63EC}.Debug|Mixed Platforms.Build.0 = Debug|Win32
+		{D920C417-3FF0-4B50-B0D3-A11B728F63EC}.Debug|Win32.ActiveCfg = Debug|Win32
+		{D920C417-3FF0-4B50-B0D3-A11B728F63EC}.Debug|Win32.Build.0 = Debug|Win32
+		{D920C417-3FF0-4B50-B0D3-A11B728F63EC}.Debug|x64.ActiveCfg = Debug|Win32
+		{D920C417-3FF0-4B50-B0D3-A11B728F63EC}.Release|Mixed Platforms.ActiveCfg = Release|Win32
+		{D920C417-3FF0-4B50-B0D3-A11B728F63EC}.Release|Mixed Platforms.Build.0 = Release|Win32
+		{D920C417-3FF0-4B50-B0D3-A11B728F63EC}.Release|Win32.ActiveCfg = Release|Win32
+		{D920C417-3FF0-4B50-B0D3-A11B728F63EC}.Release|Win32.Build.0 = Release|Win32
+		{D920C417-3FF0-4B50-B0D3-A11B728F63EC}.Release|x64.ActiveCfg = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

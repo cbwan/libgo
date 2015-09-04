@@ -1,5 +1,5 @@
 // stdafx.cpp : source file that includes just the standard includes
-// libgo.pch will be the pre-compiled header
+// libigs.pch will be the pre-compiled header
 // stdafx.obj will contain the pre-compiled type information
 
 #include "stdafx.h"

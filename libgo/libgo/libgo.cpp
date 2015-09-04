@@ -23,7 +23,7 @@ LIBGO_API void cb_gnugo_clear_board(int size)
 
 LIBGO_API bool cb_gnugo_is_legal(int i, int j, int color)
 {
-	return gnugo_is_legal(i,j,color);
+	return (bool)gnugo_is_legal(i,j,color);
 }
 
 LIBGO_API void cb_gnugo_play_move(int i, int j, int color )

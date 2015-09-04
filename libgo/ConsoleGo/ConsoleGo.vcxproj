@@ -11,9 +11,9 @@
     </ProjectConfiguration>
   </ItemGroup>
   <PropertyGroup Label="Globals">
-    <ProjectGuid>{9FA86A46-692D-4F02-96D8-E510010FBBED}</ProjectGuid>
+    <ProjectGuid>{3A568787-C1AC-4BC1-94A3-77E293945FE7}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
-    <RootNamespace>ConsoleApplication1</RootNamespace>
+    <RootNamespace>ConsoleGo</RootNamespace>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
@@ -52,13 +52,14 @@
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
       <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>C:\Code\Projects\Cb_Projects\libgo\gnugo-3.8\utils;C:\Code\Projects\Cb_Projects\libgo\gnugo-3.8\sgf;C:\Code\Projects\Cb_Projects\libgo\gnugo-3.8\engine;C:\Code\Projects\Cb_Projects\libgo\gnugo-3.8\build\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\Code\Projects\Cb_Projects\libgo.git\libgo\libgo;C:\Code\Projects\Cb_Projects\libgo.git\libgo\libigs;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <CompileAs>Default</CompileAs>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalLibraryDirectories>C:\Code\Projects\Cb_Projects\libgo\gnugo-3.8\build\engine\Debug;C:\Code\Projects\Cb_Projects\libgo\gnugo-3.8\build\sgf\Debug;C:\Code\Projects\Cb_Projects\libgo\gnugo-3.8\build\utils\Debug</AdditionalLibraryDirectories>
-      <AdditionalDependencies>engine.lib;board.lib;sgf.lib;utils.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>C:\Code\Projects\Cb_Projects\libgo.git\libgo\Debug\</AdditionalLibraryDirectories>
+      <AdditionalDependencies>libigs.lib;libgo.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -86,7 +87,7 @@
     <ClInclude Include="targetver.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="ConsoleApplication1.cpp" />
+    <ClCompile Include="ConsoleGo.cpp" />
     <ClCompile Include="stdafx.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

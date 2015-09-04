@@ -28,7 +28,7 @@
     <ConfigurationType>DynamicLibrary</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
     <PlatformToolset>v110</PlatformToolset>
-    <CharacterSet>Unicode</CharacterSet>
+    <CharacterSet>NotSet</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
     <ConfigurationType>DynamicLibrary</ConfigurationType>
@@ -84,17 +84,17 @@
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
       <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;_USRDLL;LIBGO_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>..\..\gnugo-3.6\;..\..\gnugo-3.6\engine;..\..\gnugo-3.6\build;..\..\gnugo-3.6\sgf;..\..\gnugo-3.6\utils;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\Code\MiddleVR_Build_Dependencies\RakNet\RakNet-git\Source;..\..\gnugo-3.6\;..\..\gnugo-3.6\engine;..\..\gnugo-3.6\build;..\..\gnugo-3.6\sgf;..\..\gnugo-3.6\utils;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <CompileAs>Default</CompileAs>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalLibraryDirectories>..\..\gnugo-3.6\engine\Debug;..\..\gnugo-3.6\patterns\Debug;..\..\gnugo-3.6\sgf\Debug;..\..\gnugo-3.6\utils\Debug;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>engine.lib;board.lib;sgf.lib;utils.lib;dfa.lib;patterns.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>..\..\gnugo-3.6\engine\Debug;..\..\gnugo-3.6\patterns\Debug;..\..\gnugo-3.6\sgf\Debug;..\..\gnugo-3.6\utils\Debug;C:/Code/MiddleVR/../SDKS/RakNet_PC-4.082/Lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>RakNet_VS2008_LibStatic_Debug_Win32.lib;ws2_32.lib;engine.lib;board.lib;sgf.lib;utils.lib;dfa.lib;patterns.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
     <PostBuildEvent>
-      <Command>copy $(TargetPath) C:\Users\Cb\Documents\VRGo.git\Assets\Plugins\x86</Command>
+      <Command>copy $(TargetPath) C:\Code\Projects\Cb_Projects\VRGo.git\Assets\Plugins\x86</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">

@@ -10,7 +10,10 @@
 #define LIBGO_API __declspec(dllimport)
 #endif
 
+//#ifdef __cplusplus
 extern "C" {
+//#endif
+
 LIBGO_API void cb_init_gnugo(void);
 LIBGO_API void cb_gnugo_clear_board( int boardsize );
 LIBGO_API void cb_gnugo_play_move(int i, int j, int color );
@@ -22,4 +25,6 @@ LIBGO_API float cb_get_score(void);
 LIBGO_API int   cb_gnugo_get_move_number(void);
 LIBGO_API int   cb_get_white_captured(void);
 LIBGO_API int   cb_get_black_captured(void);
+//#ifdef __cplusplus
 }
+//#endif
