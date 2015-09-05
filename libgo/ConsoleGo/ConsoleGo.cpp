@@ -17,7 +17,7 @@ int _tmain(int argc, _TCHAR* argv[])
 
 	cb_connect_igs();
 
-	if( cb_igs_wait_event() != EVENT_LOGIN )
+	if( cb_igs_wait_event() != IGS_EVENT_LOGIN )
 	{
 		cout << "Error waiting for login, got something else!" << endl;
 		return -1;
@@ -25,13 +25,13 @@ int _tmain(int argc, _TCHAR* argv[])
 
 	cb_igs_login("cbtwo","pandanet");
 
-	if( cb_igs_wait_event() != EVENT_LOGGED_IN )
+	if( cb_igs_wait_event() != IGS_EVENT_LOGGED_IN )
 	{
 		cout << "Error waiting for logged, got something else!" << endl;
 		return -1;
 	}
 
-	if( cb_igs_get_status() )
+	if( cb_igs_get_status() == IGS_STATUS_IN_GAME )
 	{
 		cout << "Logged in!" << endl;
 	}
@@ -40,11 +40,11 @@ int _tmain(int argc, _TCHAR* argv[])
 
 	int event = cb_igs_wait_event();
 
-	if( event == EVENT_GAME_DECLINED )
+	if( event == IGS_EVENT_GAME_DECLINED )
 	{
 		cout << "SNIIIFFFF match declined" << endl;
 	}
-	else if( event == EVENT_GAME_ACCEPTED )
+	else if( event == IGS_EVENT_GAME_ACCEPTED )
 	{
 		cout << "Challenge accepted!" << endl;
 		cb_igs_say("Thanks! I am playing from an experimental virtual reality application!");
@@ -67,7 +67,7 @@ int _tmain(int argc, _TCHAR* argv[])
 		bool nextMove=false;
 		while( !nextMove )
 		{
-			if( cb_igs_wait_event() == EVENT_MOVE )
+			if( cb_igs_wait_event() == IGS_EVENT_MOVE )
 			{
 				if( cb_igs_get_last_move_stone() != "B" )
 				{

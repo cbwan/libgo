@@ -12,7 +12,7 @@
 
 using namespace std;
 
-int m_Status=STATUS_UNKNOWN;
+int m_Status=IGS_STATUS_UNKNOWN;
 
 boost::asio::io_service*      m_IOService;
 boost::asio::ip::tcp::socket* m_Socket;
@@ -134,10 +134,10 @@ LIBIGS_API bool cb_connect_igs()
 	// test
 
 	//lineMatches("  0(B): A1","  (\\d)\\((B|W)\\): (\\w)(\\d)");
-	extractMove("  0(B): A1 A2 A3");
+	//extractMove("  0(B): A1 A2 A3");
 	g_lastMove.index = -1;
 
-	m_Status = STATUS_DISCONNECTED;
+	m_Status = IGS_STATUS_DISCONNECTED;
 
 	boost::asio::io_service* const service = new boost::asio::io_service;
 	tcp::resolver resolver( *service );
@@ -225,7 +225,7 @@ LIBIGS_API bool cb_connect_igs()
 
 		g_log = new ofstream( "c:\\temp\\go.txt" );
 
-		m_Status = STATUS_WAITING_LOGIN;
+		m_Status = IGS_STATUS_WAITING_LOGIN;
 	}
 
 	return true;
@@ -236,7 +236,7 @@ LIBIGS_API void cb_disconnect_igs()
 	cb_igs_writeline("quit");
 	delete m_Socket;
 	m_Socket=0;
-	m_Status = STATUS_DISCONNECTED;
+	m_Status = IGS_STATUS_DISCONNECTED;
 }
 
 LIBIGS_API string cb_igs_readline()
@@ -294,36 +294,36 @@ LIBIGS_API int cb_igs_read_event()
 
 	if( line == "Login: " )
 	{
-		return EVENT_LOGIN;
+		return IGS_EVENT_LOGIN;
 	}
 	else if( lineContains( line, "IGS entry") )
 	{
 		// XXX Check if status was WAITING_LOGIN
-		m_Status = STATUS_MAIN_HALL;
-		return EVENT_LOGGED_IN;
+		m_Status = IGS_STATUS_MAIN_HALL;
+		return IGS_EVENT_LOGGED_IN;
 	}
 	else if( lineContains( line, "accepted") )
 	{
 		// XXX check previous status
-		m_Status = STATUS_IN_GAME;
-		return EVENT_GAME_ACCEPTED;
+		m_Status = IGS_STATUS_IN_GAME;
+		return IGS_EVENT_GAME_ACCEPTED;
 	}
 	else if( lineContains( line, "declined") )
 	{
 		// XXX check previous status
-		m_Status = STATUS_MAIN_HALL;
-		return EVENT_GAME_DECLINED;
+		m_Status = IGS_STATUS_MAIN_HALL;
+		return IGS_EVENT_GAME_DECLINED;
 	}
 
 	/////// IN GAME
-	else if( m_Status == STATUS_IN_GAME )
+	else if( m_Status == IGS_STATUS_IN_GAME )
 	{
 		if( lineMatches( line, g_moveRE) )
 		{
 			if( extractMove(line) )
 			{
 				cout << "Last Move : " << g_lastMove.stone << ":" << g_lastMove.x << g_lastMove.y << endl;
-				return EVENT_MOVE;
+				return IGS_EVENT_MOVE;
 			}
 		}
 		else
@@ -332,13 +332,13 @@ LIBIGS_API int cb_igs_read_event()
 		}
 	}
 
-	return EVENT_UNKNOWN;
+	return IGS_EVENT_UNKNOWN;
 }
 
 LIBIGS_API int cb_igs_wait_event()
 {
-	int event = EVENT_UNKNOWN;
-	while( event == EVENT_UNKNOWN )
+	int event = IGS_EVENT_UNKNOWN;
+	while( event == IGS_EVENT_UNKNOWN )
 	{
 		event = cb_igs_read_event();
 	}
@@ -346,7 +346,7 @@ LIBIGS_API int cb_igs_wait_event()
 	return event;
 }
 
-LIBIGS_API bool  cb_igs_login(string iLogin, string iPwd)
+LIBIGS_API bool  cb_igs_login(char* iLogin, char* iPwd)
 {
 	cb_igs_writeline(iLogin);
 	cb_igs_writeline(iPwd);
@@ -354,24 +354,24 @@ LIBIGS_API bool  cb_igs_login(string iLogin, string iPwd)
 	return true;
 }
 
-LIBIGS_API bool  cb_igs_challenge(string iUser, string iMyColor)
+LIBIGS_API bool  cb_igs_challenge(char* iUser, char* iMyColor)
 {
-	cb_igs_writeline("match " + iUser + " " + iMyColor + " 19 15 10");
-	m_Status = STATUS_WAITING_CHALLENGE_ANSWER;
+	cb_igs_writeline("match " + string(iUser) + " " + string(iMyColor) + " 19 15 10");
+	m_Status = IGS_STATUS_WAITING_CHALLENGE_ANSWER;
 
 	return true;
 }
 
-LIBIGS_API bool  cb_igs_say(string iMsg)
+LIBIGS_API bool  cb_igs_say(char* iMsg)
 {
-	cb_igs_writeline("say " + iMsg );
+	cb_igs_writeline("say " + string(iMsg) );
 
 	return true;
 }
 
 LIBIGS_API bool  cb_igs_play(string iMove)
 {
-	if( m_Status == STATUS_IN_GAME )
+	if( m_Status == IGS_STATUS_IN_GAME )
 	{
 		cb_igs_writeline( iMove );
 	}
@@ -393,14 +393,14 @@ LIBIGS_API int cb_igs_get_last_move_index()
 	return g_lastMove.index;
 }
 
-LIBIGS_API string cb_igs_get_last_move_stone()
+LIBIGS_API char* cb_igs_get_last_move_stone()
 {
-	return g_lastMove.stone;
+	return (char*)g_lastMove.stone.c_str();
 }
 
-LIBIGS_API string cb_igs_get_last_move_x()
+LIBIGS_API char* cb_igs_get_last_move_x()
 {
-	return g_lastMove.x;
+	return (char*)g_lastMove.x.c_str();
 }
 
 LIBIGS_API int cb_igs_get_last_move_y()
