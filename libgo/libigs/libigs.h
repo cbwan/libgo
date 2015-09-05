@@ -18,6 +18,48 @@ public:
 	// TODO: add your methods here.
 };*/
 
+#include <iostream>
+
+// Events
+enum
+{
+	EVENT_UNKNOWN=-1,
+	EVENT_GAME_ACCEPTED=0,
+	EVENT_GAME_DECLINED=1,
+	EVENT_MOVE=2,
+	EVENT_PASS=3,
+	EVENT_RESIGN=4,
+	EVENT_WIN=5,
+	EVENT_LOGIN=6,
+	EVENT_LOGGED_IN=7
+};
+
+// Status
+enum
+{
+	STATUS_UNKNOWN=-1,
+	STATUS_DISCONNECTED,
+	STATUS_WAITING_LOGIN,
+	STATUS_MAIN_HALL,
+	STATUS_WAITING_CHALLENGE_ANSWER,
+	STATUS_IN_GAME,
+};
+
 LIBIGS_API bool  cb_connect_igs(void);
 LIBIGS_API void  cb_disconnect_igs(void);
-LIBIGS_API bool  cb_read_igs(void);
+
+LIBIGS_API int   cb_igs_get_status(void);
+LIBIGS_API bool  cb_igs_login(std::string iLogin, std::string iPwd);
+LIBIGS_API bool  cb_igs_challenge(std::string iUser, std::string iMyColor);
+LIBIGS_API bool  cb_igs_play( std::string iMove ); // "A1" ..
+LIBIGS_API bool  cb_igs_say(std::string iMsg);
+LIBIGS_API int   cb_igs_read_event();
+LIBIGS_API int   cb_igs_wait_event();
+
+LIBIGS_API int         cb_igs_get_last_move_index();
+LIBIGS_API std::string cb_igs_get_last_move_stone();
+LIBIGS_API std::string cb_igs_get_last_move_x();
+LIBIGS_API int         cb_igs_get_last_move_y();
+
+LIBIGS_API std::string cb_igs_readline(void);
+LIBIGS_API bool cb_igs_writeline(std::string iLine);
