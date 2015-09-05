@@ -369,7 +369,7 @@ LIBIGS_API bool  cb_igs_say(char* iMsg)
 	return true;
 }
 
-LIBIGS_API bool  cb_igs_play(string iMove)
+LIBIGS_API bool  cb_igs_play(char* iMove)
 {
 	if( m_Status == IGS_STATUS_IN_GAME )
 	{

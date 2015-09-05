@@ -61,7 +61,7 @@ int _tmain(int argc, _TCHAR* argv[])
 		m++;
 
 		//cout << "playing: " << str.str() << endl;
-		cb_igs_play(str.str());
+		cb_igs_play(str.str().c_str());
 		
 		//cout << "waiting opponent." << endl;
 		bool nextMove=false;
