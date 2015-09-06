@@ -9,14 +9,15 @@
 
 #include <boost/asio.hpp>
 #include <boost/regex.hpp>
+#include <boost/thread/thread.hpp>
 
 using namespace std;
 
 int m_Status=IGS_STATUS_UNKNOWN;
 
-boost::asio::io_service*      m_IOService;
-boost::asio::ip::tcp::socket* m_Socket;
-ofstream* g_log = 0;
+boost::asio::io_service*      g_IOService;
+boost::asio::ip::tcp::socket* g_Socket;
+ofstream* g_Log = 0;
 
 using boost::asio::ip::tcp;
 
@@ -28,11 +29,23 @@ struct Move {
 	string captured;
 };
 
-Move g_lastMove;
+Move g_LastMove;
+int  g_LastEvent;
 
-//const string g_moveRE = "  (\\d)*\\((B|W)\\):( \\w\\d)+";
+//const string g_MoveRE = "  (\\d)*\\((B|W)\\):( \\w\\d)+";
 
-const string g_moveRE = "  (\\d)*\\((B|W)\\): (\\w)(\\d) ?(.*)";
+const string g_MoveRE = "  (\\d)*\\((B|W)\\): (\\w)(\\d) ?(.*)";
+
+void Log( string iLog )
+{
+	cout << iLog << endl;
+	(*g_Log) << iLog << endl;
+}
+
+LIBIGS_API void cb_log( char* iLog )
+{
+	Log( string( iLog ) );
+}
 
 bool extractMove( string iLine )
 {
@@ -40,19 +53,19 @@ bool extractMove( string iLine )
 	try
 	{
 		// Set up the regular expression for case-insensitivity
-		re.assign(g_moveRE, boost::regex_constants::icase);
+		re.assign(g_MoveRE, boost::regex_constants::icase);
 	}
 	catch (boost::regex_error& e)
 	{
-		cout << g_moveRE << " is not a valid regular expression: \""
-			<< e.what() << "\"" << endl;
+		Log( g_MoveRE + " is not a valid regular expression: \""
+			+ e.what() + "\"" );
 		return false;
 	}
 
 	boost::cmatch matches;
 	if (boost::regex_match(iLine.c_str(), matches, re))
 	{
-		cout << re << " matches " << iLine << endl;
+		//Log( re.str() + " matches " + iLine );
 		int nbMatches = matches.size();
 
 		for ( unsigned int i = 1; i < matches.size(); i++)
@@ -61,18 +74,19 @@ bool extractMove( string iLine )
 			// refer to the first and one past the last chars of the
 			// matching subexpression
 			string match(matches[i].first, matches[i].second);
-			cout << "\tmatches[" << i << "] = '" << match << "'" << endl;
+			ostringstream str; str << "\tmatches[" << i << "] = '" << match << "'" << endl;
+			//Log( str.str() );
 		}
 
-		istringstream indexStr(matches[1]); indexStr >> g_lastMove.index;
-		g_lastMove.stone = matches[2];
-		g_lastMove.x = matches[3];
-		istringstream nbStr(matches[4]); nbStr >> g_lastMove.y;
-		g_lastMove.captured = matches[5];
+		istringstream indexStr(matches[1]); indexStr >> g_LastMove.index;
+		g_LastMove.stone = matches[2];
+		g_LastMove.x = matches[3];
+		istringstream nbStr(matches[4]); nbStr >> g_LastMove.y;
+		g_LastMove.captured = matches[5];
 
-		if( g_lastMove.captured != "" )
+		if( g_LastMove.captured != "" )
 		{
-			cout << "CAPTURES!! " << g_lastMove.captured << endl;
+			Log( "CAPTURES!! " + g_LastMove.captured );
 		}
 
 		return true;
@@ -91,8 +105,8 @@ bool lineMatches( string iLine, string iRegex )
 	}
 	catch (boost::regex_error& e)
 	{
-		cout << iRegex << " is not a valid regular expression: \""
-			<< e.what() << "\"" << endl;
+		Log( iRegex + " is not a valid regular expression: \""
+			+ e.what() + "\"" );
 		return false;
 	}
 
@@ -131,11 +145,12 @@ bool lineContains(string iLine, string iPattern)
 
 LIBIGS_API bool cb_connect_igs()
 {
+	g_Log = new ofstream( "c:\\temp\\go.txt" );
 	// test
 
 	//lineMatches("  0(B): A1","  (\\d)\\((B|W)\\): (\\w)(\\d)");
 	//extractMove("  0(B): A1 A2 A3");
-	g_lastMove.index = -1;
+	g_LastMove.index = -1;
 
 	m_Status = IGS_STATUS_DISCONNECTED;
 
@@ -146,7 +161,7 @@ LIBIGS_API bool cb_connect_igs()
 
 	try
 	{
-		cout << "Looking for address." << endl;
+		Log( "Looking for address." );
 
 		const string addr("igs.joyjoy.net");
 
@@ -159,32 +174,33 @@ LIBIGS_API bool cb_connect_igs()
 	}
 	catch( ... )
 	{
-		cout << "Failed to connect to server." << endl;
+		Log( "Failed to connect to server." );
 		return 0;
 	}
 
 	tcp::resolver::iterator end;
 
-	cout << "Creating socket." << endl;
-	m_Socket = new tcp::socket( *service );
+	Log( "Creating socket." );
+	g_Socket = new tcp::socket( *service );
 
-	m_Socket->open( boost::asio::ip::tcp::v4() );
+	g_Socket->open( boost::asio::ip::tcp::v4() );
 
 	const boost::asio::ip::tcp::no_delay option( true );
 	boost::system::error_code ec;
-	m_Socket->set_option( option, ec );
-	cout << "TCP::No_Delay status: " << ec.value() << endl;
+	g_Socket->set_option( option, ec );
+	Log( "TCP::No_Delay status: " + ec.value() );
 
 	tcp::endpoint currentEndPoint = *endpoint_iterator;
 
 	while( currentEndPoint.protocol().family() != 2 && endpoint_iterator != end )
 	{
-		cout
-			<< "Testing ... to : " << (*endpoint_iterator).host_name()
+		ostringstream str;
+		str << "Testing ... to : " << (*endpoint_iterator).host_name()
 			<< " ( " << currentEndPoint.address().to_string()
 			<< " : " << currentEndPoint .port() << ", "
 			<< currentEndPoint .protocol().family() << " ) "
 			<< endl;
+		Log( str.str() );
 
 		++endpoint_iterator;
 		currentEndPoint = *endpoint_iterator;
@@ -194,8 +210,8 @@ LIBIGS_API bool cb_connect_igs()
 	//while (error && endpoint_iterator != end)
 	for( int i = 0; i < 10; i++ )
 	{
-		//m_Socket->close();
-		m_Socket->connect( *endpoint_iterator/*++*/, error );
+		//g_Socket->close();
+		g_Socket->connect( *endpoint_iterator/*++*/, error );
 
 		if( !error )
 		{
@@ -203,7 +219,8 @@ LIBIGS_API bool cb_connect_igs()
 		}
 		else
 		{
-			cout << "Attempt " << ( i + 1 ) << ": Can't connect to server." << endl;
+			ostringstream str; str << "Attempt " << ( i + 1 ) << ": Can't connect to server." << endl;
+			Log( str.str() );
 			Sleep( 3000 );
 			//throw boost::system::system_error( error );
 			//return false;
@@ -212,18 +229,16 @@ LIBIGS_API bool cb_connect_igs()
 
 	if( error )
 	{
-		cout << "Definitely can't connect to server" <<  endl;
+		Log( "Definitely can't connect to server" );
 		//throw boost::system::system_error(error);
 		return 0;
 	}
 	else
 	{
-		cout << "Successfully connected to server." << endl;
+		Log( "Successfully connected to server." );
 			
 		boost::asio::socket_base::keep_alive keepAlive( true );
-		m_Socket->set_option( keepAlive );
-
-		g_log = new ofstream( "c:\\temp\\go.txt" );
+		g_Socket->set_option( keepAlive );
 
 		m_Status = IGS_STATUS_WAITING_LOGIN;
 	}
@@ -234,8 +249,8 @@ LIBIGS_API bool cb_connect_igs()
 LIBIGS_API void cb_disconnect_igs()
 {
 	cb_igs_writeline("quit");
-	delete m_Socket;
-	m_Socket=0;
+	delete g_Socket;
+	g_Socket=0;
 	m_Status = IGS_STATUS_DISCONNECTED;
 }
 
@@ -251,7 +266,7 @@ LIBIGS_API string cb_igs_readline()
 	{
 		try
 		{
-			size_t len = boost::asio::read( *m_Socket, boost::asio::buffer( &chr, 1 ));
+			size_t len = boost::asio::read( *g_Socket, boost::asio::buffer( &chr, 1 ));
 			if( chr != '\r' && chr != '\n' ) line += chr;
 			if( chr == '\n' ) lineOk=true;
 
@@ -261,15 +276,16 @@ LIBIGS_API string cb_igs_readline()
 		//VRLOGD2 << VR_INFO << "Waited : " << ( VRTIME_MS - startTime ) << " ms." << endl;
 		catch( ... )
 		{
-			cout << "Exception while reading form network. Server closed connection ?" << endl;
+			Log( "Exception while reading form network. Server closed connection ?" );
 		}
 	}
 
-	(*g_log) << line << endl;
+	// XXX uncomment here to see all received lines
+	//(*g_Log) << line << endl;
 
 	if( line != "1 5" && line != "" && lineContains( line, "connected") )
 	{
-		cout << line << endl;
+		Log( line );
 	}
 
 	// Save to file
@@ -279,12 +295,10 @@ LIBIGS_API string cb_igs_readline()
 
 LIBIGS_API bool cb_igs_writeline( std::string iLine )
 {
-	cout << ">>> '" << iLine << "'" << endl;
-
-	(*g_log) << ">>> '" << iLine << "'" << endl;
+	Log( ">>> '" + iLine + "'" );
 
 	string line = iLine + '\r' + '\n';
-	boost::asio::write( *m_Socket, boost::asio::buffer( line, line.size() ) );
+	boost::asio::write( *g_Socket, boost::asio::buffer( line, line.size() ) );
 	return true;
 }
 
@@ -298,7 +312,7 @@ LIBIGS_API int cb_igs_read_event()
 	}
 	else if( lineContains( line, "IGS entry") )
 	{
-		// XXX Check if status was WAITING_LOGIN
+		// XXX Check if status was WAITINg_LogIN
 		m_Status = IGS_STATUS_MAIN_HALL;
 		return IGS_EVENT_LOGGED_IN;
 	}
@@ -318,17 +332,23 @@ LIBIGS_API int cb_igs_read_event()
 	/////// IN GAME
 	else if( m_Status == IGS_STATUS_IN_GAME )
 	{
-		if( lineMatches( line, g_moveRE) )
+		if( lineMatches( line, g_MoveRE) )
 		{
 			if( extractMove(line) )
 			{
-				cout << "Last Move : " << g_lastMove.stone << ":" << g_lastMove.x << g_lastMove.y << endl;
+				ostringstream str;
+				str << "Last Move : " << g_LastMove.stone << ":" << g_LastMove.x << g_LastMove.y;
+				Log( str.str() );
 				return IGS_EVENT_MOVE;
 			}
 		}
+		else if( lineMatches( line, ".*#> Game.*") )
+		{
+			// ignore
+		}
 		else
 		{
-			cout << "Unknown line: " << line << endl;
+			Log( "Unknown line: " + line );
 		}
 	}
 
@@ -377,7 +397,7 @@ LIBIGS_API bool  cb_igs_play(char* iMove)
 	}
 	else
 	{
-		cout << "NOT IN GAME!" << endl;
+		Log( "NOT IN GAME!" );
 	}
 
 	return true;
@@ -390,22 +410,22 @@ LIBIGS_API int cb_igs_get_status()
 
 LIBIGS_API int cb_igs_get_last_move_index()
 {
-	return g_lastMove.index;
+	return g_LastMove.index;
 }
 
 LIBIGS_API char* cb_igs_get_last_move_stone()
 {
-	return (char*)g_lastMove.stone.c_str();
+	return (char*)g_LastMove.stone.c_str();
 }
 
 LIBIGS_API char* cb_igs_get_last_move_x()
 {
-	return (char*)g_lastMove.x.c_str();
+	return (char*)g_LastMove.x.c_str();
 }
 
 LIBIGS_API int cb_igs_get_last_move_y()
 {
-	return g_lastMove.y;
+	return g_LastMove.y;
 }
 
 

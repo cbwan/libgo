@@ -62,7 +62,7 @@ LIBIGS_API int   cb_igs_get_last_move_index();
 LIBIGS_API char* cb_igs_get_last_move_stone();
 LIBIGS_API char* cb_igs_get_last_move_x();
 LIBIGS_API int   cb_igs_get_last_move_y();
-
+LIBIGS_API void  cb_log( char* );
 }
 
 LIBIGS_API std::string cb_igs_readline(void);

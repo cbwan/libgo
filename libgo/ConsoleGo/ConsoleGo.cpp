@@ -59,9 +59,9 @@ int _tmain(int argc, _TCHAR* argv[])
 
 		str << a << m;
 		m++;
-
-		//cout << "playing: " << str.str() << endl;
-		cb_igs_play(str.str().c_str());
+		cb_log( "----- my turn ------" );
+		cb_log( "Me playing randomly:" );
+		cb_igs_play((char*)str.str().c_str());
 		
 		//cout << "waiting opponent." << endl;
 		bool nextMove=false;
@@ -69,7 +69,7 @@ int _tmain(int argc, _TCHAR* argv[])
 		{
 			if( cb_igs_wait_event() == IGS_EVENT_MOVE )
 			{
-				if( cb_igs_get_last_move_stone() != "B" )
+				if( string(cb_igs_get_last_move_stone()) != "B" )
 				{
 					nextMove = true;
 					cout << "!! This was opponent's move !!" << endl;
