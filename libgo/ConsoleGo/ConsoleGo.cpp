@@ -11,71 +11,58 @@
 #include <sstream>
 using namespace std;
 
+void play_random()
+{
+	static int m=1;
+
+	ostringstream str;
+	char a = 'A' + m - 1;
+
+	str << a << m;
+	m++;
+	cb_log( "----- my turn ------" );
+	cb_log( "Me playing randomly:" );
+	cb_igs_play((char*)str.str().c_str());
+}
+
 int _tmain(int argc, _TCHAR* argv[])
 {
 	//cb_init_gnugo();
 
 	cb_connect_igs();
 
-	if( cb_igs_wait_event() != IGS_EVENT_LOGIN )
-	{
-		cout << "Error waiting for login, got something else!" << endl;
-		return -1;
-	}
-
-	cb_igs_login("cbtwo","pandanet");
-
-	if( cb_igs_wait_event() != IGS_EVENT_LOGGED_IN )
-	{
-		cout << "Error waiting for logged, got something else!" << endl;
-		return -1;
-	}
-
-	if( cb_igs_get_status() == IGS_STATUS_IN_GAME )
-	{
-		cout << "Logged in!" << endl;
-	}
-
-	cb_igs_challenge( "cbone", "B" );
-
-	int event = cb_igs_wait_event();
-
-	if( event == IGS_EVENT_GAME_DECLINED )
-	{
-		cout << "SNIIIFFFF match declined" << endl;
-	}
-	else if( event == IGS_EVENT_GAME_ACCEPTED )
-	{
-		cout << "Challenge accepted!" << endl;
-		cb_igs_say("Thanks! I am playing from an experimental virtual reality application!");
-	}
-
-	int m=1;
-
+	// Starting FSM
 	while(1)
 	{
-		ostringstream str;
-		char a = 'A' + m - 1;
+		cb_igs_wait_event();
 
-		str << a << m;
-		m++;
-		cb_log( "----- my turn ------" );
-		cb_log( "Me playing randomly:" );
-		cb_igs_play((char*)str.str().c_str());
-		
-		//cout << "waiting opponent." << endl;
-		bool nextMove=false;
-		while( !nextMove )
+		int event = cb_igs_get_event();
+		do
 		{
-			if( cb_igs_wait_event() == IGS_EVENT_MOVE )
+			switch( event )
 			{
-				if( string(cb_igs_get_last_move_stone()) != "B" )
+			case IGS_EVENT_CONNECTED: cb_igs_login("cbtwo","pandanet"); break;
+			case IGS_EVENT_LOGGED_IN: cb_igs_challenge( "cbone", "B" ); break;
+			case IGS_EVENT_CHALLENGE_DECLINED: cout << "SNIIIFFFF match declined" << endl; break;
+			case IGS_EVENT_CHALLENGE_ACCEPTED:
 				{
-					nextMove = true;
-					cout << "!! This was opponent's move !!" << endl;
+					cout << "Challenge accepted!" << endl;
+					cb_igs_say("Thanks! I am playing from an experimental virtual reality application!");
+					play_random();
+					break;
+				}
+			case IGS_EVENT_MOVE:
+				{
+					if( string(cb_igs_get_last_move_stone()) != "B" )
+					{
+						cout << "!! This was opponent's move !!" << endl;
+						play_random();
+					}
 				}
 			}
-		}
+
+			event = cb_igs_get_event();
+		} while( event != IGS_EVENT_NO_EVENT );
 	}
 
 	cb_disconnect_igs();

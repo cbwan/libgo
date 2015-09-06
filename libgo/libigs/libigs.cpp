@@ -6,6 +6,7 @@
 
 #include <fstream>
 #include <iostream>
+#include <queue>
 
 #include <boost/asio.hpp>
 #include <boost/regex.hpp>
@@ -13,13 +14,9 @@
 
 using namespace std;
 
-int m_Status=IGS_STATUS_UNKNOWN;
-
-boost::asio::io_service*      g_IOService;
-boost::asio::ip::tcp::socket* g_Socket;
-ofstream* g_Log = 0;
-
-using boost::asio::ip::tcp;
+// Finite state machine status
+int g_Status=IGS_STATUS_UNKNOWN;
+queue<int> g_Events;
 
 struct Move {
 	int    index;
@@ -30,11 +27,22 @@ struct Move {
 };
 
 Move g_LastMove;
-int  g_LastEvent;
+
+// Network
+using boost::asio::ip::tcp;
+boost::asio::io_service*      g_IOService;
+boost::asio::ip::tcp::socket* g_Socket;
+
+// Log
+ofstream* g_Log = 0;
 
 //const string g_MoveRE = "  (\\d)*\\((B|W)\\):( \\w\\d)+";
 
-const string g_MoveRE = "  (\\d)*\\((B|W)\\): (\\w)(\\d) ?(.*)";
+//  9(W): A1
+// 10(B): F6
+// 25(W): A2 B2 C3 // other stones are captures
+
+const string g_MoveRE = " *(\\d+)\\((B|W)\\): (\\w)(\\d) ?(.*)";
 
 void Log( string iLog )
 {
@@ -113,7 +121,7 @@ bool lineMatches( string iLine, string iRegex )
 	boost::cmatch matches;
 	if (boost::regex_match(iLine.c_str(), matches, re))
 	{
-		//cout << re << " matches " << iLine << endl;
+		cout << re << " matches " << iLine << endl;
 
 		/*
 		for (int i = 1; i < matches.size(); i++)
@@ -143,16 +151,81 @@ bool lineContains(string iLine, string iPattern)
 	}
 }
 
+LIBIGS_API int cb_igs_get_events_nb(void)
+{
+	return g_Events.size();
+}
+
+LIBIGS_API int cb_igs_get_event()
+{
+	int event = IGS_EVENT_NO_EVENT;
+	if( !g_Events.empty() )
+	{
+		event = g_Events.front();
+		g_Events.pop();
+	}
+	return event;
+}
+
+void cb_igs_push_event( int iEvent )
+{
+	g_Events.push( iEvent );
+
+	ostringstream str; str << "> Event: ";
+
+	switch( iEvent )
+	{
+	case IGS_EVENT_UNKNOWN:           str << "Unknown"; break;
+	case IGS_EVENT_CONNECTED:         str << "Connected"; break;
+	case IGS_EVENT_LOGGED_IN:         str << "Logged in"; break;
+	case IGS_EVENT_LOGIN_FAILED:      str << "Login failed"; break;
+	case IGS_EVENT_RECEIVED_CHALLENGE:str << "Received challenge"; break;
+	case IGS_EVENT_CHALLENGE_ACCEPTED:str << "Challenge accepted"; break;
+	case IGS_EVENT_CHALLENGE_DECLINED:str << "Challenge declined"; break;
+	case IGS_EVENT_MOVE:              str << "Move"; break;
+	case IGS_EVENT_PASS:              str << "Pass"; break;
+	case IGS_EVENT_RESIGN:            str << "Resign"; break;
+	case IGS_EVENT_WIN:               str << "Win"; break;
+	default: str << "Worse than unknown: " << iEvent; break;
+	}
+
+	Log( str.str() );
+}
+
+void cb_igs_set_status( int iStatus )
+{
+	g_Status = iStatus;
+
+	ostringstream str; str << "> Status: ";
+
+	switch( g_Status )
+	{
+	case IGS_STATUS_UNKNOWN:           str << "Unknown"; break;
+	case IGS_STATUS_DISCONNECTED:      str << "Disconnected"; break;
+	case IGS_STATUS_WAITING_LOGIN:     str << "Waiting Login"; break;
+	case IGS_STATUS_LOBBY:             str << "Lobby"; break;
+	case IGS_STATUS_WAITING_CHALLENGE_ANSWER:str << "Waiting challenge answer"; break;
+	case IGS_STATUS_IN_GAME: str << "In Game"; break;
+	default: str << "Worse than unknown: " << g_Status; break;
+	}
+
+	Log( str.str() );
+}
+
 LIBIGS_API bool cb_connect_igs()
 {
 	g_Log = new ofstream( "c:\\temp\\go.txt" );
-	// test
 
+	//g_Events = queue<Event>();
+
+	// test
 	//lineMatches("  0(B): A1","  (\\d)\\((B|W)\\): (\\w)(\\d)");
-	//extractMove("  0(B): A1 A2 A3");
+	//extractMove("  10(B): A1 A2 A3");
+	lineMatches("  10(B): F6", g_MoveRE);
+	extractMove("  10(B): F6");
 	g_LastMove.index = -1;
 
-	m_Status = IGS_STATUS_DISCONNECTED;
+	g_Status = IGS_STATUS_DISCONNECTED;
 
 	boost::asio::io_service* const service = new boost::asio::io_service;
 	tcp::resolver resolver( *service );
@@ -240,7 +313,8 @@ LIBIGS_API bool cb_connect_igs()
 		boost::asio::socket_base::keep_alive keepAlive( true );
 		g_Socket->set_option( keepAlive );
 
-		m_Status = IGS_STATUS_WAITING_LOGIN;
+		//cb_igs_push_event(IGS_EVENT_CONNECTED);
+		//cb_igs_set_status(IGS_STATUS_WAITING_LOGIN);
 	}
 
 	return true;
@@ -251,7 +325,7 @@ LIBIGS_API void cb_disconnect_igs()
 	cb_igs_writeline("quit");
 	delete g_Socket;
 	g_Socket=0;
-	m_Status = IGS_STATUS_DISCONNECTED;
+	cb_igs_set_status( IGS_STATUS_DISCONNECTED );
 }
 
 LIBIGS_API string cb_igs_readline()
@@ -298,7 +372,14 @@ LIBIGS_API bool cb_igs_writeline( std::string iLine )
 	Log( ">>> '" + iLine + "'" );
 
 	string line = iLine + '\r' + '\n';
-	boost::asio::write( *g_Socket, boost::asio::buffer( line, line.size() ) );
+	try
+	{
+		boost::asio::write( *g_Socket, boost::asio::buffer( line, line.size() ) );
+	}
+	catch( ... )
+	{
+		Log( "Exception while writing to network. Server closed connection ?" );
+	}
 	return true;
 }
 
@@ -308,29 +389,31 @@ LIBIGS_API int cb_igs_read_event()
 
 	if( line == "Login: " )
 	{
-		return IGS_EVENT_LOGIN;
+		cb_igs_push_event(IGS_EVENT_CONNECTED);
+		cb_igs_set_status(IGS_STATUS_WAITING_LOGIN);
+		return IGS_EVENT_CONNECTED;
 	}
 	else if( lineContains( line, "IGS entry") )
 	{
-		// XXX Check if status was WAITINg_LogIN
-		m_Status = IGS_STATUS_MAIN_HALL;
+		cb_igs_push_event(IGS_EVENT_LOGGED_IN);
+		cb_igs_set_status( IGS_STATUS_LOBBY );
 		return IGS_EVENT_LOGGED_IN;
 	}
 	else if( lineContains( line, "accepted") )
 	{
-		// XXX check previous status
-		m_Status = IGS_STATUS_IN_GAME;
-		return IGS_EVENT_GAME_ACCEPTED;
+		cb_igs_push_event(IGS_EVENT_CHALLENGE_ACCEPTED);
+		cb_igs_set_status( IGS_STATUS_IN_GAME );
+		return IGS_EVENT_CHALLENGE_ACCEPTED;
 	}
 	else if( lineContains( line, "declined") )
 	{
-		// XXX check previous status
-		m_Status = IGS_STATUS_MAIN_HALL;
-		return IGS_EVENT_GAME_DECLINED;
+		cb_igs_push_event(IGS_EVENT_CHALLENGE_DECLINED);
+		cb_igs_set_status( IGS_STATUS_LOBBY );
+		return IGS_EVENT_CHALLENGE_DECLINED;
 	}
 
 	/////// IN GAME
-	else if( m_Status == IGS_STATUS_IN_GAME )
+	else if( g_Status == IGS_STATUS_IN_GAME )
 	{
 		if( lineMatches( line, g_MoveRE) )
 		{
@@ -339,12 +422,17 @@ LIBIGS_API int cb_igs_read_event()
 				ostringstream str;
 				str << "Last Move : " << g_LastMove.stone << ":" << g_LastMove.x << g_LastMove.y;
 				Log( str.str() );
+				cb_igs_push_event(IGS_EVENT_MOVE);
 				return IGS_EVENT_MOVE;
 			}
 		}
 		else if( lineMatches( line, ".*#> Game.*") )
 		{
 			// ignore
+		}
+		else if( lineContains( line, "Please use say"))
+		{
+
 		}
 		else
 		{
@@ -377,7 +465,7 @@ LIBIGS_API bool  cb_igs_login(char* iLogin, char* iPwd)
 LIBIGS_API bool  cb_igs_challenge(char* iUser, char* iMyColor)
 {
 	cb_igs_writeline("match " + string(iUser) + " " + string(iMyColor) + " 19 15 10");
-	m_Status = IGS_STATUS_WAITING_CHALLENGE_ANSWER;
+	g_Status = IGS_STATUS_WAITING_CHALLENGE_ANSWER;
 
 	return true;
 }
@@ -391,7 +479,7 @@ LIBIGS_API bool  cb_igs_say(char* iMsg)
 
 LIBIGS_API bool  cb_igs_play(char* iMove)
 {
-	if( m_Status == IGS_STATUS_IN_GAME )
+	if( g_Status == IGS_STATUS_IN_GAME )
 	{
 		cb_igs_writeline( iMove );
 	}
@@ -405,7 +493,7 @@ LIBIGS_API bool  cb_igs_play(char* iMove)
 
 LIBIGS_API int cb_igs_get_status()
 {
-	return m_Status;
+	return g_Status;
 }
 
 LIBIGS_API int cb_igs_get_last_move_index()
