@@ -20,12 +20,19 @@ public:
 
 #include <iostream>
 
+enum StoneEnum {
+	EMPTY=0,
+	WHITE,
+	BLACK
+};
+
 // Events
 enum
 {
 	IGS_EVENT_UNKNOWN=-1,
 	IGS_EVENT_NO_EVENT,
 	IGS_EVENT_CONNECTED,
+	IGS_EVENT_LOGIN_PROMPT,
 	IGS_EVENT_LOGGED_IN,
 	IGS_EVENT_LOGIN_FAILED,
 	IGS_EVENT_RECEIVED_CHALLENGE,
@@ -43,10 +50,11 @@ enum
 {
 	IGS_STATUS_UNKNOWN=-1,
 	IGS_STATUS_DISCONNECTED,
-	IGS_STATUS_WAITING_LOGIN,
+	IGS_STATUS_WAITING_LOGIN_PROMPT,
+	IGS_STATUS_AT_LOGIN_PROMPT,
 	IGS_STATUS_LOBBY,
 	IGS_STATUS_WAITING_CHALLENGE_ANSWER,
-	IGS_STATUS_IN_GAME,
+	IGS_STATUS_IN_GAME
 	//IGS_STATUS_IN_GAME_OPPONENTS_TURN
 };
 
@@ -62,11 +70,13 @@ LIBIGS_API bool  cb_igs_login(char* iLogin, char* iPwd);
 LIBIGS_API bool  cb_igs_challenge(char* iUser, char* iMyColor);
 LIBIGS_API bool  cb_igs_play( int x, int y ); // "A1"
 LIBIGS_API bool  cb_igs_say( char* iMsg);
-LIBIGS_API int   cb_igs_read_event();
+
+// blocking reads
+LIBIGS_API bool  cb_igs_read_event();
 LIBIGS_API int   cb_igs_wait_event();
 
 LIBIGS_API int   cb_igs_get_last_move_index();
-LIBIGS_API char* cb_igs_get_last_move_stone();
+LIBIGS_API int   cb_igs_get_last_move_stone();
 LIBIGS_API int   cb_igs_get_last_move_x();
 LIBIGS_API int   cb_igs_get_last_move_y();
 LIBIGS_API void  cb_log( char* );
