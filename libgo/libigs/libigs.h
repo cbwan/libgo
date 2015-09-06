@@ -62,6 +62,7 @@ extern "C" {
 
 LIBIGS_API bool  cb_connect_igs(void);
 LIBIGS_API void  cb_disconnect_igs(void);
+LIBIGS_API bool  cb_igs_is_connected(void);
 
 LIBIGS_API int   cb_igs_get_status(void);
 LIBIGS_API int   cb_igs_get_events_nb(void);

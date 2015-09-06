@@ -17,6 +17,7 @@ using namespace std;
 // Finite state machine status
 int g_Status=IGS_STATUS_UNKNOWN;
 queue<int> g_Events;
+bool g_IsIGSConnected = false;
 
 struct Move {
 	int index;
@@ -309,6 +310,11 @@ void cb_igs_set_status( int iStatus )
 	Log( str.str() );
 }
 
+LIBIGS_API bool  cb_igs_is_connected(void)
+{
+	return g_IsIGSConnected;
+}
+
 LIBIGS_API bool cb_connect_igs()
 {
 	init();
@@ -401,6 +407,7 @@ LIBIGS_API bool cb_connect_igs()
 		boost::asio::socket_base::keep_alive keepAlive( true );
 		g_Socket->set_option( keepAlive );
 
+		g_IsIGSConnected = true;
 		cb_igs_push_event(IGS_EVENT_CONNECTED);
 		cb_igs_set_status(IGS_STATUS_WAITING_LOGIN_PROMPT);
 
@@ -412,15 +419,22 @@ LIBIGS_API bool cb_connect_igs()
 
 LIBIGS_API void cb_disconnect_igs()
 {
-	cb_igs_writeline("quit");
-	cb_igs_set_status( IGS_STATUS_DISCONNECTED );
+	if( g_IsIGSConnected )
+	{
+		cb_igs_writeline("quit");
+		cb_igs_set_status( IGS_STATUS_DISCONNECTED );
 
-	Log("Waiting for thread to finish...");
-	g_Thread->join();
-	Log("Disconnected");
+		Log("Waiting for thread to finish...");
+		g_Thread->join();
+		Log("Disconnected");
 
-	delete g_Socket;
-	g_Socket=0;
+		delete g_Socket;
+		g_Socket=0;
+	}
+	else
+	{
+		Log("Can't disconnect because IGS is not connected.");
+	}
 }
 
 LIBIGS_API string cb_igs_readline()

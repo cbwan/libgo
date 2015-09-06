@@ -11,9 +11,17 @@ extern "C" {
 static int ri=-1;
 static int rj=-1;
 
+bool g_IsInit = false;
+
 LIBGO_API void cb_init_gnugo(void)
 {
 	init_gnugo(500,13951);
+	g_IsInit = true;
+}
+
+LIBGO_API bool cb_is_gnugo_init(void)
+{
+	return g_IsInit;
 }
 
 LIBGO_API void cb_gnugo_clear_board(int size)
