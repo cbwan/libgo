@@ -60,14 +60,14 @@ LIBIGS_API int   cb_igs_get_events_nb(void);
 LIBIGS_API int   cb_igs_get_event(void);
 LIBIGS_API bool  cb_igs_login(char* iLogin, char* iPwd);
 LIBIGS_API bool  cb_igs_challenge(char* iUser, char* iMyColor);
-LIBIGS_API bool  cb_igs_play( char* iMove ); // "A1" ..
+LIBIGS_API bool  cb_igs_play( int x, int y ); // "A1"
 LIBIGS_API bool  cb_igs_say( char* iMsg);
 LIBIGS_API int   cb_igs_read_event();
 LIBIGS_API int   cb_igs_wait_event();
 
 LIBIGS_API int   cb_igs_get_last_move_index();
 LIBIGS_API char* cb_igs_get_last_move_stone();
-LIBIGS_API char* cb_igs_get_last_move_x();
+LIBIGS_API int   cb_igs_get_last_move_x();
 LIBIGS_API int   cb_igs_get_last_move_y();
 LIBIGS_API void  cb_log( char* );
 }

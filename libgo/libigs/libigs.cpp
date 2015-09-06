@@ -21,8 +21,8 @@ queue<int> g_Events;
 struct Move {
 	int    index;
 	string stone;
-	string x;
-	int    y;
+	int x;
+	int y;
 	string captured;
 };
 
@@ -53,6 +53,68 @@ void Log( string iLog )
 LIBIGS_API void cb_log( char* iLog )
 {
 	Log( string( iLog ) );
+}
+
+
+void init()
+{
+	g_Log = new ofstream( "c:\\temp\\go.txt" );
+
+	//g_Events = queue<Event>();
+	// test
+	//lineMatches("  0(B): A1","  (\\d)\\((B|W)\\): (\\w)(\\d)");
+	//extractMove("  10(B): A1 A2 A3");
+	//lineMatches("  10(B): F6", g_MoveRE);
+	//extractMove("  10(B): F6");
+	g_LastMove.index = -1;
+}
+
+int convert_letter_to_number( string iLetter )
+{
+	if( iLetter == "A" ) return 1;
+	if( iLetter == "B" ) return 2;
+	if( iLetter == "C" ) return 3;
+	if( iLetter == "D" ) return 4;
+	if( iLetter == "E" ) return 5;
+	if( iLetter == "F" ) return 6;
+	if( iLetter == "G" ) return 7;
+	if( iLetter == "H" ) return 8;
+	if( iLetter == "J" ) return 9;
+	if( iLetter == "K" ) return 10;
+	if( iLetter == "L" ) return 11;
+	if( iLetter == "M" ) return 12;
+	if( iLetter == "N" ) return 13;
+	if( iLetter == "O" ) return 14;
+	if( iLetter == "P" ) return 15;
+	if( iLetter == "Q" ) return 16;
+	if( iLetter == "R" ) return 17;
+	if( iLetter == "S" ) return 18;
+	if( iLetter == "T" ) return 19;
+	return -1;
+}
+
+string convert_number_to_letter( int iNumber )
+{
+	if( iNumber == 1 ) return "A";
+	if( iNumber == 2 ) return "B";
+	if( iNumber == 3 ) return "C";
+	if( iNumber == 4 ) return "D";
+	if( iNumber == 5 ) return "E";
+	if( iNumber == 6 ) return "F";
+	if( iNumber == 7 ) return "G";
+	if( iNumber == 8 ) return "H";
+	if( iNumber == 9 ) return "J";
+	if( iNumber == 10 ) return "K";
+	if( iNumber == 11 ) return "L";
+	if( iNumber == 12 ) return "M";
+	if( iNumber == 13 ) return "N";
+	if( iNumber == 14 ) return "O";
+	if( iNumber == 15 ) return "P";
+	if( iNumber == 16 ) return "Q";
+	if( iNumber == 17 ) return "R";
+	if( iNumber == 18 ) return "S";
+	if( iNumber == 19 ) return "T";
+	return "Z";
 }
 
 bool extractMove( string iLine )
@@ -88,7 +150,7 @@ bool extractMove( string iLine )
 
 		istringstream indexStr(matches[1]); indexStr >> g_LastMove.index;
 		g_LastMove.stone = matches[2];
-		g_LastMove.x = matches[3];
+		g_LastMove.x = convert_letter_to_number( matches[3] );
 		istringstream nbStr(matches[4]); nbStr >> g_LastMove.y;
 		g_LastMove.captured = matches[5];
 
@@ -214,16 +276,7 @@ void cb_igs_set_status( int iStatus )
 
 LIBIGS_API bool cb_connect_igs()
 {
-	g_Log = new ofstream( "c:\\temp\\go.txt" );
-
-	//g_Events = queue<Event>();
-
-	// test
-	//lineMatches("  0(B): A1","  (\\d)\\((B|W)\\): (\\w)(\\d)");
-	//extractMove("  10(B): A1 A2 A3");
-	lineMatches("  10(B): F6", g_MoveRE);
-	extractMove("  10(B): F6");
-	g_LastMove.index = -1;
+	init();
 
 	g_Status = IGS_STATUS_DISCONNECTED;
 
@@ -436,7 +489,7 @@ LIBIGS_API int cb_igs_read_event()
 		}
 		else
 		{
-			Log( "Unknown line: " + line );
+			Log( "Unknown line :'" + line + "'");
 		}
 	}
 
@@ -477,11 +530,14 @@ LIBIGS_API bool  cb_igs_say(char* iMsg)
 	return true;
 }
 
-LIBIGS_API bool  cb_igs_play(char* iMove)
+LIBIGS_API bool  cb_igs_play(int x, int y)
 {
+	string xs = convert_number_to_letter(x);
+	ostringstream move; move << xs << y;
+
 	if( g_Status == IGS_STATUS_IN_GAME )
 	{
-		cb_igs_writeline( iMove );
+		cb_igs_writeline( move.str() );
 	}
 	else
 	{
@@ -506,9 +562,9 @@ LIBIGS_API char* cb_igs_get_last_move_stone()
 	return (char*)g_LastMove.stone.c_str();
 }
 
-LIBIGS_API char* cb_igs_get_last_move_x()
+LIBIGS_API int cb_igs_get_last_move_x()
 {
-	return (char*)g_LastMove.x.c_str();
+	return g_LastMove.x;
 }
 
 LIBIGS_API int cb_igs_get_last_move_y()

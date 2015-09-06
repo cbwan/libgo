@@ -14,15 +14,10 @@ using namespace std;
 void play_random()
 {
 	static int m=1;
-
-	ostringstream str;
-	char a = 'A' + m - 1;
-
-	str << a << m;
-	m++;
 	cb_log( "----- my turn ------" );
 	cb_log( "Me playing randomly:" );
-	cb_igs_play((char*)str.str().c_str());
+	cb_igs_play(m,m);
+	m++;
 }
 
 int _tmain(int argc, _TCHAR* argv[])
@@ -55,7 +50,10 @@ int _tmain(int argc, _TCHAR* argv[])
 				{
 					if( string(cb_igs_get_last_move_stone()) != "B" )
 					{
-						cout << "!! This was opponent's move !!" << endl;
+						int x = cb_igs_get_last_move_x();
+						int y = cb_igs_get_last_move_y();
+
+						cout << "Opponent played: " << x << ":" << y << endl;
 						play_random();
 					}
 				}
