@@ -57,6 +57,7 @@ LIBGO_API int cb_get_board_color(int i, int j)
 {
 	static int b[MAX_BOARD][MAX_BOARD];
 	gnugo_get_board(b);
+	//if( 
 	return b[i][j];
 }
 
@@ -87,5 +88,40 @@ LIBGO_API int cb_gnugo_get_move_number(void)
 {
 	return gnugo_get_move_number();
 }
+
+LIBGO_API void  cb_gnugo_set_komi(float new_komi)
+{
+	gnugo_set_komi(new_komi);
+}
+
+LIBGO_API float cb_gnugo_get_komi()
+{
+	return gnugo_get_komi();
+}
+
+LIBGO_API int cb_gnugo_placehand(int handicap)
+{
+	return gnugo_placehand(handicap);
+}
+
+LIBGO_API bool cb_gnugo_is_ko()
+{
+	if( board_ko_pos > 0 )
+	{
+		return true;
+	}
+	return false;
+}
+
+LIBGO_API int cb_gnugo_get_ko_x()
+{
+	return I(board_ko_pos);
+}
+
+LIBGO_API int cb_gnugo_get_ko_y()
+{
+	return J(board_ko_pos);
+}
+
 
 }
