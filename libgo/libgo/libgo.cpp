@@ -39,11 +39,20 @@ LIBGO_API void cb_gnugo_play_move(int i, int j, int color )
 	gnugo_play_move(i,j,color);
 }
 
+LIBGO_API int cb_get_genmove_x()
+{
+	return ri;
+}
+
+LIBGO_API int cb_get_genmove_y()
+{
+	return rj;
+}
+
 LIBGO_API void cb_genmove(int color)
 {
-	int i,j;
-	gnugo_genmove(&i,&j,color);
-	gnugo_play_move(i,j,color);
+	gnugo_genmove(&ri,&rj,color);
+	//gnugo_play_move(i,j,color);
 
 	//printf("gen: %d, %d\n", i,j);
 

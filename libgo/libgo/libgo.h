@@ -19,6 +19,8 @@ LIBGO_API bool cb_is_gnugo_init();
 LIBGO_API void cb_gnugo_clear_board( int boardsize );
 LIBGO_API void cb_gnugo_play_move(int i, int j, int color );
 LIBGO_API void cb_genmove(int color);
+LIBGO_API int  cb_get_genmove_x();
+LIBGO_API int  cb_get_genmove_y();
 LIBGO_API bool cb_gnugo_is_legal(int i, int j, int color);
 LIBGO_API int  cb_get_board_color(int i, int j);
 LIBGO_API bool cb_gnugo_undo_move(int n);

@@ -544,6 +544,19 @@ LIBIGS_API bool cb_igs_read_event()
 		{
 
 		}
+		else if( lineContains( line, ": Pass"))
+		{
+			//XXX revise regex for pass
+			cb_igs_push_event(IGS_EVENT_PASS);
+		}
+		else if( lineContains( line, "resigned"))
+		{
+			cb_igs_push_event(IGS_EVENT_RESIGN);
+		}
+		else if( lineContains( line, "Use <match"))
+		{
+			cb_igs_push_event(IGS_EVENT_RECEIVED_CHALLENGE);
+		}
 		else
 		{
 			Log( "Unknown line :'" + line + "'");
