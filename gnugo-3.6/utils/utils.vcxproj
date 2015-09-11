@@ -218,7 +218,7 @@
     </Bscmake>
     <Lib>
       <SuppressStartupBanner>true</SuppressStartupBanner>
-      <OutputFile>.\Release\utils.lib</OutputFile>
+      <OutputFile>.\x64\Release\utils.lib</OutputFile>
     </Lib>
   </ItemDefinitionGroup>
   <ItemGroup>

@@ -216,7 +216,7 @@
     </Bscmake>
     <Lib>
       <SuppressStartupBanner>true</SuppressStartupBanner>
-      <OutputFile>.\Release\patterns.lib</OutputFile>
+      <OutputFile>.\x64\Release\patterns.lib</OutputFile>
     </Lib>
   </ItemDefinitionGroup>
   <ItemGroup>

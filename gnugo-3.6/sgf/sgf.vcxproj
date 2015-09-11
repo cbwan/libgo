@@ -212,7 +212,7 @@
     </Bscmake>
     <Lib>
       <SuppressStartupBanner>true</SuppressStartupBanner>
-      <OutputFile>Release\sgf.lib</OutputFile>
+      <OutputFile>.\x64\Release\sgf.lib</OutputFile>
     </Lib>
   </ItemDefinitionGroup>
   <ItemGroup>

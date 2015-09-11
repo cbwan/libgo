@@ -220,7 +220,7 @@
     </Bscmake>
     <Lib>
       <SuppressStartupBanner>true</SuppressStartupBanner>
-      <OutputFile>.\Release\engine.lib</OutputFile>
+      <OutputFile>.\x64\Release\engine.lib</OutputFile>
     </Lib>
   </ItemDefinitionGroup>
   <ItemGroup>

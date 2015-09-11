@@ -256,7 +256,7 @@
     <Link>
       <SuppressStartupBanner>true</SuppressStartupBanner>
       <SubSystem>Console</SubSystem>
-      <OutputFile>.\Release\joseki.exe</OutputFile>
+      <OutputFile>.\x64\Release\joseki.exe</OutputFile>
       <AdditionalLibraryDirectories>../sgf/$(IntDir);../utils/$(IntDir);../engine/$(IntDir);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <AdditionalDependencies>sgf.lib;utils.lib;board.obj;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>

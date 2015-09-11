@@ -121,19 +121,19 @@
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <PreprocessorDefinitions>WIN32;NDEBUG;_WINDOWS;_USRDLL;LIBGO_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>C:\Code\Projects\Cb_Projects\libgo\gnugo-3.8\engine;C:\Code\Projects\Cb_Projects\libgo\gnugo-3.8\build;C:\Code\Projects\Cb_Projects\libgo\gnugo-3.8\sgf;C:\Code\Projects\Cb_Projects\libgo\gnugo-3.8\utils;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <CompileAs>CompileAsC</CompileAs>
+      <AdditionalIncludeDirectories>C:\Code\MiddleVR_Build_Dependencies\RakNet\RakNet-git\Source;..\..\gnugo-3.6\;..\..\gnugo-3.6\engine;..\..\gnugo-3.6\build;..\..\gnugo-3.6\sgf;..\..\gnugo-3.6\utils;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <CompileAs>Default</CompileAs>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
-      <AdditionalLibraryDirectories>C:\Code\Projects\Cb_Projects\libgo\gnugo-3.8\build\engine\Release;C:\Code\Projects\Cb_Projects\libgo\gnugo-3.8\build\sgf\Release;C:\Code\Projects\Cb_Projects\libgo\gnugo-3.8\build\utils\Release;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>engine.lib;board.lib;utils.lib;sgf.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>..\..\gnugo-3.6\engine\Release;..\..\gnugo-3.6\patterns\Release;..\..\gnugo-3.6\sgf\Release;..\..\gnugo-3.6\utils\Release;C:/Code/MiddleVR/../SDKS/RakNet_PC-4.082/Lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>RakNet_VS2008_LibStatic_Debug_Win32.lib;ws2_32.lib;engine.lib;board.lib;sgf.lib;utils.lib;dfa.lib;patterns.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
     <PostBuildEvent>
-      <Command>copy $(TargetPath) C:\Users\Cb\Documents\VRGo.git\Assets\Plugins\x86</Command>
+      <Command>copy $(TargetPath) C:\Code\Projects\Cb_Projects\VRGo.git\Assets\Plugins\x86</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">

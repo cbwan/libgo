@@ -168,7 +168,7 @@
       <SuppressStartupBanner>true</SuppressStartupBanner>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <SubSystem>Console</SubSystem>
-      <OutputFile>.\Release\mkpat.exe</OutputFile>
+      <OutputFile>.\x64\Release\mkpat.exe</OutputFile>
       <AdditionalDependencies>..\utils\Release\utils.lib;.\Release\dfa.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
