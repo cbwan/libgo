@@ -15,10 +15,14 @@ using namespace std;
 void genmove()
 {
 	int i,j;
-	gnugo_genmove(&i,&j,2);
-	gnugo_play_move(i,j,2);
+	//genmove(&i,&j,2);
+	//gnugo_play_move(i,j,2);
+	float val=-1;
+	int res=-1;
+	int move = genmove(2, &val, &res);
+	gnugo_play_move(move, 2);
 
-	printf("gen: %d, %d\n", i,j);
+	printf("gen: move:%d, %d, %d\n", move, I(move), J(move));
 
 	showboard(0);
 
@@ -46,9 +50,9 @@ int _tmain(int argc, _TCHAR* argv[])
 		y = uy-'A';
 		x = 19-ux;
 
-		if( gnugo_is_legal(x,y,1) )
+		if( is_legal(POS(x,y),1) )
 		{
-			gnugo_play_move(x,y,1);
+			gnugo_play_move(POS(x,y),1);
 			genmove();
 		}
 		else

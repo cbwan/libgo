@@ -31,12 +31,12 @@ LIBGO_API void cb_gnugo_clear_board(int size)
 
 LIBGO_API bool cb_gnugo_is_legal(int i, int j, int color)
 {
-	return (bool)gnugo_is_legal(i,j,color);
+	return (bool)is_legal(POS(i,j),color);
 }
 
 LIBGO_API void cb_gnugo_play_move(int i, int j, int color )
 {
-	gnugo_play_move(i,j,color);
+	gnugo_play_move(POS(i,j),color);
 }
 
 LIBGO_API int cb_get_genmove_x()
@@ -51,7 +51,14 @@ LIBGO_API int cb_get_genmove_y()
 
 LIBGO_API void cb_genmove(int color)
 {
-	gnugo_genmove(&ri,&rj,color);
+	float val=-1;
+	int res=-1;
+	int move = genmove(2, &val, &res);
+	
+	ri = I(move);
+	rj = J(move);
+
+	//gnugo_genmove(&ri,&rj,color);
 	//gnugo_play_move(i,j,color);
 
 	//printf("gen: %d, %d\n", i,j);
@@ -64,15 +71,16 @@ LIBGO_API void cb_genmove(int color)
 
 LIBGO_API int cb_get_board_color(int i, int j)
 {
-	static int b[MAX_BOARD][MAX_BOARD];
-	gnugo_get_board(b);
+	//static int b[MAX_BOARD][MAX_BOARD];
+	//gnugo_get_board(b);
 	//if( 
-	return b[i][j];
+	//return b[i][j];
+	return BOARD(i,j);
 }
 
 LIBGO_API bool cb_gnugo_undo_move(int n)
 {
-	gnugo_undo_move(n);
+	undo_move(n);
 	return true;
 }
 
@@ -95,22 +103,26 @@ LIBGO_API int cb_get_black_captured()
 
 LIBGO_API int cb_gnugo_get_move_number(void)
 {
-	return gnugo_get_move_number();
+	board_state state;
+	store_board(&state);
+	return state.move_number;
+	//return gnugo_get_move_number();
 }
 
 LIBGO_API void  cb_gnugo_set_komi(float new_komi)
 {
-	gnugo_set_komi(new_komi);
+	//gnugo_set_komi(new_komi);
 }
 
 LIBGO_API float cb_gnugo_get_komi()
 {
-	return gnugo_get_komi();
+	return 6.5f;
+	//return gnugo_get_komi();
 }
 
 LIBGO_API int cb_gnugo_placehand(int handicap)
 {
-	return gnugo_placehand(handicap);
+	return gnugo_sethand(handicap,0);
 }
 
 LIBGO_API bool cb_gnugo_is_ko()
