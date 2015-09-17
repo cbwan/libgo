@@ -71,6 +71,8 @@ LIBIGS_API bool  cb_igs_login(char* iLogin, char* iPwd);
 LIBIGS_API bool  cb_igs_challenge(char* iUser, char* iMyColor);
 LIBIGS_API bool  cb_igs_play( int x, int y ); // "A1"
 LIBIGS_API bool  cb_igs_say( char* iMsg);
+LIBIGS_API bool  cb_igs_pass();
+LIBIGS_API bool  cb_igs_resign();
 
 // blocking reads
 LIBIGS_API bool  cb_igs_read_event();

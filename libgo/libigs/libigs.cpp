@@ -18,6 +18,7 @@ using namespace std;
 int g_Status=IGS_STATUS_UNKNOWN;
 queue<int> g_Events;
 bool g_IsIGSConnected = false;
+bool g_LocalPassed = false;
 
 struct Move {
 	int index;
@@ -547,7 +548,15 @@ LIBIGS_API bool cb_igs_read_event()
 		else if( lineContains( line, ": Pass"))
 		{
 			//XXX revise regex for pass
-			cb_igs_push_event(IGS_EVENT_PASS);
+			if( g_LocalPassed )
+			{
+				Log( "Received pass line, but we just passed, so ignoring.");
+				g_LocalPassed = false;
+			}
+			else
+			{
+				cb_igs_push_event(IGS_EVENT_PASS);
+			}
 		}
 		else if( lineContains( line, "resigned"))
 		{
@@ -635,7 +644,36 @@ LIBIGS_API bool  cb_igs_play(int x, int y)
 	}
 	else
 	{
-		Log( "NOT IN GAME!" );
+		Log( "CAN'T PLAY NOT IN GAME!" );
+	}
+
+	return true;
+}
+
+LIBIGS_API bool  cb_igs_pass()
+{
+	if( g_Status == IGS_STATUS_IN_GAME )
+	{
+		cb_igs_writeline( "pass" );
+		g_LocalPassed = true;
+	}
+	else
+	{
+		Log( "CAN'T PASS NOT IN GAME!" );
+	}
+
+	return true;
+}
+
+LIBIGS_API bool  cb_igs_resign()
+{
+	if( g_Status == IGS_STATUS_IN_GAME )
+	{
+		cb_igs_writeline( "resign" );
+	}
+	else
+	{
+		Log( "CAN'T RESIGN NOT IN GAME!" );
 	}
 
 	return true;
