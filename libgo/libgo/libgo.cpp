@@ -109,15 +109,14 @@ LIBGO_API int cb_gnugo_get_move_number(void)
 	//return gnugo_get_move_number();
 }
 
-LIBGO_API void  cb_gnugo_set_komi(float new_komi)
+LIBGO_API void cb_gnugo_set_komi(float new_komi)
 {
-	//gnugo_set_komi(new_komi);
+	komi = new_komi;
 }
 
 LIBGO_API float cb_gnugo_get_komi()
 {
-	return 6.5f;
-	//return gnugo_get_komi();
+	return komi;
 }
 
 LIBGO_API int cb_gnugo_placehand(int handicap)
