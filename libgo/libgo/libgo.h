@@ -42,6 +42,7 @@ LIBGO_API int   cbgo_placehand(int handicap);
 LIBGO_API bool  cbgo_is_ko();
 LIBGO_API int   cbgo_get_ko_x();
 LIBGO_API int   cbgo_get_ko_y();
+LIBGO_API bool  cbgo_save_sgf( char* iFileName );
 
 //LIBGO_API void  cb_gnugo_recordboard(
 

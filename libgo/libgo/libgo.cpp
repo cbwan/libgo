@@ -149,5 +149,17 @@ LIBGO_API int cbgo_get_ko_y()
 	return SgPointUtil::Row(g_Engine->Board().KoPoint()) - 1;
 }
 
+LIBGO_API bool cbgo_save_sgf( char* iFileName )
+{
+	try
+	{
+		g_Engine->SaveGame( iFileName );
+		return true;
+	}
+	catch(...)
+	{
+		return false;
+	}
+}
 
 }
