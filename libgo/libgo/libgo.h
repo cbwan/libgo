@@ -14,27 +14,26 @@
 extern "C" {
 //#endif
 
-LIBGO_API void cb_init_gnugo(void);
-LIBGO_API bool cb_is_gnugo_init();
-LIBGO_API void cb_gnugo_clear_board( int boardsize );
-LIBGO_API void cb_gnugo_play_move(int i, int j, int color );
-LIBGO_API void cb_genmove(int color);
-LIBGO_API int  cb_get_genmove_x();
-LIBGO_API int  cb_get_genmove_y();
-LIBGO_API bool cb_gnugo_is_legal(int i, int j, int color);
-LIBGO_API int  cb_get_board_color(int i, int j);
-LIBGO_API bool cb_gnugo_undo_move(int n);
-LIBGO_API float cb_get_score(void);
-LIBGO_API int   cb_gnugo_get_move_number(void);
-LIBGO_API int   cb_get_white_captured(void);
-LIBGO_API int   cb_get_black_captured(void);
-LIBGO_API void  cb_gnugo_set_komi(float new_komi);
-LIBGO_API float cb_gnugo_get_komi(void);
-LIBGO_API int   cb_gnugo_placehand(int handicap);
-LIBGO_API bool  cb_gnugo_is_ko();
-LIBGO_API int   cb_gnugo_get_ko_x();
-LIBGO_API int   cb_gnugo_get_ko_y();
-
+LIBGO_API void cbgo_init(void);
+LIBGO_API bool cbgo_is_init();
+LIBGO_API void cbgo_clear_board( int boardsize );
+LIBGO_API void cbgo_play_move(int i, int j, int color );
+LIBGO_API void cbgo_genmove(int color);
+LIBGO_API int  cbgo_get_genmove_x();
+LIBGO_API int  cbgo_get_genmove_y();
+LIBGO_API bool cbgo_is_legal(int i, int j, int color);
+LIBGO_API int  cbgo_get_board_color(int i, int j);
+LIBGO_API bool cbgo_undo_move(int n);
+LIBGO_API float cbgo_get_score(void);
+LIBGO_API int   cbgo_get_move_number(void);
+LIBGO_API int   cbgo_get_white_captured(void);
+LIBGO_API int   cbgo_get_black_captured(void);
+LIBGO_API void  cbgo_set_komi(float new_komi);
+LIBGO_API float cbgo_get_komi(void);
+LIBGO_API int   cbgo_placehand(int handicap);
+LIBGO_API bool  cbgo_is_ko();
+LIBGO_API int   cbgo_get_ko_x();
+LIBGO_API int   cbgo_get_ko_y();
 
 //LIBGO_API void  cb_gnugo_recordboard(
 

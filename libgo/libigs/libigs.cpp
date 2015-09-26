@@ -59,7 +59,7 @@ void Log( string iLog )
 	(*g_Log) << iLog << endl;
 }
 
-LIBIGS_API void cb_log( char* iLog )
+LIBIGS_API void cbgo_log( char* iLog )
 {
 	Log( string( iLog ) );
 }
@@ -244,12 +244,12 @@ bool lineContains(string iLine, string iPattern)
 	}
 }
 
-LIBIGS_API int cb_igs_get_events_nb(void)
+LIBIGS_API int cbgo_igs_get_events_nb(void)
 {
 	return g_Events.size();
 }
 
-LIBIGS_API int cb_igs_get_event()
+LIBIGS_API int cbgo_igs_get_event()
 {
 	boost::lock_guard<boost::mutex> lock(eventsMutex);
 
@@ -262,7 +262,7 @@ LIBIGS_API int cb_igs_get_event()
 	return event;
 }
 
-void cb_igs_push_event( int iEvent )
+void cbgo_igs_push_event( int iEvent )
 {
 	boost::lock_guard<boost::mutex> lock(eventsMutex);
 
@@ -290,7 +290,7 @@ void cb_igs_push_event( int iEvent )
 	Log( str.str() );
 }
 
-void cb_igs_set_status( int iStatus )
+void cbgo_igs_set_status( int iStatus )
 {
 	g_Status = iStatus;
 
@@ -311,12 +311,12 @@ void cb_igs_set_status( int iStatus )
 	Log( str.str() );
 }
 
-LIBIGS_API bool  cb_igs_is_connected(void)
+LIBIGS_API bool  cbgo_igs_is_connected(void)
 {
 	return g_IsIGSConnected;
 }
 
-LIBIGS_API bool cb_connect_igs()
+LIBIGS_API bool cbgo_connect_igs()
 {
 	init();
 
@@ -409,8 +409,8 @@ LIBIGS_API bool cb_connect_igs()
 		g_Socket->set_option( keepAlive );
 
 		g_IsIGSConnected = true;
-		cb_igs_push_event(IGS_EVENT_CONNECTED);
-		cb_igs_set_status(IGS_STATUS_WAITING_LOGIN_PROMPT);
+		cbgo_igs_push_event(IGS_EVENT_CONNECTED);
+		cbgo_igs_set_status(IGS_STATUS_WAITING_LOGIN_PROMPT);
 
 		g_Thread = new boost::thread(&igs_loop);
 	}
@@ -418,12 +418,12 @@ LIBIGS_API bool cb_connect_igs()
 	return true;
 }
 
-LIBIGS_API void cb_disconnect_igs()
+LIBIGS_API void cbgo_disconnect_igs()
 {
 	if( g_IsIGSConnected )
 	{
-		cb_igs_writeline("quit");
-		cb_igs_set_status( IGS_STATUS_DISCONNECTED );
+		cbgo_igs_writeline("quit");
+		cbgo_igs_set_status( IGS_STATUS_DISCONNECTED );
 
 		Log("Waiting for thread to finish...");
 		g_Thread->join();
@@ -438,7 +438,7 @@ LIBIGS_API void cb_disconnect_igs()
 	}
 }
 
-LIBIGS_API string cb_igs_readline()
+LIBIGS_API string cbgo_igs_readline()
 {
 	boost::system::error_code error;
 
@@ -478,7 +478,7 @@ LIBIGS_API string cb_igs_readline()
 	return line;
 }
 
-LIBIGS_API bool cb_igs_writeline( std::string iLine )
+LIBIGS_API bool cbgo_igs_writeline( std::string iLine )
 {
 	Log( ">>> '" + iLine + "'" );
 
@@ -494,9 +494,9 @@ LIBIGS_API bool cb_igs_writeline( std::string iLine )
 	return true;
 }
 
-LIBIGS_API bool cb_igs_read_event()
+LIBIGS_API bool cbgo_igs_read_event()
 {
-	string line = cb_igs_readline();
+	string line = cbgo_igs_readline();
 
 	if( line == "ERR" )
 	{
@@ -505,23 +505,23 @@ LIBIGS_API bool cb_igs_read_event()
 
 	if( line == "Login: " )
 	{
-		cb_igs_set_status(IGS_STATUS_AT_LOGIN_PROMPT);
-		cb_igs_push_event(IGS_EVENT_LOGIN_PROMPT);
+		cbgo_igs_set_status(IGS_STATUS_AT_LOGIN_PROMPT);
+		cbgo_igs_push_event(IGS_EVENT_LOGIN_PROMPT);
 	}
 	else if( lineContains( line, "IGS entry") )
 	{
-		cb_igs_set_status( IGS_STATUS_LOBBY );
-		cb_igs_push_event(IGS_EVENT_LOGGED_IN);
+		cbgo_igs_set_status( IGS_STATUS_LOBBY );
+		cbgo_igs_push_event(IGS_EVENT_LOGGED_IN);
 	}
 	else if( lineContains( line, "accepted") )
 	{
-		cb_igs_set_status( IGS_STATUS_IN_GAME );
-		cb_igs_push_event(IGS_EVENT_CHALLENGE_ACCEPTED);
+		cbgo_igs_set_status( IGS_STATUS_IN_GAME );
+		cbgo_igs_push_event(IGS_EVENT_CHALLENGE_ACCEPTED);
 	}
 	else if( lineContains( line, "declined") )
 	{
-		cb_igs_set_status( IGS_STATUS_LOBBY );
-		cb_igs_push_event(IGS_EVENT_CHALLENGE_DECLINED);
+		cbgo_igs_set_status( IGS_STATUS_LOBBY );
+		cbgo_igs_push_event(IGS_EVENT_CHALLENGE_DECLINED);
 	}
 
 	/////// IN GAME
@@ -534,7 +534,7 @@ LIBIGS_API bool cb_igs_read_event()
 				ostringstream str;
 				str << "Last Move : " << g_LastMove.stone << ": " << g_LastMove.x << ":" << g_LastMove.y;
 				Log( str.str() );
-				cb_igs_push_event(IGS_EVENT_MOVE);
+				cbgo_igs_push_event(IGS_EVENT_MOVE);
 			}
 		}
 		else if( lineMatches( line, ".*#> Game.*") )
@@ -555,16 +555,16 @@ LIBIGS_API bool cb_igs_read_event()
 			}
 			else
 			{
-				cb_igs_push_event(IGS_EVENT_PASS);
+				cbgo_igs_push_event(IGS_EVENT_PASS);
 			}
 		}
 		else if( lineContains( line, "resigned"))
 		{
-			cb_igs_push_event(IGS_EVENT_RESIGN);
+			cbgo_igs_push_event(IGS_EVENT_RESIGN);
 		}
 		else if( lineContains( line, "Use <match"))
 		{
-			cb_igs_push_event(IGS_EVENT_RECEIVED_CHALLENGE);
+			cbgo_igs_push_event(IGS_EVENT_RECEIVED_CHALLENGE);
 		}
 		else
 		{
@@ -579,16 +579,16 @@ void igs_loop()
 {
 	bool exit = false;
 
-	while( cb_igs_get_status() != IGS_STATUS_DISCONNECTED )
+	while( cbgo_igs_get_status() != IGS_STATUS_DISCONNECTED )
 	{
-		if( !cb_igs_read_event() )
+		if( !cbgo_igs_read_event() )
 		{
 			exit = true;
 		}
 	}
 }
 
-LIBIGS_API int cb_igs_wait_event()
+LIBIGS_API int cbgo_igs_wait_event()
 {
 	//Log(">WAIT");
 	int event = IGS_EVENT_UNKNOWN;
@@ -596,7 +596,7 @@ LIBIGS_API int cb_igs_wait_event()
 
 	while( g_Events.front() == IGS_EVENT_UNKNOWN && !exit )
 	{
-		if( cb_igs_read_event() )
+		if( cbgo_igs_read_event() )
 		{
 		}
 		else
@@ -610,37 +610,37 @@ LIBIGS_API int cb_igs_wait_event()
 	return event;
 }
 
-LIBIGS_API bool  cb_igs_login(char* iLogin, char* iPwd)
+LIBIGS_API bool  cbgo_igs_login(char* iLogin, char* iPwd)
 {
-	cb_igs_writeline(iLogin);
-	cb_igs_writeline(iPwd);
+	cbgo_igs_writeline(iLogin);
+	cbgo_igs_writeline(iPwd);
 
 	return true;
 }
 
-LIBIGS_API bool  cb_igs_challenge(char* iUser, char* iMyColor)
+LIBIGS_API bool  cbgo_igs_challenge(char* iUser, char* iMyColor)
 {
-	cb_igs_writeline("match " + string(iUser) + " " + string(iMyColor) + " 19 15 10");
+	cbgo_igs_writeline("match " + string(iUser) + " " + string(iMyColor) + " 19 15 10");
 	g_Status = IGS_STATUS_WAITING_CHALLENGE_ANSWER;
 
 	return true;
 }
 
-LIBIGS_API bool  cb_igs_say(char* iMsg)
+LIBIGS_API bool  cbgo_igs_say(char* iMsg)
 {
-	cb_igs_writeline("say " + string(iMsg) );
+	cbgo_igs_writeline("say " + string(iMsg) );
 
 	return true;
 }
 
-LIBIGS_API bool  cb_igs_play(int x, int y)
+LIBIGS_API bool  cbgo_igs_play(int x, int y)
 {
 	string xs = convert_number_to_letter(x);
 	ostringstream move; move << xs << y;
 
 	if( g_Status == IGS_STATUS_IN_GAME )
 	{
-		cb_igs_writeline( move.str() );
+		cbgo_igs_writeline( move.str() );
 	}
 	else
 	{
@@ -650,11 +650,11 @@ LIBIGS_API bool  cb_igs_play(int x, int y)
 	return true;
 }
 
-LIBIGS_API bool  cb_igs_pass()
+LIBIGS_API bool  cbgo_igs_pass()
 {
 	if( g_Status == IGS_STATUS_IN_GAME )
 	{
-		cb_igs_writeline( "pass" );
+		cbgo_igs_writeline( "pass" );
 		g_LocalPassed = true;
 	}
 	else
@@ -665,11 +665,11 @@ LIBIGS_API bool  cb_igs_pass()
 	return true;
 }
 
-LIBIGS_API bool  cb_igs_resign()
+LIBIGS_API bool  cbgo_igs_resign()
 {
 	if( g_Status == IGS_STATUS_IN_GAME )
 	{
-		cb_igs_writeline( "resign" );
+		cbgo_igs_writeline( "resign" );
 	}
 	else
 	{
@@ -679,28 +679,28 @@ LIBIGS_API bool  cb_igs_resign()
 	return true;
 }
 
-LIBIGS_API int cb_igs_get_status()
+LIBIGS_API int cbgo_igs_get_status()
 {
 	return g_Status;
 }
 
-LIBIGS_API int cb_igs_get_last_move_index()
+LIBIGS_API int cbgo_igs_get_last_move_index()
 {
 	return g_LastMove.index;
 }
 
-LIBIGS_API int cb_igs_get_last_move_stone()
+LIBIGS_API int cbgo_igs_get_last_move_stone()
 {
 	
 	return g_LastMove.stone;
 }
 
-LIBIGS_API int cb_igs_get_last_move_x()
+LIBIGS_API int cbgo_igs_get_last_move_x()
 {
 	return g_LastMove.x;
 }
 
-LIBIGS_API int cb_igs_get_last_move_y()
+LIBIGS_API int cbgo_igs_get_last_move_y()
 {
 	return g_LastMove.y;
 }

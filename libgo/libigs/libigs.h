@@ -60,31 +60,31 @@ enum
 
 extern "C" {
 
-LIBIGS_API bool  cb_connect_igs(void);
-LIBIGS_API void  cb_disconnect_igs(void);
-LIBIGS_API bool  cb_igs_is_connected(void);
+LIBIGS_API bool  cbgo_connect_igs(void);
+LIBIGS_API void  cbgo_disconnect_igs(void);
+LIBIGS_API bool  cbgo_igs_is_connected(void);
 
-LIBIGS_API int   cb_igs_get_status(void);
-LIBIGS_API int   cb_igs_get_events_nb(void);
-LIBIGS_API int   cb_igs_get_event(void);
-LIBIGS_API bool  cb_igs_login(char* iLogin, char* iPwd);
-LIBIGS_API bool  cb_igs_challenge(char* iUser, char* iMyColor);
-LIBIGS_API bool  cb_igs_play( int x, int y ); // "A1"
-LIBIGS_API bool  cb_igs_say( char* iMsg);
-LIBIGS_API bool  cb_igs_pass();
-LIBIGS_API bool  cb_igs_resign();
+LIBIGS_API int   cbgo_igs_get_status(void);
+LIBIGS_API int   cbgo_igs_get_events_nb(void);
+LIBIGS_API int   cbgo_igs_get_event(void);
+LIBIGS_API bool  cbgo_igs_login(char* iLogin, char* iPwd);
+LIBIGS_API bool  cbgo_igs_challenge(char* iUser, char* iMyColor);
+LIBIGS_API bool  cbgo_igs_play( int x, int y ); // "A1"
+LIBIGS_API bool  cbgo_igs_say( char* iMsg);
+LIBIGS_API bool  cbgo_igs_pass();
+LIBIGS_API bool  cbgo_igs_resign();
 
 // blocking reads
-LIBIGS_API bool  cb_igs_read_event();
-LIBIGS_API int   cb_igs_wait_event();
+LIBIGS_API bool  cbgo_igs_read_event();
+LIBIGS_API int   cbgo_igs_wait_event();
 
-LIBIGS_API int   cb_igs_get_last_move_index();
-LIBIGS_API int   cb_igs_get_last_move_stone();
-LIBIGS_API int   cb_igs_get_last_move_x();
-LIBIGS_API int   cb_igs_get_last_move_y();
-LIBIGS_API void  cb_log( char* );
+LIBIGS_API int   cbgo_igs_get_last_move_index();
+LIBIGS_API int   cbgo_igs_get_last_move_stone();
+LIBIGS_API int   cbgo_igs_get_last_move_x();
+LIBIGS_API int   cbgo_igs_get_last_move_y();
+LIBIGS_API void  cbgo_log( char* );
 }
 
-LIBIGS_API std::string cb_igs_readline(void);
-LIBIGS_API bool cb_igs_writeline(std::string iLine);
+LIBIGS_API std::string cbgo_igs_readline(void);
+LIBIGS_API bool cbgo_igs_writeline(std::string iLine);
 
