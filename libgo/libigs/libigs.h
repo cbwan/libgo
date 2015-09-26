@@ -10,21 +10,7 @@
 #define LIBIGS_API __declspec(dllimport)
 #endif
 
-/*
-// This class is exported from the libigs.dll
-class LIBIGS_API Clibigs {
-public:
-	Clibigs(void);
-	// TODO: add your methods here.
-};*/
-
 #include <iostream>
-
-enum StoneEnum {
-	EMPTY=0,
-	WHITE,
-	BLACK
-};
 
 // Events
 enum

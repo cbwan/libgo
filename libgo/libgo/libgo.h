@@ -10,6 +10,14 @@
 #define LIBGO_API __declspec(dllimport)
 #endif
 
+// Fuego enum
+enum StoneEnum {
+	BLACK=0,
+	WHITE=1,
+	EMPTY=2
+};
+
+
 //#ifdef __cplusplus
 extern "C" {
 //#endif

@@ -26,6 +26,14 @@ int main(int argc, char* argv[])
 	GoInit();
 	FuegoMainEngine engine(19);
 
+	GtpCommand cmd; cmd.Init("komi 6.5");
+	engine.CmdKomi(cmd);
+
+	engine.Board().Rules().Komi().ToFloat();
+
+	//GtpCommand cmd; cmd.Init("clear_board");
+	engine.ExecuteCommand("clear_board"); // .CmdClearBoard(cmd);
+
 	const GoBoard& board = engine.Board();
 
 	engine.Play( SG_BLACK, SgPointUtil::Pt(1,1));

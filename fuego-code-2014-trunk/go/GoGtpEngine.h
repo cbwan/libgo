@@ -329,6 +329,33 @@ public:
 
     void RulesChanged();
 
+	    void ApplyTimeSettings();
+
+    void AutoSave() const;
+
+    void CheckBoardEmpty() const;
+
+    void CreateAutoSaveFileName();
+
+    void GameFinished();
+
+    SgPoint GenBookMove(SgBlackWhite toPlay);
+
+    void InitStatistics();
+
+    void PlaceHandicap(const SgVector<SgPoint>& stones);
+
+    void SaveGame(const std::string& fileName) const;
+
+    void SaveStatistics();
+
+    void StartStatistics();
+
+    void Undo(int n);
+
+    static void WriteBoardInfo(GtpCommand& cmd, const GoBoard& bd);
+
+
 private:
     bool m_noPlayer;
 
@@ -405,32 +432,6 @@ private:
     std::vector<std::string> m_statisticsValues;
 
     SgMpiSynchronizerHandle m_mpiSynchronizer;
-
-    void ApplyTimeSettings();
-
-    void AutoSave() const;
-
-    void CheckBoardEmpty() const;
-
-    void CreateAutoSaveFileName();
-
-    void GameFinished();
-
-    SgPoint GenBookMove(SgBlackWhite toPlay);
-
-    void InitStatistics();
-
-    void PlaceHandicap(const SgVector<SgPoint>& stones);
-
-    void SaveGame(const std::string& fileName) const;
-
-    void SaveStatistics();
-
-    void StartStatistics();
-
-    void Undo(int n);
-
-    static void WriteBoardInfo(GtpCommand& cmd, const GoBoard& bd);
 };
 
 template<typename T>

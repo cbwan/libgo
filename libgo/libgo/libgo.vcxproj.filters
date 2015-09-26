@@ -13,6 +13,9 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="Fuego">
+      <UniqueIdentifier>{41d84f59-52d2-4e3d-a59b-2a1cd4d4a8d2}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <Text Include="ReadMe.txt" />
@@ -27,6 +30,510 @@
     <ClInclude Include="libgo.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\fuego-code-2014-trunk\features\FeBasicFeatures.h">
+      <Filter>Fuego</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\fuego-code-2014-trunk\features\FeData.h">
+      <Filter>Fuego</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\fuego-code-2014-trunk\features\FeFeatureWeights.h">
+      <Filter>Fuego</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\fuego-code-2014-trunk\features\FeNestedPattern.h">
+      <Filter>Fuego</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\fuego-code-2014-trunk\features\FePattern.h">
+      <Filter>Fuego</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\fuego-code-2014-trunk\features\FePatternBase.h">
+      <Filter>Fuego</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\fuego-code-2014-trunk\fuegomain\FuegoMainEngine.h">
+      <Filter>Fuego</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\fuego-code-2014-trunk\fuegomain\FuegoMainUtil.h">
+      <Filter>Fuego</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\fuego-code-2014-trunk\go\GoAdditiveKnowledge.h">
+      <Filter>Fuego</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\fuego-code-2014-trunk\go\GoAssertBoardRestored.h">
+      <Filter>Fuego</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\fuego-code-2014-trunk\go\GoAutoBook.h">
+      <Filter>Fuego</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\fuego-code-2014-trunk\go\GoBensonSolver.h">
+      <Filter>Fuego</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\fuego-code-2014-trunk\go\GoBlock.h">
+      <Filter>Fuego</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\fuego-code-2014-trunk\go\GoBoard.h">
+      <Filter>Fuego</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\fuego-code-2014-trunk\go\GoBoardCheckPerformance.h">
+      <Filter>Fuego</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\fuego-code-2014-trunk\go\GoBoardHistory.h">
+      <Filter>Fuego</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\fuego-code-2014-trunk\go\GoBoardRestorer.h">
+      <Filter>Fuego</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\fuego-code-2014-trunk\go\GoBoardSynchronizer.h">
+      <Filter>Fuego</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\fuego-code-2014-trunk\go\GoBoardUpdater.h">
+      <Filter>Fuego</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\fuego-code-2014-trunk\go\GoBoardUtil.h">
+      <Filter>Fuego</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\fuego-code-2014-trunk\go\GoBook.h">
+      <Filter>Fuego</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\fuego-code-2014-trunk\go\GoChain.h">
+      <Filter>Fuego</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\fuego-code-2014-trunk\go\GoEvalArray.h">
+      <Filter>Fuego</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\fuego-code-2014-trunk\go\GoEyeCount.h">
+      <Filter>Fuego</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\fuego-code-2014-trunk\go\GoEyeUtil.h">
+      <Filter>Fuego</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\fuego-code-2014-trunk\go\GoGame.h">
+      <Filter>Fuego</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\fuego-code-2014-trunk\go\GoGtpCommandUtil.h">
+      <Filter>Fuego</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\fuego-code-2014-trunk\go\GoGtpEngine.h">
+      <Filter>Fuego</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\fuego-code-2014-trunk\go\GoGtpExtraCommands.h">
+      <Filter>Fuego</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\fuego-code-2014-trunk\go\GoInfluence.h">
+      <Filter>Fuego</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\fuego-code-2014-trunk\go\GoInit.h">
+      <Filter>Fuego</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\fuego-code-2014-trunk\go\GoKomi.h">
+      <Filter>Fuego</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\fuego-code-2014-trunk\go\GoLadder.h">
+      <Filter>Fuego</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\fuego-code-2014-trunk\go\GoModBoard.h">
+      <Filter>Fuego</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\fuego-code-2014-trunk\go\GoMotive.h">
+      <Filter>Fuego</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\fuego-code-2014-trunk\go\GoMoveExecutor.h">
+      <Filter>Fuego</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\fuego-code-2014-trunk\go\GoNodeUtil.h">
+      <Filter>Fuego</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\fuego-code-2014-trunk\go\GoOpeningKnowledge.h">
+      <Filter>Fuego</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\fuego-code-2014-trunk\go\GoPattern3x3.h">
+      <Filter>Fuego</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\fuego-code-2014-trunk\go\GoPattern12Point.h">
+      <Filter>Fuego</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\fuego-code-2014-trunk\go\GoPatternBase.h">
+      <Filter>Fuego</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\fuego-code-2014-trunk\go\GoPlayer.h">
+      <Filter>Fuego</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\fuego-code-2014-trunk\go\GoPlayerMove.h">
+      <Filter>Fuego</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\fuego-code-2014-trunk\go\GoRegion.h">
+      <Filter>Fuego</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\fuego-code-2014-trunk\go\GoRegionBoard.h">
+      <Filter>Fuego</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\fuego-code-2014-trunk\go\GoRegionUtil.h">
+      <Filter>Fuego</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\fuego-code-2014-trunk\go\GoRules.h">
+      <Filter>Fuego</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\fuego-code-2014-trunk\go\GoSafetyCommands.h">
+      <Filter>Fuego</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\fuego-code-2014-trunk\go\GoSafetySolver.h">
+      <Filter>Fuego</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\fuego-code-2014-trunk\go\GoSafetyUtil.h">
+      <Filter>Fuego</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\fuego-code-2014-trunk\go\GoSearch.h">
+      <Filter>Fuego</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\fuego-code-2014-trunk\go\GoSetup.h">
+      <Filter>Fuego</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\fuego-code-2014-trunk\go\GoSetupUtil.h">
+      <Filter>Fuego</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\fuego-code-2014-trunk\go\GoSortedMoves.h">
+      <Filter>Fuego</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\fuego-code-2014-trunk\go\GoStaticLadder.h">
+      <Filter>Fuego</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\fuego-code-2014-trunk\go\GoStaticSafetySolver.h">
+      <Filter>Fuego</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\fuego-code-2014-trunk\go\GoTimeControl.h">
+      <Filter>Fuego</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\fuego-code-2014-trunk\go\GoUtil.h">
+      <Filter>Fuego</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\fuego-code-2014-trunk\gouct\GoUctAdditiveKnowledgeFuego.h">
+      <Filter>Fuego</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\fuego-code-2014-trunk\gouct\GoUctAdditiveKnowledgeGreenpeep.h">
+      <Filter>Fuego</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\fuego-code-2014-trunk\gouct\GoUctAdditiveKnowledgeMultiple.h">
+      <Filter>Fuego</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\fuego-code-2014-trunk\gouct\GoUctBoard.h">
+      <Filter>Fuego</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\fuego-code-2014-trunk\gouct\GoUctBookBuilder.h">
+      <Filter>Fuego</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\fuego-code-2014-trunk\gouct\GoUctBookBuilderCommands.h">
+      <Filter>Fuego</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\fuego-code-2014-trunk\gouct\GoUctCommands.h">
+      <Filter>Fuego</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\fuego-code-2014-trunk\gouct\GoUctDefaultMoveFilter.h">
+      <Filter>Fuego</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\fuego-code-2014-trunk\gouct\GoUctDefaultPriorKnowledge.h">
+      <Filter>Fuego</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\fuego-code-2014-trunk\gouct\GoUctEstimatorStat.h">
+      <Filter>Fuego</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\fuego-code-2014-trunk\gouct\GoUctFeatureCommands.h">
+      <Filter>Fuego</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\fuego-code-2014-trunk\gouct\GoUctFeatureKnowledge.h">
+      <Filter>Fuego</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\fuego-code-2014-trunk\gouct\GoUctFeatures.h">
+      <Filter>Fuego</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\fuego-code-2014-trunk\gouct\GoUctGammaMoveGenerator.h">
+      <Filter>Fuego</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\fuego-code-2014-trunk\gouct\GoUctGlobalPatternData.h">
+      <Filter>Fuego</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\fuego-code-2014-trunk\gouct\GoUctGlobalSearch.h">
+      <Filter>Fuego</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\fuego-code-2014-trunk\gouct\GoUctGreenpeepPatterns9.h">
+      <Filter>Fuego</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\fuego-code-2014-trunk\gouct\GoUctGreenpeepPatterns19.h">
+      <Filter>Fuego</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\fuego-code-2014-trunk\gouct\GoUctKnowledge.h">
+      <Filter>Fuego</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\fuego-code-2014-trunk\gouct\GoUctKnowledgeFactory.h">
+      <Filter>Fuego</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\fuego-code-2014-trunk\gouct\GoUctLadderKnowledge.h">
+      <Filter>Fuego</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\fuego-code-2014-trunk\gouct\GoUctLocalPatternData.h">
+      <Filter>Fuego</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\fuego-code-2014-trunk\gouct\GoUctMoveFilter.h">
+      <Filter>Fuego</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\fuego-code-2014-trunk\gouct\GoUctObjectWithSearch.h">
+      <Filter>Fuego</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\fuego-code-2014-trunk\gouct\GoUctPatternData.h">
+      <Filter>Fuego</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\fuego-code-2014-trunk\gouct\GoUctPatterns.h">
+      <Filter>Fuego</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\fuego-code-2014-trunk\gouct\GoUctPlayer.h">
+      <Filter>Fuego</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\fuego-code-2014-trunk\gouct\GoUctPlayoutPolicy.h">
+      <Filter>Fuego</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\fuego-code-2014-trunk\gouct\GoUctPlayoutUtil.h">
+      <Filter>Fuego</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\fuego-code-2014-trunk\gouct\GoUctPureRandomGenerator.h">
+      <Filter>Fuego</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\fuego-code-2014-trunk\gouct\GoUctSearch.h">
+      <Filter>Fuego</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\fuego-code-2014-trunk\gouct\GoUctUtil.h">
+      <Filter>Fuego</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\fuego-code-2014-trunk\gtpengine\GtpEngine.h">
+      <Filter>Fuego</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\fuego-code-2014-trunk\gtpengine\GtpInputStream.h">
+      <Filter>Fuego</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\fuego-code-2014-trunk\gtpengine\GtpOutputStream.h">
+      <Filter>Fuego</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\fuego-code-2014-trunk\smartgame\SgAdditiveKnowledge.h">
+      <Filter>Fuego</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\fuego-code-2014-trunk\smartgame\SgArray.h">
+      <Filter>Fuego</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\fuego-code-2014-trunk\smartgame\SgArrayList.h">
+      <Filter>Fuego</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\fuego-code-2014-trunk\smartgame\SgBlackWhite.h">
+      <Filter>Fuego</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\fuego-code-2014-trunk\smartgame\SgBoardColor.h">
+      <Filter>Fuego</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\fuego-code-2014-trunk\smartgame\SgBoardConst.h">
+      <Filter>Fuego</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\fuego-code-2014-trunk\smartgame\SgBookBuilder.h">
+      <Filter>Fuego</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\fuego-code-2014-trunk\smartgame\SgBWArray.h">
+      <Filter>Fuego</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\fuego-code-2014-trunk\smartgame\SgBWSet.h">
+      <Filter>Fuego</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\fuego-code-2014-trunk\smartgame\SgCmdLineOpt.h">
+      <Filter>Fuego</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\fuego-code-2014-trunk\smartgame\SgConnCompIterator.h">
+      <Filter>Fuego</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\fuego-code-2014-trunk\smartgame\SgDebug.h">
+      <Filter>Fuego</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\fuego-code-2014-trunk\smartgame\SgDfpnSearch.h">
+      <Filter>Fuego</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\fuego-code-2014-trunk\smartgame\SgEBWArray.h">
+      <Filter>Fuego</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\fuego-code-2014-trunk\smartgame\SgEvaluatedMoves.h">
+      <Filter>Fuego</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\fuego-code-2014-trunk\smartgame\SgException.h">
+      <Filter>Fuego</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\fuego-code-2014-trunk\smartgame\SgFastLog.h">
+      <Filter>Fuego</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\fuego-code-2014-trunk\smartgame\SgGameReader.h">
+      <Filter>Fuego</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\fuego-code-2014-trunk\smartgame\SgGameWriter.h">
+      <Filter>Fuego</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\fuego-code-2014-trunk\smartgame\SgGtpClient.h">
+      <Filter>Fuego</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\fuego-code-2014-trunk\smartgame\SgGtpCommands.h">
+      <Filter>Fuego</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\fuego-code-2014-trunk\smartgame\SgGtpUtil.h">
+      <Filter>Fuego</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\fuego-code-2014-trunk\smartgame\SgHash.h">
+      <Filter>Fuego</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\fuego-code-2014-trunk\smartgame\SgHashTable.h">
+      <Filter>Fuego</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\fuego-code-2014-trunk\smartgame\SgIncrementalStack.h">
+      <Filter>Fuego</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\fuego-code-2014-trunk\smartgame\SgInit.h">
+      <Filter>Fuego</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\fuego-code-2014-trunk\smartgame\SgMarker.h">
+      <Filter>Fuego</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\fuego-code-2014-trunk\smartgame\SgMath.h">
+      <Filter>Fuego</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\fuego-code-2014-trunk\smartgame\SgMemCheck.h">
+      <Filter>Fuego</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\fuego-code-2014-trunk\smartgame\SgMiaiMap.h">
+      <Filter>Fuego</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\fuego-code-2014-trunk\smartgame\SgMiaiStrategy.h">
+      <Filter>Fuego</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\fuego-code-2014-trunk\smartgame\SgMove.h">
+      <Filter>Fuego</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\fuego-code-2014-trunk\smartgame\SgMpiSynchronizer.h">
+      <Filter>Fuego</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\fuego-code-2014-trunk\smartgame\SgNbIterator.h">
+      <Filter>Fuego</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\fuego-code-2014-trunk\smartgame\SgNode.h">
+      <Filter>Fuego</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\fuego-code-2014-trunk\smartgame\SgNodeUtil.h">
+      <Filter>Fuego</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\fuego-code-2014-trunk\smartgame\SgPlatform.h">
+      <Filter>Fuego</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\fuego-code-2014-trunk\smartgame\SgPoint.h">
+      <Filter>Fuego</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\fuego-code-2014-trunk\smartgame\SgPointArray.h">
+      <Filter>Fuego</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\fuego-code-2014-trunk\smartgame\SgPointIterator.h">
+      <Filter>Fuego</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\fuego-code-2014-trunk\smartgame\SgPointSet.h">
+      <Filter>Fuego</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\fuego-code-2014-trunk\smartgame\SgPointSetUtil.h">
+      <Filter>Fuego</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\fuego-code-2014-trunk\smartgame\SgProbCut.h">
+      <Filter>Fuego</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\fuego-code-2014-trunk\smartgame\SgProcess.h">
+      <Filter>Fuego</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\fuego-code-2014-trunk\smartgame\SgProp.h">
+      <Filter>Fuego</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\fuego-code-2014-trunk\smartgame\SgRandom.h">
+      <Filter>Fuego</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\fuego-code-2014-trunk\smartgame\SgRect.h">
+      <Filter>Fuego</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\fuego-code-2014-trunk\smartgame\SgRestorer.h">
+      <Filter>Fuego</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\fuego-code-2014-trunk\smartgame\SgSearch.h">
+      <Filter>Fuego</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\fuego-code-2014-trunk\smartgame\SgSearchControl.h">
+      <Filter>Fuego</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\fuego-code-2014-trunk\smartgame\SgSearchStatistics.h">
+      <Filter>Fuego</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\fuego-code-2014-trunk\smartgame\SgSearchTracer.h">
+      <Filter>Fuego</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\fuego-code-2014-trunk\smartgame\SgSearchValue.h">
+      <Filter>Fuego</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\fuego-code-2014-trunk\smartgame\SgSortedArray.h">
+      <Filter>Fuego</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\fuego-code-2014-trunk\smartgame\SgSortedMoves.h">
+      <Filter>Fuego</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\fuego-code-2014-trunk\smartgame\SgStack.h">
+      <Filter>Fuego</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\fuego-code-2014-trunk\smartgame\SgStatistics.h">
+      <Filter>Fuego</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\fuego-code-2014-trunk\smartgame\SgStatisticsVlt.h">
+      <Filter>Fuego</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\fuego-code-2014-trunk\smartgame\SgStrategy.h">
+      <Filter>Fuego</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\fuego-code-2014-trunk\smartgame\SgStringUtil.h">
+      <Filter>Fuego</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\fuego-code-2014-trunk\smartgame\SgSystem.h">
+      <Filter>Fuego</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\fuego-code-2014-trunk\smartgame\SgThreadedWorker.h">
+      <Filter>Fuego</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\fuego-code-2014-trunk\smartgame\SgTime.h">
+      <Filter>Fuego</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\fuego-code-2014-trunk\smartgame\SgTimeControl.h">
+      <Filter>Fuego</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\fuego-code-2014-trunk\smartgame\SgTimer.h">
+      <Filter>Fuego</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\fuego-code-2014-trunk\smartgame\SgTimeRecord.h">
+      <Filter>Fuego</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\fuego-code-2014-trunk\smartgame\SgTimeSettings.h">
+      <Filter>Fuego</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\fuego-code-2014-trunk\smartgame\SgUctSearch.h">
+      <Filter>Fuego</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\fuego-code-2014-trunk\smartgame\SgUctTree.h">
+      <Filter>Fuego</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\fuego-code-2014-trunk\smartgame\SgUctTreeUtil.h">
+      <Filter>Fuego</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\fuego-code-2014-trunk\smartgame\SgUctValue.h">
+      <Filter>Fuego</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\fuego-code-2014-trunk\smartgame\SgUtil.h">
+      <Filter>Fuego</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\fuego-code-2014-trunk\smartgame\SgVector.h">
+      <Filter>Fuego</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\fuego-code-2014-trunk\smartgame\SgVectorUtil.h">
+      <Filter>Fuego</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\fuego-code-2014-trunk\smartgame\SgWrite.h">
+      <Filter>Fuego</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -37,6 +544,381 @@
     </ClCompile>
     <ClCompile Include="dllmain.cpp">
       <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\fuego-code-2014-trunk\features\FeBasicFeatures.cpp">
+      <Filter>Fuego</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\fuego-code-2014-trunk\features\FeFeatureWeights.cpp">
+      <Filter>Fuego</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\fuego-code-2014-trunk\features\FeNestedPattern.cpp">
+      <Filter>Fuego</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\fuego-code-2014-trunk\features\FePattern.cpp">
+      <Filter>Fuego</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\fuego-code-2014-trunk\features\FePatternBase.cpp">
+      <Filter>Fuego</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\fuego-code-2014-trunk\fuegomain\FuegoMainEngine.cpp">
+      <Filter>Fuego</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\fuego-code-2014-trunk\fuegomain\FuegoMainUtil.cpp">
+      <Filter>Fuego</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\fuego-code-2014-trunk\go\GoAdditiveKnowledge.cpp">
+      <Filter>Fuego</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\fuego-code-2014-trunk\go\GoAutoBook.cpp">
+      <Filter>Fuego</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\fuego-code-2014-trunk\go\GoBensonSolver.cpp">
+      <Filter>Fuego</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\fuego-code-2014-trunk\go\GoBlock.cpp">
+      <Filter>Fuego</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\fuego-code-2014-trunk\go\GoBoard.cpp">
+      <Filter>Fuego</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\fuego-code-2014-trunk\go\GoBoardCheckPerformance.cpp">
+      <Filter>Fuego</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\fuego-code-2014-trunk\go\GoBoardHistory.cpp">
+      <Filter>Fuego</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\fuego-code-2014-trunk\go\GoBoardRestorer.cpp">
+      <Filter>Fuego</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\fuego-code-2014-trunk\go\GoBoardSynchronizer.cpp">
+      <Filter>Fuego</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\fuego-code-2014-trunk\go\GoBoardUpdater.cpp">
+      <Filter>Fuego</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\fuego-code-2014-trunk\go\GoBoardUtil.cpp">
+      <Filter>Fuego</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\fuego-code-2014-trunk\go\GoBook.cpp">
+      <Filter>Fuego</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\fuego-code-2014-trunk\go\GoChain.cpp">
+      <Filter>Fuego</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\fuego-code-2014-trunk\go\GoEyeCount.cpp">
+      <Filter>Fuego</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\fuego-code-2014-trunk\go\GoEyeUtil.cpp">
+      <Filter>Fuego</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\fuego-code-2014-trunk\go\GoGame.cpp">
+      <Filter>Fuego</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\fuego-code-2014-trunk\go\GoGtpCommandUtil.cpp">
+      <Filter>Fuego</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\fuego-code-2014-trunk\go\GoGtpEngine.cpp">
+      <Filter>Fuego</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\fuego-code-2014-trunk\go\GoGtpExtraCommands.cpp">
+      <Filter>Fuego</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\fuego-code-2014-trunk\go\GoInfluence.cpp">
+      <Filter>Fuego</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\fuego-code-2014-trunk\go\GoInit.cpp">
+      <Filter>Fuego</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\fuego-code-2014-trunk\go\GoKomi.cpp">
+      <Filter>Fuego</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\fuego-code-2014-trunk\go\GoLadder.cpp">
+      <Filter>Fuego</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\fuego-code-2014-trunk\go\GoMotive.cpp">
+      <Filter>Fuego</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\fuego-code-2014-trunk\go\GoNodeUtil.cpp">
+      <Filter>Fuego</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\fuego-code-2014-trunk\go\GoOpeningKnowledge.cpp">
+      <Filter>Fuego</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\fuego-code-2014-trunk\go\GoPattern3x3.cpp">
+      <Filter>Fuego</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\fuego-code-2014-trunk\go\GoPattern12Point.cpp">
+      <Filter>Fuego</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\fuego-code-2014-trunk\go\GoPatternBase.cpp">
+      <Filter>Fuego</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\fuego-code-2014-trunk\go\GoPlayer.cpp">
+      <Filter>Fuego</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\fuego-code-2014-trunk\go\GoPlayerMove.cpp">
+      <Filter>Fuego</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\fuego-code-2014-trunk\go\GoRegion.cpp">
+      <Filter>Fuego</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\fuego-code-2014-trunk\go\GoRegionBoard.cpp">
+      <Filter>Fuego</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\fuego-code-2014-trunk\go\GoRegionUtil.cpp">
+      <Filter>Fuego</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\fuego-code-2014-trunk\go\GoRules.cpp">
+      <Filter>Fuego</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\fuego-code-2014-trunk\go\GoSafetyCommands.cpp">
+      <Filter>Fuego</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\fuego-code-2014-trunk\go\GoSafetySolver.cpp">
+      <Filter>Fuego</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\fuego-code-2014-trunk\go\GoSafetyUtil.cpp">
+      <Filter>Fuego</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\fuego-code-2014-trunk\go\GoSearch.cpp">
+      <Filter>Fuego</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\fuego-code-2014-trunk\go\GoSetupUtil.cpp">
+      <Filter>Fuego</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\fuego-code-2014-trunk\go\GoStaticLadder.cpp">
+      <Filter>Fuego</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\fuego-code-2014-trunk\go\GoStaticSafetySolver.cpp">
+      <Filter>Fuego</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\fuego-code-2014-trunk\go\GoTimeControl.cpp">
+      <Filter>Fuego</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\fuego-code-2014-trunk\go\GoUtil.cpp">
+      <Filter>Fuego</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\fuego-code-2014-trunk\gouct\GoUctAdditiveKnowledgeFuego.cpp">
+      <Filter>Fuego</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\fuego-code-2014-trunk\gouct\GoUctAdditiveKnowledgeGreenpeep.cpp">
+      <Filter>Fuego</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\fuego-code-2014-trunk\gouct\GoUctAdditiveKnowledgeMultiple.cpp">
+      <Filter>Fuego</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\fuego-code-2014-trunk\gouct\GoUctBoard.cpp">
+      <Filter>Fuego</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\fuego-code-2014-trunk\gouct\GoUctCommands.cpp">
+      <Filter>Fuego</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\fuego-code-2014-trunk\gouct\GoUctDefaultMoveFilter.cpp">
+      <Filter>Fuego</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\fuego-code-2014-trunk\gouct\GoUctDefaultPriorKnowledge.cpp">
+      <Filter>Fuego</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\fuego-code-2014-trunk\gouct\GoUctEstimatorStat.cpp">
+      <Filter>Fuego</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\fuego-code-2014-trunk\gouct\GoUctFeatureCommands.cpp">
+      <Filter>Fuego</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\fuego-code-2014-trunk\gouct\GoUctFeatureKnowledge.cpp">
+      <Filter>Fuego</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\fuego-code-2014-trunk\gouct\GoUctFeatures.cpp">
+      <Filter>Fuego</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\fuego-code-2014-trunk\gouct\GoUctGlobalSearch.cpp">
+      <Filter>Fuego</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\fuego-code-2014-trunk\gouct\GoUctKnowledge.cpp">
+      <Filter>Fuego</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\fuego-code-2014-trunk\gouct\GoUctKnowledgeFactory.cpp">
+      <Filter>Fuego</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\fuego-code-2014-trunk\gouct\GoUctLadderKnowledge.cpp">
+      <Filter>Fuego</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\fuego-code-2014-trunk\gouct\GoUctMoveFilter.cpp">
+      <Filter>Fuego</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\fuego-code-2014-trunk\gouct\GoUctObjectWithSearch.cpp">
+      <Filter>Fuego</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\fuego-code-2014-trunk\gouct\GoUctPatterns.cpp">
+      <Filter>Fuego</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\fuego-code-2014-trunk\gouct\GoUctPlayoutPolicy.cpp">
+      <Filter>Fuego</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\fuego-code-2014-trunk\gouct\GoUctSearch.cpp">
+      <Filter>Fuego</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\fuego-code-2014-trunk\gouct\GoUctUtil.cpp">
+      <Filter>Fuego</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\fuego-code-2014-trunk\gtpengine\GtpEngine.cpp">
+      <Filter>Fuego</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\fuego-code-2014-trunk\gtpengine\GtpInputStream.cpp">
+      <Filter>Fuego</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\fuego-code-2014-trunk\gtpengine\GtpOutputStream.cpp">
+      <Filter>Fuego</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\fuego-code-2014-trunk\smartgame\SgBoardConst.cpp">
+      <Filter>Fuego</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\fuego-code-2014-trunk\smartgame\SgBookBuilder.cpp">
+      <Filter>Fuego</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\fuego-code-2014-trunk\smartgame\SgCmdLineOpt.cpp">
+      <Filter>Fuego</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\fuego-code-2014-trunk\smartgame\SgConnCompIterator.cpp">
+      <Filter>Fuego</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\fuego-code-2014-trunk\smartgame\SgDebug.cpp">
+      <Filter>Fuego</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\fuego-code-2014-trunk\smartgame\SgDfpnSearch.cpp">
+      <Filter>Fuego</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\fuego-code-2014-trunk\smartgame\SgEvaluatedMoves.cpp">
+      <Filter>Fuego</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\fuego-code-2014-trunk\smartgame\SgException.cpp">
+      <Filter>Fuego</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\fuego-code-2014-trunk\smartgame\SgFastLog.cpp">
+      <Filter>Fuego</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\fuego-code-2014-trunk\smartgame\SgGameReader.cpp">
+      <Filter>Fuego</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\fuego-code-2014-trunk\smartgame\SgGameWriter.cpp">
+      <Filter>Fuego</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\fuego-code-2014-trunk\smartgame\SgGtpClient.cpp">
+      <Filter>Fuego</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\fuego-code-2014-trunk\smartgame\SgGtpCommands.cpp">
+      <Filter>Fuego</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\fuego-code-2014-trunk\smartgame\SgGtpUtil.cpp">
+      <Filter>Fuego</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\fuego-code-2014-trunk\smartgame\SgIncrementalStack.cpp">
+      <Filter>Fuego</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\fuego-code-2014-trunk\smartgame\SgInit.cpp">
+      <Filter>Fuego</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\fuego-code-2014-trunk\smartgame\SgMemCheck.cpp">
+      <Filter>Fuego</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\fuego-code-2014-trunk\smartgame\SgMiaiMap.cpp">
+      <Filter>Fuego</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\fuego-code-2014-trunk\smartgame\SgMiaiStrategy.cpp">
+      <Filter>Fuego</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\fuego-code-2014-trunk\smartgame\SgMpiSynchronizer.cpp">
+      <Filter>Fuego</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\fuego-code-2014-trunk\smartgame\SgNbIterator.cpp">
+      <Filter>Fuego</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\fuego-code-2014-trunk\smartgame\SgNode.cpp">
+      <Filter>Fuego</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\fuego-code-2014-trunk\smartgame\SgNodeUtil.cpp">
+      <Filter>Fuego</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\fuego-code-2014-trunk\smartgame\SgPlatform.cpp">
+      <Filter>Fuego</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\fuego-code-2014-trunk\smartgame\SgPoint.cpp">
+      <Filter>Fuego</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\fuego-code-2014-trunk\smartgame\SgPointSet.cpp">
+      <Filter>Fuego</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\fuego-code-2014-trunk\smartgame\SgPointSetUtil.cpp">
+      <Filter>Fuego</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\fuego-code-2014-trunk\smartgame\SgProbCut.cpp">
+      <Filter>Fuego</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\fuego-code-2014-trunk\smartgame\SgProcess.cpp">
+      <Filter>Fuego</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\fuego-code-2014-trunk\smartgame\SgProp.cpp">
+      <Filter>Fuego</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\fuego-code-2014-trunk\smartgame\SgRandom.cpp">
+      <Filter>Fuego</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\fuego-code-2014-trunk\smartgame\SgRect.cpp">
+      <Filter>Fuego</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\fuego-code-2014-trunk\smartgame\SgSearch.cpp">
+      <Filter>Fuego</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\fuego-code-2014-trunk\smartgame\SgSearchControl.cpp">
+      <Filter>Fuego</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\fuego-code-2014-trunk\smartgame\SgSearchStatistics.cpp">
+      <Filter>Fuego</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\fuego-code-2014-trunk\smartgame\SgSearchTracer.cpp">
+      <Filter>Fuego</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\fuego-code-2014-trunk\smartgame\SgSearchValue.cpp">
+      <Filter>Fuego</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\fuego-code-2014-trunk\smartgame\SgStrategy.cpp">
+      <Filter>Fuego</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\fuego-code-2014-trunk\smartgame\SgStringUtil.cpp">
+      <Filter>Fuego</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\fuego-code-2014-trunk\smartgame\SgSystem.cpp">
+      <Filter>Fuego</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\fuego-code-2014-trunk\smartgame\SgTime.cpp">
+      <Filter>Fuego</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\fuego-code-2014-trunk\smartgame\SgTimeControl.cpp">
+      <Filter>Fuego</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\fuego-code-2014-trunk\smartgame\SgTimeRecord.cpp">
+      <Filter>Fuego</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\fuego-code-2014-trunk\smartgame\SgTimeSettings.cpp">
+      <Filter>Fuego</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\fuego-code-2014-trunk\smartgame\SgUctSearch.cpp">
+      <Filter>Fuego</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\fuego-code-2014-trunk\smartgame\SgUctTree.cpp">
+      <Filter>Fuego</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\fuego-code-2014-trunk\smartgame\SgUctTreeUtil.cpp">
+      <Filter>Fuego</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\fuego-code-2014-trunk\smartgame\SgUtil.cpp">
+      <Filter>Fuego</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\fuego-code-2014-trunk\smartgame\SgVectorUtil.cpp">
+      <Filter>Fuego</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\fuego-code-2014-trunk\smartgame\SgWrite.cpp">
+      <Filter>Fuego</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

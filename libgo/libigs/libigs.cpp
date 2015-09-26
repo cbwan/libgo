@@ -14,6 +14,13 @@
 
 using namespace std;
 
+// Fuego enum
+enum StoneEnum {
+	BLACK=0,
+	WHITE=1,
+	EMPTY=2
+};
+
 // Finite state machine status
 int g_Status=IGS_STATUS_UNKNOWN;
 queue<int> g_Events;

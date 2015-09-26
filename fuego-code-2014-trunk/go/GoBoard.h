@@ -344,7 +344,7 @@ public:
 
     /** The stones captured by the most recent move.
         @see CapturedStones */
-    int NuCapturedStones() const;
+    int NumCapturedStones() const;
 
     /** The total number of stones of 'color' that have been
         captured by the opponent throughout the game. */
@@ -1609,7 +1609,7 @@ inline int GoBoard::Num8EmptyNeighbors(SgPoint p) const
     return NumEmptyNeighbors(p) + NumEmptyDiagonals(p);
 }
 
-inline int GoBoard::NuCapturedStones() const
+inline int GoBoard::NumCapturedStones() const
 {
     return m_capturedStones.Length();
 }

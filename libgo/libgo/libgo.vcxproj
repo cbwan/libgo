@@ -80,18 +80,18 @@
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
-      <PrecompiledHeader>Use</PrecompiledHeader>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
       <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;_USRDLL;LIBGO_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>C:\Code\MiddleVR_Build_Dependencies\RakNet\RakNet-git\Source;..\..\gnugo-3.6\;..\..\gnugo-3.6\engine;..\..\gnugo-3.6\build;..\..\gnugo-3.6\sgf;..\..\gnugo-3.6\utils;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\Code\MiddleVR_Build_Dependencies\Boost\boost_1_53_0-64-bit;..\libgo\libgo;C:\Code\Projects\Cb_Projects\libgo.git\fuego-code-2014-trunk\smartgame;C:\Code\Projects\Cb_Projects\libgo.git\fuego-code-2014-trunk\features;C:\Code\Projects\Cb_Projects\libgo.git\fuego-code-2014-trunk\gtpengine;C:\Code\Projects\Cb_Projects\libgo.git\fuego-code-2014-trunk\gouct;C:\Code\Projects\Cb_Projects\libgo.git\fuego-code-2014-trunk\go;C:\Code\Projects\Cb_Projects\libgo.git\fuego-code-2014-trunk\fuegomain;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <CompileAs>Default</CompileAs>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalLibraryDirectories>..\..\gnugo-3.6\engine\Debug;..\..\gnugo-3.6\patterns\Debug;..\..\gnugo-3.6\sgf\Debug;..\..\gnugo-3.6\utils\Debug;C:/Code/MiddleVR/../SDKS/RakNet_PC-4.082/Lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>RakNet_VS2008_LibStatic_Debug_Win32.lib;ws2_32.lib;engine.lib;board.lib;sgf.lib;utils.lib;dfa.lib;patterns.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>C:\Code\MiddleVR_Build_Dependencies\Boost\boost_1_53_0\stage\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
     <PostBuildEvent>
       <Command>copy $(TargetPath) C:\Code\Projects\Cb_Projects\VRGo.git\Assets\Plugins\x86</Command>
@@ -121,7 +121,7 @@
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <PreprocessorDefinitions>WIN32;NDEBUG;_WINDOWS;_USRDLL;LIBGO_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>C:\Code\Projects\Cb_Projects\gnugo.git\utils;C:\Code\Projects\Cb_Projects\gnugo.git\sgf;C:\Code\Projects\Cb_Projects\gnugo.git\;C:\Code\Projects\Cb_Projects\gnugo.git\engine;C:\Code\Projects\Cb_Projects\libgo\libgo\libgo;C:\Code\Projects\Cb_Projects\gnugo.git\build;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\Code\MiddleVR_Build_Dependencies\Boost\boost_1_53_0-64-bit;..\libgo\libgo;C:\Code\Projects\Cb_Projects\libgo.git\fuego-code-2014-trunk\smartgame;C:\Code\Projects\Cb_Projects\libgo.git\fuego-code-2014-trunk\features;C:\Code\Projects\Cb_Projects\libgo.git\fuego-code-2014-trunk\gtpengine;C:\Code\Projects\Cb_Projects\libgo.git\fuego-code-2014-trunk\gouct;C:\Code\Projects\Cb_Projects\libgo.git\fuego-code-2014-trunk\go;C:\Code\Projects\Cb_Projects\libgo.git\fuego-code-2014-trunk\fuegomain;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <CompileAs>Default</CompileAs>
     </ClCompile>
     <Link>
@@ -129,7 +129,7 @@
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
-      <AdditionalLibraryDirectories>C:\Code\Projects\Cb_Projects\gnugo.git\build\engine\Release;C:\Code\Projects\Cb_Projects\gnugo.git\build\patterns\Release;C:\Code\Projects\Cb_Projects\gnugo.git\build\sgf\Release;C:\Code\Projects\Cb_Projects\gnugo.git\build\utils\Release;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>C:\Code\MiddleVR_Build_Dependencies\Boost\boost_1_53_0\stage\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <AdditionalDependencies>ws2_32.lib;engine.lib;board.lib;sgf.lib;utils.lib;patterns.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
     <PostBuildEvent>
@@ -139,12 +139,12 @@
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
-      <PrecompiledHeader>Use</PrecompiledHeader>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <Optimization>MaxSpeed</Optimization>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <PreprocessorDefinitions>WIN32;NDEBUG;_WINDOWS;_USRDLL;LIBGO_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>C:\Code\Projects\Cb_Projects\gnugo.git\utils;C:\Code\Projects\Cb_Projects\gnugo.git\sgf;C:\Code\Projects\Cb_Projects\gnugo.git\;C:\Code\Projects\Cb_Projects\gnugo.git\engine;C:\Code\Projects\Cb_Projects\libgo\libgo\libgo;C:\Code\Projects\Cb_Projects\gnugo.git\build;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\Code\MiddleVR_Build_Dependencies\Boost\boost_1_53_0-64-bit;..\libgo\libgo;C:\Code\Projects\Cb_Projects\libgo.git\fuego-code-2014-trunk\smartgame;C:\Code\Projects\Cb_Projects\libgo.git\fuego-code-2014-trunk\features;C:\Code\Projects\Cb_Projects\libgo.git\fuego-code-2014-trunk\gtpengine;C:\Code\Projects\Cb_Projects\libgo.git\fuego-code-2014-trunk\gouct;C:\Code\Projects\Cb_Projects\libgo.git\fuego-code-2014-trunk\go;C:\Code\Projects\Cb_Projects\libgo.git\fuego-code-2014-trunk\fuegomain;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <CompileAs>CompileAsCpp</CompileAs>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
     </ClCompile>
@@ -153,8 +153,8 @@
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
-      <AdditionalLibraryDirectories>C:\Code\Projects\Cb_Projects\gnugo.git\build64\engine\Release;C:\Code\Projects\Cb_Projects\gnugo.git\build64\patterns\Release;C:\Code\Projects\Cb_Projects\gnugo.git\build64\sgf\Release;C:\Code\Projects\Cb_Projects\gnugo.git\build64\utils\Release;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>engine.lib;board.lib;utils.lib;sgf.lib;patterns.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>C:\Code\MiddleVR_Build_Dependencies\Boost\boost_1_53_0-64-bit\stage\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
     <PostBuildEvent>
       <Command>copy $(TargetPath) C:\Code\Projects\Cb_Projects\VRGo.git\Assets\Plugins\x86_64</Command>
@@ -164,11 +164,304 @@
     <Text Include="ReadMe.txt" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\..\fuego-code-2014-trunk\features\FeBasicFeatures.h" />
+    <ClInclude Include="..\..\fuego-code-2014-trunk\features\FeData.h" />
+    <ClInclude Include="..\..\fuego-code-2014-trunk\features\FeFeatureWeights.h" />
+    <ClInclude Include="..\..\fuego-code-2014-trunk\features\FeNestedPattern.h" />
+    <ClInclude Include="..\..\fuego-code-2014-trunk\features\FePattern.h" />
+    <ClInclude Include="..\..\fuego-code-2014-trunk\features\FePatternBase.h" />
+    <ClInclude Include="..\..\fuego-code-2014-trunk\fuegomain\FuegoMainEngine.h" />
+    <ClInclude Include="..\..\fuego-code-2014-trunk\fuegomain\FuegoMainUtil.h" />
+    <ClInclude Include="..\..\fuego-code-2014-trunk\gouct\GoUctAdditiveKnowledgeFuego.h" />
+    <ClInclude Include="..\..\fuego-code-2014-trunk\gouct\GoUctAdditiveKnowledgeGreenpeep.h" />
+    <ClInclude Include="..\..\fuego-code-2014-trunk\gouct\GoUctAdditiveKnowledgeMultiple.h" />
+    <ClInclude Include="..\..\fuego-code-2014-trunk\gouct\GoUctBoard.h" />
+    <ClInclude Include="..\..\fuego-code-2014-trunk\gouct\GoUctBookBuilder.h" />
+    <ClInclude Include="..\..\fuego-code-2014-trunk\gouct\GoUctBookBuilderCommands.h" />
+    <ClInclude Include="..\..\fuego-code-2014-trunk\gouct\GoUctCommands.h" />
+    <ClInclude Include="..\..\fuego-code-2014-trunk\gouct\GoUctDefaultMoveFilter.h" />
+    <ClInclude Include="..\..\fuego-code-2014-trunk\gouct\GoUctDefaultPriorKnowledge.h" />
+    <ClInclude Include="..\..\fuego-code-2014-trunk\gouct\GoUctEstimatorStat.h" />
+    <ClInclude Include="..\..\fuego-code-2014-trunk\gouct\GoUctFeatureCommands.h" />
+    <ClInclude Include="..\..\fuego-code-2014-trunk\gouct\GoUctFeatureKnowledge.h" />
+    <ClInclude Include="..\..\fuego-code-2014-trunk\gouct\GoUctFeatures.h" />
+    <ClInclude Include="..\..\fuego-code-2014-trunk\gouct\GoUctGammaMoveGenerator.h" />
+    <ClInclude Include="..\..\fuego-code-2014-trunk\gouct\GoUctGlobalPatternData.h" />
+    <ClInclude Include="..\..\fuego-code-2014-trunk\gouct\GoUctGlobalSearch.h" />
+    <ClInclude Include="..\..\fuego-code-2014-trunk\gouct\GoUctGreenpeepPatterns19.h" />
+    <ClInclude Include="..\..\fuego-code-2014-trunk\gouct\GoUctGreenpeepPatterns9.h" />
+    <ClInclude Include="..\..\fuego-code-2014-trunk\gouct\GoUctKnowledge.h" />
+    <ClInclude Include="..\..\fuego-code-2014-trunk\gouct\GoUctKnowledgeFactory.h" />
+    <ClInclude Include="..\..\fuego-code-2014-trunk\gouct\GoUctLadderKnowledge.h" />
+    <ClInclude Include="..\..\fuego-code-2014-trunk\gouct\GoUctLocalPatternData.h" />
+    <ClInclude Include="..\..\fuego-code-2014-trunk\gouct\GoUctMoveFilter.h" />
+    <ClInclude Include="..\..\fuego-code-2014-trunk\gouct\GoUctObjectWithSearch.h" />
+    <ClInclude Include="..\..\fuego-code-2014-trunk\gouct\GoUctPatternData.h" />
+    <ClInclude Include="..\..\fuego-code-2014-trunk\gouct\GoUctPatterns.h" />
+    <ClInclude Include="..\..\fuego-code-2014-trunk\gouct\GoUctPlayer.h" />
+    <ClInclude Include="..\..\fuego-code-2014-trunk\gouct\GoUctPlayoutPolicy.h" />
+    <ClInclude Include="..\..\fuego-code-2014-trunk\gouct\GoUctPlayoutUtil.h" />
+    <ClInclude Include="..\..\fuego-code-2014-trunk\gouct\GoUctPureRandomGenerator.h" />
+    <ClInclude Include="..\..\fuego-code-2014-trunk\gouct\GoUctSearch.h" />
+    <ClInclude Include="..\..\fuego-code-2014-trunk\gouct\GoUctUtil.h" />
+    <ClInclude Include="..\..\fuego-code-2014-trunk\go\GoAdditiveKnowledge.h" />
+    <ClInclude Include="..\..\fuego-code-2014-trunk\go\GoAssertBoardRestored.h" />
+    <ClInclude Include="..\..\fuego-code-2014-trunk\go\GoAutoBook.h" />
+    <ClInclude Include="..\..\fuego-code-2014-trunk\go\GoBensonSolver.h" />
+    <ClInclude Include="..\..\fuego-code-2014-trunk\go\GoBlock.h" />
+    <ClInclude Include="..\..\fuego-code-2014-trunk\go\GoBoard.h" />
+    <ClInclude Include="..\..\fuego-code-2014-trunk\go\GoBoardCheckPerformance.h" />
+    <ClInclude Include="..\..\fuego-code-2014-trunk\go\GoBoardHistory.h" />
+    <ClInclude Include="..\..\fuego-code-2014-trunk\go\GoBoardRestorer.h" />
+    <ClInclude Include="..\..\fuego-code-2014-trunk\go\GoBoardSynchronizer.h" />
+    <ClInclude Include="..\..\fuego-code-2014-trunk\go\GoBoardUpdater.h" />
+    <ClInclude Include="..\..\fuego-code-2014-trunk\go\GoBoardUtil.h" />
+    <ClInclude Include="..\..\fuego-code-2014-trunk\go\GoBook.h" />
+    <ClInclude Include="..\..\fuego-code-2014-trunk\go\GoChain.h" />
+    <ClInclude Include="..\..\fuego-code-2014-trunk\go\GoEvalArray.h" />
+    <ClInclude Include="..\..\fuego-code-2014-trunk\go\GoEyeCount.h" />
+    <ClInclude Include="..\..\fuego-code-2014-trunk\go\GoEyeUtil.h" />
+    <ClInclude Include="..\..\fuego-code-2014-trunk\go\GoGame.h" />
+    <ClInclude Include="..\..\fuego-code-2014-trunk\go\GoGtpCommandUtil.h" />
+    <ClInclude Include="..\..\fuego-code-2014-trunk\go\GoGtpEngine.h" />
+    <ClInclude Include="..\..\fuego-code-2014-trunk\go\GoGtpExtraCommands.h" />
+    <ClInclude Include="..\..\fuego-code-2014-trunk\go\GoInfluence.h" />
+    <ClInclude Include="..\..\fuego-code-2014-trunk\go\GoInit.h" />
+    <ClInclude Include="..\..\fuego-code-2014-trunk\go\GoKomi.h" />
+    <ClInclude Include="..\..\fuego-code-2014-trunk\go\GoLadder.h" />
+    <ClInclude Include="..\..\fuego-code-2014-trunk\go\GoModBoard.h" />
+    <ClInclude Include="..\..\fuego-code-2014-trunk\go\GoMotive.h" />
+    <ClInclude Include="..\..\fuego-code-2014-trunk\go\GoMoveExecutor.h" />
+    <ClInclude Include="..\..\fuego-code-2014-trunk\go\GoNodeUtil.h" />
+    <ClInclude Include="..\..\fuego-code-2014-trunk\go\GoOpeningKnowledge.h" />
+    <ClInclude Include="..\..\fuego-code-2014-trunk\go\GoPattern12Point.h" />
+    <ClInclude Include="..\..\fuego-code-2014-trunk\go\GoPattern3x3.h" />
+    <ClInclude Include="..\..\fuego-code-2014-trunk\go\GoPatternBase.h" />
+    <ClInclude Include="..\..\fuego-code-2014-trunk\go\GoPlayer.h" />
+    <ClInclude Include="..\..\fuego-code-2014-trunk\go\GoPlayerMove.h" />
+    <ClInclude Include="..\..\fuego-code-2014-trunk\go\GoRegion.h" />
+    <ClInclude Include="..\..\fuego-code-2014-trunk\go\GoRegionBoard.h" />
+    <ClInclude Include="..\..\fuego-code-2014-trunk\go\GoRegionUtil.h" />
+    <ClInclude Include="..\..\fuego-code-2014-trunk\go\GoRules.h" />
+    <ClInclude Include="..\..\fuego-code-2014-trunk\go\GoSafetyCommands.h" />
+    <ClInclude Include="..\..\fuego-code-2014-trunk\go\GoSafetySolver.h" />
+    <ClInclude Include="..\..\fuego-code-2014-trunk\go\GoSafetyUtil.h" />
+    <ClInclude Include="..\..\fuego-code-2014-trunk\go\GoSearch.h" />
+    <ClInclude Include="..\..\fuego-code-2014-trunk\go\GoSetup.h" />
+    <ClInclude Include="..\..\fuego-code-2014-trunk\go\GoSetupUtil.h" />
+    <ClInclude Include="..\..\fuego-code-2014-trunk\go\GoSortedMoves.h" />
+    <ClInclude Include="..\..\fuego-code-2014-trunk\go\GoStaticLadder.h" />
+    <ClInclude Include="..\..\fuego-code-2014-trunk\go\GoStaticSafetySolver.h" />
+    <ClInclude Include="..\..\fuego-code-2014-trunk\go\GoTimeControl.h" />
+    <ClInclude Include="..\..\fuego-code-2014-trunk\go\GoUtil.h" />
+    <ClInclude Include="..\..\fuego-code-2014-trunk\gtpengine\GtpEngine.h" />
+    <ClInclude Include="..\..\fuego-code-2014-trunk\gtpengine\GtpInputStream.h" />
+    <ClInclude Include="..\..\fuego-code-2014-trunk\gtpengine\GtpOutputStream.h" />
+    <ClInclude Include="..\..\fuego-code-2014-trunk\smartgame\SgAdditiveKnowledge.h" />
+    <ClInclude Include="..\..\fuego-code-2014-trunk\smartgame\SgArray.h" />
+    <ClInclude Include="..\..\fuego-code-2014-trunk\smartgame\SgArrayList.h" />
+    <ClInclude Include="..\..\fuego-code-2014-trunk\smartgame\SgBlackWhite.h" />
+    <ClInclude Include="..\..\fuego-code-2014-trunk\smartgame\SgBoardColor.h" />
+    <ClInclude Include="..\..\fuego-code-2014-trunk\smartgame\SgBoardConst.h" />
+    <ClInclude Include="..\..\fuego-code-2014-trunk\smartgame\SgBookBuilder.h" />
+    <ClInclude Include="..\..\fuego-code-2014-trunk\smartgame\SgBWArray.h" />
+    <ClInclude Include="..\..\fuego-code-2014-trunk\smartgame\SgBWSet.h" />
+    <ClInclude Include="..\..\fuego-code-2014-trunk\smartgame\SgCmdLineOpt.h" />
+    <ClInclude Include="..\..\fuego-code-2014-trunk\smartgame\SgConnCompIterator.h" />
+    <ClInclude Include="..\..\fuego-code-2014-trunk\smartgame\SgDebug.h" />
+    <ClInclude Include="..\..\fuego-code-2014-trunk\smartgame\SgDfpnSearch.h" />
+    <ClInclude Include="..\..\fuego-code-2014-trunk\smartgame\SgEBWArray.h" />
+    <ClInclude Include="..\..\fuego-code-2014-trunk\smartgame\SgEvaluatedMoves.h" />
+    <ClInclude Include="..\..\fuego-code-2014-trunk\smartgame\SgException.h" />
+    <ClInclude Include="..\..\fuego-code-2014-trunk\smartgame\SgFastLog.h" />
+    <ClInclude Include="..\..\fuego-code-2014-trunk\smartgame\SgGameReader.h" />
+    <ClInclude Include="..\..\fuego-code-2014-trunk\smartgame\SgGameWriter.h" />
+    <ClInclude Include="..\..\fuego-code-2014-trunk\smartgame\SgGtpClient.h" />
+    <ClInclude Include="..\..\fuego-code-2014-trunk\smartgame\SgGtpCommands.h" />
+    <ClInclude Include="..\..\fuego-code-2014-trunk\smartgame\SgGtpUtil.h" />
+    <ClInclude Include="..\..\fuego-code-2014-trunk\smartgame\SgHash.h" />
+    <ClInclude Include="..\..\fuego-code-2014-trunk\smartgame\SgHashTable.h" />
+    <ClInclude Include="..\..\fuego-code-2014-trunk\smartgame\SgIncrementalStack.h" />
+    <ClInclude Include="..\..\fuego-code-2014-trunk\smartgame\SgInit.h" />
+    <ClInclude Include="..\..\fuego-code-2014-trunk\smartgame\SgMarker.h" />
+    <ClInclude Include="..\..\fuego-code-2014-trunk\smartgame\SgMath.h" />
+    <ClInclude Include="..\..\fuego-code-2014-trunk\smartgame\SgMemCheck.h" />
+    <ClInclude Include="..\..\fuego-code-2014-trunk\smartgame\SgMiaiMap.h" />
+    <ClInclude Include="..\..\fuego-code-2014-trunk\smartgame\SgMiaiStrategy.h" />
+    <ClInclude Include="..\..\fuego-code-2014-trunk\smartgame\SgMove.h" />
+    <ClInclude Include="..\..\fuego-code-2014-trunk\smartgame\SgMpiSynchronizer.h" />
+    <ClInclude Include="..\..\fuego-code-2014-trunk\smartgame\SgNbIterator.h" />
+    <ClInclude Include="..\..\fuego-code-2014-trunk\smartgame\SgNode.h" />
+    <ClInclude Include="..\..\fuego-code-2014-trunk\smartgame\SgNodeUtil.h" />
+    <ClInclude Include="..\..\fuego-code-2014-trunk\smartgame\SgPlatform.h" />
+    <ClInclude Include="..\..\fuego-code-2014-trunk\smartgame\SgPoint.h" />
+    <ClInclude Include="..\..\fuego-code-2014-trunk\smartgame\SgPointArray.h" />
+    <ClInclude Include="..\..\fuego-code-2014-trunk\smartgame\SgPointIterator.h" />
+    <ClInclude Include="..\..\fuego-code-2014-trunk\smartgame\SgPointSet.h" />
+    <ClInclude Include="..\..\fuego-code-2014-trunk\smartgame\SgPointSetUtil.h" />
+    <ClInclude Include="..\..\fuego-code-2014-trunk\smartgame\SgProbCut.h" />
+    <ClInclude Include="..\..\fuego-code-2014-trunk\smartgame\SgProcess.h" />
+    <ClInclude Include="..\..\fuego-code-2014-trunk\smartgame\SgProp.h" />
+    <ClInclude Include="..\..\fuego-code-2014-trunk\smartgame\SgRandom.h" />
+    <ClInclude Include="..\..\fuego-code-2014-trunk\smartgame\SgRect.h" />
+    <ClInclude Include="..\..\fuego-code-2014-trunk\smartgame\SgRestorer.h" />
+    <ClInclude Include="..\..\fuego-code-2014-trunk\smartgame\SgSearch.h" />
+    <ClInclude Include="..\..\fuego-code-2014-trunk\smartgame\SgSearchControl.h" />
+    <ClInclude Include="..\..\fuego-code-2014-trunk\smartgame\SgSearchStatistics.h" />
+    <ClInclude Include="..\..\fuego-code-2014-trunk\smartgame\SgSearchTracer.h" />
+    <ClInclude Include="..\..\fuego-code-2014-trunk\smartgame\SgSearchValue.h" />
+    <ClInclude Include="..\..\fuego-code-2014-trunk\smartgame\SgSortedArray.h" />
+    <ClInclude Include="..\..\fuego-code-2014-trunk\smartgame\SgSortedMoves.h" />
+    <ClInclude Include="..\..\fuego-code-2014-trunk\smartgame\SgStack.h" />
+    <ClInclude Include="..\..\fuego-code-2014-trunk\smartgame\SgStatistics.h" />
+    <ClInclude Include="..\..\fuego-code-2014-trunk\smartgame\SgStatisticsVlt.h" />
+    <ClInclude Include="..\..\fuego-code-2014-trunk\smartgame\SgStrategy.h" />
+    <ClInclude Include="..\..\fuego-code-2014-trunk\smartgame\SgStringUtil.h" />
+    <ClInclude Include="..\..\fuego-code-2014-trunk\smartgame\SgSystem.h" />
+    <ClInclude Include="..\..\fuego-code-2014-trunk\smartgame\SgThreadedWorker.h" />
+    <ClInclude Include="..\..\fuego-code-2014-trunk\smartgame\SgTime.h" />
+    <ClInclude Include="..\..\fuego-code-2014-trunk\smartgame\SgTimeControl.h" />
+    <ClInclude Include="..\..\fuego-code-2014-trunk\smartgame\SgTimer.h" />
+    <ClInclude Include="..\..\fuego-code-2014-trunk\smartgame\SgTimeRecord.h" />
+    <ClInclude Include="..\..\fuego-code-2014-trunk\smartgame\SgTimeSettings.h" />
+    <ClInclude Include="..\..\fuego-code-2014-trunk\smartgame\SgUctSearch.h" />
+    <ClInclude Include="..\..\fuego-code-2014-trunk\smartgame\SgUctTree.h" />
+    <ClInclude Include="..\..\fuego-code-2014-trunk\smartgame\SgUctTreeUtil.h" />
+    <ClInclude Include="..\..\fuego-code-2014-trunk\smartgame\SgUctValue.h" />
+    <ClInclude Include="..\..\fuego-code-2014-trunk\smartgame\SgUtil.h" />
+    <ClInclude Include="..\..\fuego-code-2014-trunk\smartgame\SgVector.h" />
+    <ClInclude Include="..\..\fuego-code-2014-trunk\smartgame\SgVectorUtil.h" />
+    <ClInclude Include="..\..\fuego-code-2014-trunk\smartgame\SgWrite.h" />
     <ClInclude Include="libgo.h" />
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="targetver.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="..\..\fuego-code-2014-trunk\features\FeBasicFeatures.cpp" />
+    <ClCompile Include="..\..\fuego-code-2014-trunk\features\FeFeatureWeights.cpp" />
+    <ClCompile Include="..\..\fuego-code-2014-trunk\features\FeNestedPattern.cpp" />
+    <ClCompile Include="..\..\fuego-code-2014-trunk\features\FePattern.cpp" />
+    <ClCompile Include="..\..\fuego-code-2014-trunk\features\FePatternBase.cpp" />
+    <ClCompile Include="..\..\fuego-code-2014-trunk\fuegomain\FuegoMainEngine.cpp" />
+    <ClCompile Include="..\..\fuego-code-2014-trunk\fuegomain\FuegoMainUtil.cpp" />
+    <ClCompile Include="..\..\fuego-code-2014-trunk\gouct\GoUctAdditiveKnowledgeFuego.cpp" />
+    <ClCompile Include="..\..\fuego-code-2014-trunk\gouct\GoUctAdditiveKnowledgeGreenpeep.cpp" />
+    <ClCompile Include="..\..\fuego-code-2014-trunk\gouct\GoUctAdditiveKnowledgeMultiple.cpp" />
+    <ClCompile Include="..\..\fuego-code-2014-trunk\gouct\GoUctBoard.cpp" />
+    <ClCompile Include="..\..\fuego-code-2014-trunk\gouct\GoUctCommands.cpp" />
+    <ClCompile Include="..\..\fuego-code-2014-trunk\gouct\GoUctDefaultMoveFilter.cpp" />
+    <ClCompile Include="..\..\fuego-code-2014-trunk\gouct\GoUctDefaultPriorKnowledge.cpp" />
+    <ClCompile Include="..\..\fuego-code-2014-trunk\gouct\GoUctEstimatorStat.cpp" />
+    <ClCompile Include="..\..\fuego-code-2014-trunk\gouct\GoUctFeatureCommands.cpp" />
+    <ClCompile Include="..\..\fuego-code-2014-trunk\gouct\GoUctFeatureKnowledge.cpp" />
+    <ClCompile Include="..\..\fuego-code-2014-trunk\gouct\GoUctFeatures.cpp" />
+    <ClCompile Include="..\..\fuego-code-2014-trunk\gouct\GoUctGlobalSearch.cpp" />
+    <ClCompile Include="..\..\fuego-code-2014-trunk\gouct\GoUctKnowledge.cpp" />
+    <ClCompile Include="..\..\fuego-code-2014-trunk\gouct\GoUctKnowledgeFactory.cpp" />
+    <ClCompile Include="..\..\fuego-code-2014-trunk\gouct\GoUctLadderKnowledge.cpp" />
+    <ClCompile Include="..\..\fuego-code-2014-trunk\gouct\GoUctMoveFilter.cpp" />
+    <ClCompile Include="..\..\fuego-code-2014-trunk\gouct\GoUctObjectWithSearch.cpp" />
+    <ClCompile Include="..\..\fuego-code-2014-trunk\gouct\GoUctPatterns.cpp" />
+    <ClCompile Include="..\..\fuego-code-2014-trunk\gouct\GoUctPlayoutPolicy.cpp" />
+    <ClCompile Include="..\..\fuego-code-2014-trunk\gouct\GoUctSearch.cpp" />
+    <ClCompile Include="..\..\fuego-code-2014-trunk\gouct\GoUctUtil.cpp" />
+    <ClCompile Include="..\..\fuego-code-2014-trunk\go\GoAdditiveKnowledge.cpp" />
+    <ClCompile Include="..\..\fuego-code-2014-trunk\go\GoAutoBook.cpp" />
+    <ClCompile Include="..\..\fuego-code-2014-trunk\go\GoBensonSolver.cpp" />
+    <ClCompile Include="..\..\fuego-code-2014-trunk\go\GoBlock.cpp" />
+    <ClCompile Include="..\..\fuego-code-2014-trunk\go\GoBoard.cpp" />
+    <ClCompile Include="..\..\fuego-code-2014-trunk\go\GoBoardCheckPerformance.cpp" />
+    <ClCompile Include="..\..\fuego-code-2014-trunk\go\GoBoardHistory.cpp" />
+    <ClCompile Include="..\..\fuego-code-2014-trunk\go\GoBoardRestorer.cpp" />
+    <ClCompile Include="..\..\fuego-code-2014-trunk\go\GoBoardSynchronizer.cpp" />
+    <ClCompile Include="..\..\fuego-code-2014-trunk\go\GoBoardUpdater.cpp" />
+    <ClCompile Include="..\..\fuego-code-2014-trunk\go\GoBoardUtil.cpp" />
+    <ClCompile Include="..\..\fuego-code-2014-trunk\go\GoBook.cpp" />
+    <ClCompile Include="..\..\fuego-code-2014-trunk\go\GoChain.cpp" />
+    <ClCompile Include="..\..\fuego-code-2014-trunk\go\GoEyeCount.cpp" />
+    <ClCompile Include="..\..\fuego-code-2014-trunk\go\GoEyeUtil.cpp" />
+    <ClCompile Include="..\..\fuego-code-2014-trunk\go\GoGame.cpp" />
+    <ClCompile Include="..\..\fuego-code-2014-trunk\go\GoGtpCommandUtil.cpp" />
+    <ClCompile Include="..\..\fuego-code-2014-trunk\go\GoGtpEngine.cpp" />
+    <ClCompile Include="..\..\fuego-code-2014-trunk\go\GoGtpExtraCommands.cpp" />
+    <ClCompile Include="..\..\fuego-code-2014-trunk\go\GoInfluence.cpp" />
+    <ClCompile Include="..\..\fuego-code-2014-trunk\go\GoInit.cpp" />
+    <ClCompile Include="..\..\fuego-code-2014-trunk\go\GoKomi.cpp" />
+    <ClCompile Include="..\..\fuego-code-2014-trunk\go\GoLadder.cpp" />
+    <ClCompile Include="..\..\fuego-code-2014-trunk\go\GoMotive.cpp" />
+    <ClCompile Include="..\..\fuego-code-2014-trunk\go\GoNodeUtil.cpp" />
+    <ClCompile Include="..\..\fuego-code-2014-trunk\go\GoOpeningKnowledge.cpp" />
+    <ClCompile Include="..\..\fuego-code-2014-trunk\go\GoPattern12Point.cpp" />
+    <ClCompile Include="..\..\fuego-code-2014-trunk\go\GoPattern3x3.cpp" />
+    <ClCompile Include="..\..\fuego-code-2014-trunk\go\GoPatternBase.cpp" />
+    <ClCompile Include="..\..\fuego-code-2014-trunk\go\GoPlayer.cpp" />
+    <ClCompile Include="..\..\fuego-code-2014-trunk\go\GoPlayerMove.cpp" />
+    <ClCompile Include="..\..\fuego-code-2014-trunk\go\GoRegion.cpp" />
+    <ClCompile Include="..\..\fuego-code-2014-trunk\go\GoRegionBoard.cpp" />
+    <ClCompile Include="..\..\fuego-code-2014-trunk\go\GoRegionUtil.cpp" />
+    <ClCompile Include="..\..\fuego-code-2014-trunk\go\GoRules.cpp" />
+    <ClCompile Include="..\..\fuego-code-2014-trunk\go\GoSafetyCommands.cpp" />
+    <ClCompile Include="..\..\fuego-code-2014-trunk\go\GoSafetySolver.cpp" />
+    <ClCompile Include="..\..\fuego-code-2014-trunk\go\GoSafetyUtil.cpp" />
+    <ClCompile Include="..\..\fuego-code-2014-trunk\go\GoSearch.cpp" />
+    <ClCompile Include="..\..\fuego-code-2014-trunk\go\GoSetupUtil.cpp" />
+    <ClCompile Include="..\..\fuego-code-2014-trunk\go\GoStaticLadder.cpp" />
+    <ClCompile Include="..\..\fuego-code-2014-trunk\go\GoStaticSafetySolver.cpp" />
+    <ClCompile Include="..\..\fuego-code-2014-trunk\go\GoTimeControl.cpp" />
+    <ClCompile Include="..\..\fuego-code-2014-trunk\go\GoUtil.cpp" />
+    <ClCompile Include="..\..\fuego-code-2014-trunk\gtpengine\GtpEngine.cpp" />
+    <ClCompile Include="..\..\fuego-code-2014-trunk\gtpengine\GtpInputStream.cpp" />
+    <ClCompile Include="..\..\fuego-code-2014-trunk\gtpengine\GtpOutputStream.cpp" />
+    <ClCompile Include="..\..\fuego-code-2014-trunk\smartgame\SgBoardConst.cpp" />
+    <ClCompile Include="..\..\fuego-code-2014-trunk\smartgame\SgBookBuilder.cpp" />
+    <ClCompile Include="..\..\fuego-code-2014-trunk\smartgame\SgCmdLineOpt.cpp" />
+    <ClCompile Include="..\..\fuego-code-2014-trunk\smartgame\SgConnCompIterator.cpp" />
+    <ClCompile Include="..\..\fuego-code-2014-trunk\smartgame\SgDebug.cpp" />
+    <ClCompile Include="..\..\fuego-code-2014-trunk\smartgame\SgDfpnSearch.cpp" />
+    <ClCompile Include="..\..\fuego-code-2014-trunk\smartgame\SgEvaluatedMoves.cpp" />
+    <ClCompile Include="..\..\fuego-code-2014-trunk\smartgame\SgException.cpp" />
+    <ClCompile Include="..\..\fuego-code-2014-trunk\smartgame\SgFastLog.cpp" />
+    <ClCompile Include="..\..\fuego-code-2014-trunk\smartgame\SgGameReader.cpp" />
+    <ClCompile Include="..\..\fuego-code-2014-trunk\smartgame\SgGameWriter.cpp" />
+    <ClCompile Include="..\..\fuego-code-2014-trunk\smartgame\SgGtpClient.cpp" />
+    <ClCompile Include="..\..\fuego-code-2014-trunk\smartgame\SgGtpCommands.cpp" />
+    <ClCompile Include="..\..\fuego-code-2014-trunk\smartgame\SgGtpUtil.cpp" />
+    <ClCompile Include="..\..\fuego-code-2014-trunk\smartgame\SgIncrementalStack.cpp" />
+    <ClCompile Include="..\..\fuego-code-2014-trunk\smartgame\SgInit.cpp" />
+    <ClCompile Include="..\..\fuego-code-2014-trunk\smartgame\SgMemCheck.cpp" />
+    <ClCompile Include="..\..\fuego-code-2014-trunk\smartgame\SgMiaiMap.cpp" />
+    <ClCompile Include="..\..\fuego-code-2014-trunk\smartgame\SgMiaiStrategy.cpp" />
+    <ClCompile Include="..\..\fuego-code-2014-trunk\smartgame\SgMpiSynchronizer.cpp" />
+    <ClCompile Include="..\..\fuego-code-2014-trunk\smartgame\SgNbIterator.cpp" />
+    <ClCompile Include="..\..\fuego-code-2014-trunk\smartgame\SgNode.cpp" />
+    <ClCompile Include="..\..\fuego-code-2014-trunk\smartgame\SgNodeUtil.cpp" />
+    <ClCompile Include="..\..\fuego-code-2014-trunk\smartgame\SgPlatform.cpp" />
+    <ClCompile Include="..\..\fuego-code-2014-trunk\smartgame\SgPoint.cpp" />
+    <ClCompile Include="..\..\fuego-code-2014-trunk\smartgame\SgPointSet.cpp" />
+    <ClCompile Include="..\..\fuego-code-2014-trunk\smartgame\SgPointSetUtil.cpp" />
+    <ClCompile Include="..\..\fuego-code-2014-trunk\smartgame\SgProbCut.cpp" />
+    <ClCompile Include="..\..\fuego-code-2014-trunk\smartgame\SgProcess.cpp" />
+    <ClCompile Include="..\..\fuego-code-2014-trunk\smartgame\SgProp.cpp" />
+    <ClCompile Include="..\..\fuego-code-2014-trunk\smartgame\SgRandom.cpp" />
+    <ClCompile Include="..\..\fuego-code-2014-trunk\smartgame\SgRect.cpp" />
+    <ClCompile Include="..\..\fuego-code-2014-trunk\smartgame\SgSearch.cpp" />
+    <ClCompile Include="..\..\fuego-code-2014-trunk\smartgame\SgSearchControl.cpp" />
+    <ClCompile Include="..\..\fuego-code-2014-trunk\smartgame\SgSearchStatistics.cpp" />
+    <ClCompile Include="..\..\fuego-code-2014-trunk\smartgame\SgSearchTracer.cpp" />
+    <ClCompile Include="..\..\fuego-code-2014-trunk\smartgame\SgSearchValue.cpp" />
+    <ClCompile Include="..\..\fuego-code-2014-trunk\smartgame\SgStrategy.cpp" />
+    <ClCompile Include="..\..\fuego-code-2014-trunk\smartgame\SgStringUtil.cpp" />
+    <ClCompile Include="..\..\fuego-code-2014-trunk\smartgame\SgSystem.cpp" />
+    <ClCompile Include="..\..\fuego-code-2014-trunk\smartgame\SgTime.cpp" />
+    <ClCompile Include="..\..\fuego-code-2014-trunk\smartgame\SgTimeControl.cpp" />
+    <ClCompile Include="..\..\fuego-code-2014-trunk\smartgame\SgTimeRecord.cpp" />
+    <ClCompile Include="..\..\fuego-code-2014-trunk\smartgame\SgTimeSettings.cpp" />
+    <ClCompile Include="..\..\fuego-code-2014-trunk\smartgame\SgUctSearch.cpp" />
+    <ClCompile Include="..\..\fuego-code-2014-trunk\smartgame\SgUctTree.cpp" />
+    <ClCompile Include="..\..\fuego-code-2014-trunk\smartgame\SgUctTreeUtil.cpp" />
+    <ClCompile Include="..\..\fuego-code-2014-trunk\smartgame\SgUtil.cpp" />
+    <ClCompile Include="..\..\fuego-code-2014-trunk\smartgame\SgVectorUtil.cpp" />
+    <ClCompile Include="..\..\fuego-code-2014-trunk\smartgame\SgWrite.cpp" />
     <ClCompile Include="dllmain.cpp">
       <CompileAsManaged Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">false</CompileAsManaged>
       <CompileAsManaged Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</CompileAsManaged>

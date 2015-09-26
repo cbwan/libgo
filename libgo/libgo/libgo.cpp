@@ -1,21 +1,36 @@
 // libgo.cpp : Defines the exported functions for the DLL application.
 //
 
-#include "stdafx.h"
+//#include "stdafx.h"
 #include "libgo.h"
 
+#include "SgSystem.h"
+
+#include "FuegoMainEngine.h"
+#include "FuegoMainUtil.h"
+#include "GoInit.h"
+#include "GoBoard.h"
+#include "SgDebug.h"
+#include "SgException.h"
+#include "SgInit.h"
+#include "SgPlatform.h"
+
 extern "C" {
-#include "gnugo.h"
-//#include "board.h"
+
 
 static int ri=-1;
 static int rj=-1;
 
 bool g_IsInit = false;
 
+FuegoMainEngine* g_Engine = 0;
+
 LIBGO_API void cbgo_init(void)
 {
-	init_gnugo(500,13951);
+	//init_gnugo(500,13951);
+	SgInit();
+	GoInit();
+	g_Engine = new FuegoMainEngine(19);
 	g_IsInit = true;
 }
 
@@ -26,17 +41,18 @@ LIBGO_API bool cbgo_is_init(void)
 
 LIBGO_API void cbgo_clear_board(int size)
 {
-	gnugo_clear_board( size );
+	g_Engine->Init(size);
 }
 
 LIBGO_API bool cbgo_is_legal(int i, int j, int color)
 {
-	return (bool)is_legal(POS(i,j),color);
+	const GoBoard& board = g_Engine->Board();
+	return g_Engine->Board().IsLegal(SgPointUtil::Pt(i+1,j+1), color);
 }
 
 LIBGO_API void cbgo_play_move(int i, int j, int color )
 {
-	gnugo_play_move(POS(i,j),color);
+	g_Engine->Play(color, SgPointUtil::Pt(i+1,j+1) );
 }
 
 LIBGO_API int cbgo_get_genmove_x()
@@ -53,80 +69,70 @@ LIBGO_API void cbgo_genmove(int color)
 {
 	float val=-1;
 	int res=-1;
+	/*
 	int move = genmove(2, &val, &res);
 	
 	ri = I(move);
 	rj = J(move);
-
-	//gnugo_genmove(&ri,&rj,color);
-	//gnugo_play_move(i,j,color);
-
-	//printf("gen: %d, %d\n", i,j);
-
-	//showboard(0);
-
-	//float score = gnugo_estimate_score(0,0);
-	//printf("\nScore: %d\n", score);
+	*/
 }
 
 LIBGO_API int cbgo_get_board_color(int i, int j)
 {
-	//static int b[MAX_BOARD][MAX_BOARD];
-	//gnugo_get_board(b);
-	//if( 
-	//return b[i][j];
-	return BOARD(i,j);
+	int color = g_Engine->Board().GetColor( SgPointUtil::Pt(i+1,j+1) );
+	return color;
 }
 
 LIBGO_API bool cbgo_undo_move(int n)
 {
-	undo_move(n);
+	g_Engine->Undo(n);
 	return true;
 }
 
 LIBGO_API float cbgo_get_score()
 {
-	float upper,lower;
+	float komi = g_Engine->Board().Rules().Komi().ToFloat();
+    float score = GoBoardUtil::Score(g_Engine->Board(), komi);
 
-	return gnugo_estimate_score(&upper,&lower);
+	return score;
 }
 
 LIBGO_API int cbgo_get_white_captured()
 {
-	return white_captured;
+	return g_Engine->Board().NumPrisoners(SG_WHITE);
 }
 
 LIBGO_API int cbgo_get_black_captured()
 {
-	return black_captured;
+	return g_Engine->Board().NumPrisoners(SG_BLACK);
 }
 
 LIBGO_API int cbgo_get_move_number(void)
 {
-	board_state state;
-	store_board(&state);
-	return state.move_number;
-	//return gnugo_get_move_number();
+	//return state.move_number;
+	return 0;
 }
 
 LIBGO_API void cbgo_set_komi(float new_komi)
 {
-	komi = new_komi;
+	GtpCommand cmd; cmd.Init("komi 6.5");
+	g_Engine->CmdKomi(cmd);
 }
 
 LIBGO_API float cbgo_get_komi()
 {
-	return komi;
+	return g_Engine->Board().Rules().Komi().ToFloat();
 }
 
 LIBGO_API int cbgo_placehand(int handicap)
 {
-	return gnugo_sethand(handicap,0);
+	return 0;
+	//return gnugo_sethand(handicap,0);
 }
 
 LIBGO_API bool cbgo_is_ko()
 {
-	if( board_ko_pos > 0 )
+	if( g_Engine->Board().KoPoint() != SG_NULLPOINT )
 	{
 		return true;
 	}
@@ -135,12 +141,12 @@ LIBGO_API bool cbgo_is_ko()
 
 LIBGO_API int cbgo_get_ko_x()
 {
-	return I(board_ko_pos);
+	return SgPointUtil::Col(g_Engine->Board().KoPoint()) - 1;
 }
 
 LIBGO_API int cbgo_get_ko_y()
 {
-	return J(board_ko_pos);
+	return SgPointUtil::Row(g_Engine->Board().KoPoint()) - 1;
 }
 
 
