@@ -45,7 +45,7 @@ int _tmain(int argc, _TCHAR* argv[])
 			switch( event )
 			{
 			case IGS_EVENT_LOGIN_PROMPT: cbgo_igs_login("cbtwo","pandanet"); break;
-			case IGS_EVENT_LOGGED_IN: cbgo_igs_challenge( "cbone", "B" ); break;
+			case IGS_EVENT_LOGGED_IN: cbgo_igs_challenge( "cbone", BLACK, 19, 10, 5 ); break;
 			case IGS_EVENT_CHALLENGE_DECLINED: cout << "SNIIIFFFF match declined" << endl; break;
 			case IGS_EVENT_CHALLENGE_ACCEPTED:
 				{

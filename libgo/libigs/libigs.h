@@ -54,11 +54,12 @@ LIBIGS_API int   cbgo_igs_get_status(void);
 LIBIGS_API int   cbgo_igs_get_events_nb(void);
 LIBIGS_API int   cbgo_igs_get_event(void);
 LIBIGS_API bool  cbgo_igs_login(char* iLogin, char* iPwd);
-LIBIGS_API bool  cbgo_igs_challenge(char* iUser, char* iMyColor);
+LIBIGS_API bool  cbgo_igs_challenge(char* iUser, int iMyColor, int iBoardSize, int iMainTime, int iByoyomiTime );
 LIBIGS_API bool  cbgo_igs_play( int x, int y ); // "A1"
 LIBIGS_API bool  cbgo_igs_say( char* iMsg);
 LIBIGS_API bool  cbgo_igs_pass();
 LIBIGS_API bool  cbgo_igs_resign();
+LIBIGS_API char* cbgo_igs_get_challenger();
 
 // blocking reads
 LIBIGS_API bool  cbgo_igs_read_event();

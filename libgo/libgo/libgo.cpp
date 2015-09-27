@@ -162,4 +162,9 @@ LIBGO_API bool cbgo_save_sgf( char* iFileName )
 	}
 }
 
+LIBGO_API bool cbgo_is_capture_move()
+{
+	return g_Engine->Board().CapturingMove();
+}
+
 }

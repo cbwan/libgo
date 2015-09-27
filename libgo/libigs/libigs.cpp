@@ -37,6 +37,13 @@ struct Move {
 
 Move g_LastMove;
 
+
+struct Challenge {
+	string user;
+};
+
+Challenge g_LastChallenge;
+
 // Network
 using boost::asio::ip::tcp;
 boost::asio::io_service*      g_IOService;
@@ -49,7 +56,9 @@ boost::mutex eventsMutex;
 // Log
 ofstream* g_Log = 0;
 
+bool lineMatches( string iLine, string iRegex );
 bool extractMove( string iLine );
+bool extractChallenge( string iLine );
 void igs_loop();
 
 //const string g_MoveRE = "  (\\d)*\\((B|W)\\):( \\w\\d)+";
@@ -59,6 +68,12 @@ void igs_loop();
 // 25(W): A2 B2 C3 // other stones are captures
 
 const string g_MoveRE = " *(\\d+)\\((B|W)\\): (\\w)(\\d+) ?(.*)";
+
+// Challenge:
+// Match[19x19] in 10 minutes requested with cbone as White.
+
+//const string g_ChallengeRE = "Match\\[(\\d+).*\\] in (\\d+) minutes requested with (\\w*) as \\((White|Black)\\).";
+const string g_ChallengeRE = "Match.*minutes requested with (\\w*) as .*";
 
 void Log( string iLog )
 {
@@ -75,6 +90,8 @@ LIBIGS_API void cbgo_log( char* iLog )
 void init()
 {
 	g_Log = new ofstream( "c:\\temp\\go.txt" );
+
+	//extractChallenge("Match[19x19] in 10 minutes requested with cbone as White.");
 
 	//g_Events = queue<Event>();
 	// test
@@ -174,7 +191,7 @@ bool extractMove( string iLine )
 	if (boost::regex_match(iLine.c_str(), matches, re))
 	{
 		Log( re.str() + " matches " + iLine );
-		int nbMatches = matches.size();
+		size_t nbMatches = matches.size();
 
 		for ( unsigned int i = 1; i < matches.size(); i++)
 		{
@@ -203,6 +220,63 @@ bool extractMove( string iLine )
 	return false;
 }
 
+LIBIGS_API char* cbgo_igs_get_challenger()
+{
+	return (char*)g_LastChallenge.user.c_str();
+}
+
+bool extractChallenge( string iLine )
+{
+	boost::regex re;
+	try
+	{
+		// Set up the regular expression for case-insensitivity
+		re.assign(g_ChallengeRE, boost::regex_constants::icase);
+	}
+	catch (boost::regex_error& e)
+	{
+		Log( g_ChallengeRE + " is not a valid regular expression: \""
+			+ e.what() + "\"" );
+		return false;
+	}
+
+	boost::cmatch matches;
+	if (boost::regex_match(iLine.c_str(), matches, re))
+	{
+		Log( re.str() + " matches " + iLine );
+		size_t nbMatches = matches.size();
+
+		for ( unsigned int i = 1; i < matches.size(); i++)
+		{
+			// sub_match::first and sub_match::second are iterators that
+			// refer to the first and one past the last chars of the
+			// matching subexpression
+			string match(matches[i].first, matches[i].second);
+			ostringstream str; str << "\tmatches[" << i << "] = '" << match << "'" << endl;
+			Log( str.str() );
+		}
+
+		g_LastChallenge.user = matches[1];
+		Log("challenge from user: " + g_LastChallenge.user );
+
+		/*
+		istringstream indexStr(matches[1]); indexStr >> g_LastMove.index;
+		g_LastMove.stone = convert_stone( matches[2] );
+		g_LastMove.x     = convert_letter_to_number( matches[3] );
+		istringstream nbStr(matches[4]); nbStr >> g_LastMove.y;
+		g_LastMove.captured = matches[5];
+
+		if( g_LastMove.captured != "" )
+		{
+			Log( "CAPTURES!! " + g_LastMove.captured );
+		}*/
+
+		return true;
+	}
+
+	return false;
+}
+
 bool lineMatches( string iLine, string iRegex )
 {
 	boost::regex re;
@@ -223,7 +297,7 @@ bool lineMatches( string iLine, string iRegex )
 	{
 		cout << re << " matches " << iLine << endl;
 
-		/*
+		
 		for (int i = 1; i < matches.size(); i++)
 		{
 			// sub_match::first and sub_match::second are iterators that
@@ -231,7 +305,7 @@ bool lineMatches( string iLine, string iRegex )
 			// matching subexpression
 			string match(matches[i].first, matches[i].second);
 			cout << "\tmatches[" << i << "] = " << match << endl;
-		}*/
+		}
 
 		return true;
 	}
@@ -253,7 +327,7 @@ bool lineContains(string iLine, string iPattern)
 
 LIBIGS_API int cbgo_igs_get_events_nb(void)
 {
-	return g_Events.size();
+	return (int)g_Events.size();
 }
 
 LIBIGS_API int cbgo_igs_get_event()
@@ -472,7 +546,6 @@ LIBIGS_API string cbgo_igs_readline()
 		}
 	}
 
-	// XXX uncomment here to see all received lines
 	Log( "@>" + line );
 
 	if( line != "1 5" && line != "" && lineContains( line, "connected") )
@@ -487,6 +560,9 @@ LIBIGS_API string cbgo_igs_readline()
 
 LIBIGS_API bool cbgo_igs_writeline( std::string iLine )
 {
+	if( !g_IsIGSConnected )
+		return false;
+	
 	Log( ">>> '" + iLine + "'" );
 
 	string line = iLine + '\r' + '\n';
@@ -497,6 +573,7 @@ LIBIGS_API bool cbgo_igs_writeline( std::string iLine )
 	catch( ... )
 	{
 		Log( "Exception while writing to network. Server closed connection ?" );
+		return false;
 	}
 	return true;
 }
@@ -529,6 +606,12 @@ LIBIGS_API bool cbgo_igs_read_event()
 	{
 		cbgo_igs_set_status( IGS_STATUS_LOBBY );
 		cbgo_igs_push_event(IGS_EVENT_CHALLENGE_DECLINED);
+	}
+	//Match[19x19] in 10 minutes requested with cbone as White.
+	else if( lineMatches( line, g_ChallengeRE))
+	{
+		extractChallenge(line);
+		cbgo_igs_push_event(IGS_EVENT_RECEIVED_CHALLENGE);
 	}
 
 	/////// IN GAME
@@ -568,10 +651,6 @@ LIBIGS_API bool cbgo_igs_read_event()
 		else if( lineContains( line, "resigned"))
 		{
 			cbgo_igs_push_event(IGS_EVENT_RESIGN);
-		}
-		else if( lineContains( line, "Use <match"))
-		{
-			cbgo_igs_push_event(IGS_EVENT_RECEIVED_CHALLENGE);
 		}
 		else
 		{
@@ -625,12 +704,56 @@ LIBIGS_API bool  cbgo_igs_login(char* iLogin, char* iPwd)
 	return true;
 }
 
-LIBIGS_API bool  cbgo_igs_challenge(char* iUser, char* iMyColor)
-{
-	cbgo_igs_writeline("match " + string(iUser) + " " + string(iMyColor) + " 19 15 10");
-	g_Status = IGS_STATUS_WAITING_CHALLENGE_ANSWER;
+/*
 
-	return true;
+match <opponentname> [color] [board size] [time] [byoyomi minutes]
+    'match' is for starting a game with an opponent. You can offer or decline
+  a match request. Start a game with 'match', followed by the opponent's name,
+  color you wish ( W or B ), board size, time (measured in minutes) for each
+  player, and byoyomi minutes per player.  Example:   match ivy W 19 15 10
+  If no boundaries are given, the default settings are:  board size = 19
+  color = B, time = 90 minutes per player, byoyomi = 10 minutes per player.
+      Example:   match ivy   (This is the same as:  match ivy B 19 90 10)
+      Note:  match ivy B 19 0 0    would mean there are no time limits.
+  The first move by B (Black) can be:  handicap #    (#) is the number of
+  the handicap stones.  To place moves on the board, see:   help coords
+   a) A game can be 'adjourned' if both players enter:   adjourn
+   b) An 'adjourned' can be restarted with the 'load' command. See: help load
+** MUST READ **   To 'score' or end a game, see:   help score
+   ^^^^^^^^^
+    IGS supports multiple games. You can play more than one game, but if
+  you want to play only one game and not accept additional 'match' requests,
+  there are 2 options.   (See:   help toggle)
+    1)  While playing a game, type:   toggle singlegame  (toggles off or on)
+    2)  While playing a game, type:   toggle open
+
+See also:  addtime adjourn automatch byoyomi client coords decline defs free
+  games komi load open refresh resign save say score stored team undo verbose
+
+  */
+
+LIBIGS_API bool  cbgo_igs_challenge(char* iUser, int iMyColor, int iBoardSize, int iMainTime, int iByoyomiTime )
+{
+	ostringstream str;
+	str << "match " << iUser;
+
+	if( iMyColor == BLACK )
+	{
+		str << " b ";
+	}
+	else if( iMyColor == WHITE )
+	{
+		str << " w ";
+	}
+
+	str << iBoardSize << " " << iMainTime << " " << iByoyomiTime;
+
+	if( cbgo_igs_writeline( str.str() ) )
+	{
+		g_Status = IGS_STATUS_WAITING_CHALLENGE_ANSWER;
+		return true;
+	}
+	else return false;
 }
 
 LIBIGS_API bool  cbgo_igs_say(char* iMsg)
