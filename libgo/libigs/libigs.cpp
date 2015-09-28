@@ -78,7 +78,13 @@ const string g_ChallengeRE = "Match.*minutes requested with (\\w*) as .*";
 void Log( string iLog )
 {
 	cout << iLog << endl;
-	(*g_Log) << iLog << endl;
+
+	if( g_Log == 0 )
+	{
+		g_Log = new ofstream( "c:\\temp\\go.txt" );
+	}
+
+	if( g_Log != 0 ) (*g_Log) << iLog << endl;
 }
 
 LIBIGS_API void cbgo_log( char* iLog )
@@ -89,7 +95,7 @@ LIBIGS_API void cbgo_log( char* iLog )
 
 void init()
 {
-	g_Log = new ofstream( "c:\\temp\\go.txt" );
+	
 
 	//extractChallenge("Match[19x19] in 10 minutes requested with cbone as White.");
 
@@ -220,8 +226,23 @@ bool extractMove( string iLine )
 	return false;
 }
 
+LIBIGS_API void cbgo_igs_accept_challenge()
+{
+	string acceptLine = "accept " + g_LastChallenge.user + " B 19 10 10";
+	Log("cbgo_igs_accept_challenge: " + acceptLine);
+	cbgo_igs_writeline( acceptLine );
+}
+
+LIBIGS_API void cbgo_igs_decline_challenge()
+{
+	string decLine = "decline " + g_LastChallenge.user;
+	Log("cbgo_igs_decline_challenge: " + decLine );
+	cbgo_igs_writeline( decLine );
+}
+
 LIBIGS_API char* cbgo_igs_get_challenger()
 {
+	Log("cbgo_igs_get_challenger");
 	return (char*)g_LastChallenge.user.c_str();
 }
 
