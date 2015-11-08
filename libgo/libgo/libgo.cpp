@@ -15,6 +15,10 @@
 #include "SgInit.h"
 #include "SgPlatform.h"
 
+#include <ostream>
+
+using namespace std;
+
 extern "C" {
 
 
@@ -24,6 +28,10 @@ static int rj=-1;
 bool g_IsInit = false;
 
 FuegoMainEngine* g_Engine = 0;
+
+float g_MainTime = 25.0f;
+float g_Overtime = 5.0f;
+int   g_Overtime_Moves = 25;
 
 LIBGO_API void cbgo_init(void)
 {
@@ -166,5 +174,46 @@ LIBGO_API bool cbgo_is_capture_move()
 {
 	return g_Engine->Board().CapturingMove();
 }
+
+LIBGO_API void  cbgo_set_main_time( float time )
+{
+	g_MainTime = time;
+}
+
+LIBGO_API void  cbgo_set_overtime( float time )
+{
+	g_Overtime = time;
+}
+
+LIBGO_API void  cbgo_set_overtime_moves( int moves )
+{
+	g_Overtime_Moves = moves;
+}
+
+LIBGO_API void  cbgo_start_timer()
+{
+	SgTimeSettings settings( g_MainTime, g_Overtime, g_Overtime_Moves);
+
+	ostringstream str; str << "time_settings " << g_MainTime << " " << g_Overtime << " " << g_Overtime_Moves;
+
+	GtpCommand cmd; cmd.Init(str.str());
+
+	g_Engine->CmdTimeSettings(cmd);
+}
+
+LIBGO_API float cbgo_get_time_left( int color )
+{
+	GtpCommand cmd; cmd.Init("clock");
+	g_Engine->CmdClock(cmd);
+	const SgTimeRecord& time = g_Engine->Game().Time();
+	return time.TimeLeft( color );
+}
+
+LIBGO_API int cbgo_get_moves_left( int color )
+{
+	const SgTimeRecord& time = g_Engine->Game().Time();
+	return time.MovesLeft( color );
+}
+
 
 }

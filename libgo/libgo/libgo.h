@@ -44,6 +44,12 @@ LIBGO_API int   cbgo_get_ko_x();
 LIBGO_API int   cbgo_get_ko_y();
 LIBGO_API bool  cbgo_save_sgf( char* iFileName );
 LIBGO_API bool  cbgo_is_capturing_move();
+LIBGO_API void  cbgo_set_main_time( float time );
+LIBGO_API void  cbgo_set_overtime( float time );
+LIBGO_API void  cbgo_set_overtime_moves( int moves );
+LIBGO_API void  cbgo_start_timer();
+LIBGO_API float cbgo_get_time_left( int color );
+LIBGO_API int   cbgo_get_moves_left( int color );
 
 //LIBGO_API void  cb_gnugo_recordboard(
 

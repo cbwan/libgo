@@ -20,12 +20,34 @@ void play_random()
 	m++;
 }
 
+void print_time()
+{
+	float black_time = cbgo_get_time_left(BLACK);
+	float white_time = cbgo_get_time_left(WHITE);
+
+	int black_nb = cbgo_get_moves_left(BLACK);
+	int white_nb = cbgo_get_moves_left(WHITE);
+
+	cout << "Black: " << black_time << " ( " << black_nb << " moves left." << endl;
+	cout << "White: " << white_time << " ( " << white_nb << " moves left." << endl;
+}
+
 int _tmain(int argc, _TCHAR* argv[])
 {
 	cbgo_init();
 
 	bool legal = cbgo_is_legal(0,0,0);
 
+	cbgo_set_main_time(10);
+	cbgo_set_overtime(10);
+	cbgo_set_overtime_moves(4);
+	cbgo_start_timer();
+
+	while(1)
+	{
+		print_time();
+		Sleep(1000);
+	}
 
 	cbgo_connect_igs();
 
@@ -84,4 +106,3 @@ int _tmain(int argc, _TCHAR* argv[])
 	cbgo_disconnect_igs();
 	return 0;
 }
-
