@@ -117,8 +117,7 @@ LIBGO_API int cbgo_get_black_captured()
 
 LIBGO_API int cbgo_get_move_number(void)
 {
-	//return state.move_number;
-	return 0;
+	return g_Engine->Game().CurrentMoveNumber();
 }
 
 LIBGO_API void cbgo_set_komi(float new_komi)
