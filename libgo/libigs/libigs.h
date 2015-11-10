@@ -28,7 +28,8 @@ enum
 	IGS_EVENT_PASS,
 	IGS_EVENT_RESIGN,
 	IGS_EVENT_WIN,
-	IGS_EVENT_LOSE
+	IGS_EVENT_LOSE,
+	IGS_EVENT_CHAT_MSG,
 };
 
 // Status
@@ -62,6 +63,7 @@ LIBIGS_API bool  cbgo_igs_resign();
 LIBIGS_API char* cbgo_igs_get_challenger();
 LIBIGS_API void  cbgo_igs_accept_challenge();
 LIBIGS_API void  cbgo_igs_decline_challenge();
+LIBIGS_API char* cbgo_igs_get_chat_msg();
 
 // blocking reads
 LIBIGS_API bool  cbgo_igs_read_event();

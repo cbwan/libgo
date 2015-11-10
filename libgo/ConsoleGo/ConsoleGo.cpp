@@ -38,6 +38,7 @@ int _tmain(int argc, _TCHAR* argv[])
 
 	bool legal = cbgo_is_legal(0,0,0);
 
+	/*
 	cbgo_set_main_time(10);
 	cbgo_set_overtime(10);
 	cbgo_set_overtime_moves(4);
@@ -47,7 +48,7 @@ int _tmain(int argc, _TCHAR* argv[])
 	{
 		print_time();
 		Sleep(1000);
-	}
+	}*/
 
 	cbgo_connect_igs();
 
@@ -90,6 +91,12 @@ int _tmain(int argc, _TCHAR* argv[])
 						cbgo_disconnect_igs();
 						exit(0);
 					}
+					break;
+				}
+			case IGS_EVENT_CHAT_MSG:
+				{
+					string chat = cbgo_igs_get_chat_msg();
+					cout << "Player said: " + chat << endl;
 					break;
 				}
 				default: break;

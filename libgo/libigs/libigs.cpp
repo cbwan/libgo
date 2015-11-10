@@ -37,12 +37,19 @@ struct Move {
 
 Move g_LastMove;
 
-
 struct Challenge {
 	string user;
 };
 
 Challenge g_LastChallenge;
+
+struct ChatMessage {
+	string user;
+	string msg;
+};
+
+queue< ChatMessage > g_Chat;
+string g_LastChatMsg;
 
 // Network
 using boost::asio::ip::tcp;
@@ -59,6 +66,7 @@ ofstream* g_Log = 0;
 bool lineMatches( string iLine, string iRegex );
 bool extractMove( string iLine );
 bool extractChallenge( string iLine );
+bool extractChat( string iLine );
 void igs_loop();
 
 //const string g_MoveRE = "  (\\d)*\\((B|W)\\):( \\w\\d)+";
@@ -74,6 +82,10 @@ const string g_MoveRE = " *(\\d+)\\((B|W)\\): (\\w)(\\d+) ?(.*)";
 
 //const string g_ChallengeRE = "Match\\[(\\d+).*\\] in (\\d+) minutes requested with (\\w*) as \\((White|Black)\\).";
 const string g_ChallengeRE = "Match.*minutes requested with (\\w*) as .*";
+
+// Chat:
+// *cbone*: huhu
+const string g_ChatRE = "\\*(.*)\\*: (.*)";
 
 void Log( string iLog )
 {
@@ -95,8 +107,6 @@ LIBIGS_API void cbgo_log( char* iLog )
 
 void init()
 {
-	
-
 	//extractChallenge("Match[19x19] in 10 minutes requested with cbone as White.");
 
 	//g_Events = queue<Event>();
@@ -224,6 +234,71 @@ bool extractMove( string iLine )
 	}
 
 	return false;
+}
+
+bool extractChat( string iLine )
+{
+	boost::regex re;
+	try
+	{
+		// Set up the regular expression for case-insensitivity
+		re.assign(g_ChatRE, boost::regex_constants::icase);
+	}
+	catch (boost::regex_error& e)
+	{
+		Log( g_ChatRE + " is not a valid regular expression: \""
+			+ e.what() + "\"" );
+		return false;
+	}
+
+	boost::cmatch matches;
+	if (boost::regex_match(iLine.c_str(), matches, re))
+	{
+		Log( re.str() + " matches " + iLine );
+		size_t nbMatches = matches.size();
+
+		for ( unsigned int i = 1; i < matches.size(); i++)
+		{
+			// sub_match::first and sub_match::second are iterators that
+			// refer to the first and one past the last chars of the
+			// matching subexpression
+			string match(matches[i].first, matches[i].second);
+			ostringstream str; str << "\tmatches[" << i << "] = '" << match << "'" << endl;
+			Log( str.str() );
+		}
+
+		ChatMessage msg;
+		msg.user = matches[1];
+		msg.msg = matches[2];
+
+		g_Chat.push(msg);
+
+		Log("'" + msg.user + "' : " + msg.msg );
+
+		/*
+		istringstream indexStr(matches[1]); indexStr >> g_LastMove.index;
+		g_LastMove.stone = convert_stone( matches[2] );
+		g_LastMove.x     = convert_letter_to_number( matches[3] );
+		istringstream nbStr(matches[4]); nbStr >> g_LastMove.y;
+		g_LastMove.captured = matches[5];
+
+		if( g_LastMove.captured != "" )
+		{
+			Log( "CAPTURES!! " + g_LastMove.captured );
+		}*/
+
+		return true;
+	}
+
+	return false;
+}
+
+LIBIGS_API char* cbgo_igs_get_chat_msg()
+{
+	ChatMessage msg = g_Chat.front();
+	g_LastChatMsg = msg.user + "|" + msg.msg;
+	g_Chat.pop();
+	return (char*)g_LastChatMsg.c_str();
 }
 
 LIBIGS_API void cbgo_igs_accept_challenge()
@@ -386,6 +461,8 @@ void cbgo_igs_push_event( int iEvent )
 	case IGS_EVENT_PASS:              str << "Pass"; break;
 	case IGS_EVENT_RESIGN:            str << "Resign"; break;
 	case IGS_EVENT_WIN:               str << "Win"; break;
+	case IGS_EVENT_LOSE:              str << "Lose"; break;
+	case IGS_EVENT_CHAT_MSG:          str << "Chat"; break;
 	default: str << "Worse than unknown: " << iEvent; break;
 	}
 
@@ -672,6 +749,11 @@ LIBIGS_API bool cbgo_igs_read_event()
 		else if( lineContains( line, "resigned"))
 		{
 			cbgo_igs_push_event(IGS_EVENT_RESIGN);
+		}
+		else if( lineMatches( line, g_ChatRE ) )
+		{
+			extractChat(line);
+			cbgo_igs_push_event(IGS_EVENT_CHAT_MSG);
 		}
 		else
 		{
