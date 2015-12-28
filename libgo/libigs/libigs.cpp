@@ -105,8 +105,11 @@ LIBIGS_API void cbgo_log( char* iLog )
 }
 
 
-void init()
+LIBIGS_API void cbgo_igs_init()
 {
+	g_IsIGSConnected = false;
+	g_LocalPassed = false;
+
 	//extractChallenge("Match[19x19] in 10 minutes requested with cbone as White.");
 
 	//g_Events = queue<Event>();
@@ -497,7 +500,7 @@ LIBIGS_API bool  cbgo_igs_is_connected(void)
 
 LIBIGS_API bool cbgo_connect_igs()
 {
-	init();
+	//init();
 
 	g_Status = IGS_STATUS_DISCONNECTED;
 

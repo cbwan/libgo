@@ -47,6 +47,7 @@ enum
 
 extern "C" {
 
+LIBIGS_API void  cbgo_igs_init(void);
 LIBIGS_API bool  cbgo_connect_igs(void);
 LIBIGS_API void  cbgo_disconnect_igs(void);
 LIBIGS_API bool  cbgo_igs_is_connected(void);
