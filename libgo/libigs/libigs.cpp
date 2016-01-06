@@ -69,13 +69,12 @@ bool extractChallenge( string iLine );
 bool extractChat( string iLine );
 void igs_loop();
 
-//const string g_MoveRE = "  (\\d)*\\((B|W)\\):( \\w\\d)+";
-
 //  9(W): A1
 // 10(B): F6
 // 25(W): A2 B2 C3 // other stones are captures
 
-const string g_MoveRE = " *(\\d+)\\((B|W)\\): (\\w)(\\d+) ?(.*)";
+
+const string g_MoveRE = "\\d+ *(\\d+)\\((B|W)\\): (\\w)(\\d+) ?(.*)";
 
 // Challenge:
 // Match[19x19] in 10 minutes requested with cbone as White.
