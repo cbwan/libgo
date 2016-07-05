@@ -18,9 +18,9 @@ enum StoneEnum {
 };
 
 
-//#ifdef __cplusplus
+#ifdef __cplusplus
 extern "C" {
-//#endif
+#endif
 
 LIBGO_API void cbgo_init(void);
 LIBGO_API bool cbgo_is_init();

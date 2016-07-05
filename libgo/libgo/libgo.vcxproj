@@ -99,18 +99,18 @@
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>
-      <PrecompiledHeader>Use</PrecompiledHeader>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
       <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;_USRDLL;LIBGO_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>C:\Code\Projects\Cb_Projects\libgo\gnugo-3.8\engine;C:\Code\Projects\Cb_Projects\libgo\gnugo-3.8\build;C:\Code\Projects\Cb_Projects\libgo\gnugo-3.8\sgf;C:\Code\Projects\Cb_Projects\libgo\gnugo-3.8\utils;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <CompileAs>CompileAsC</CompileAs>
+      <AdditionalIncludeDirectories>C:\Code\MiddleVR_Build_Dependencies\Boost\boost_1_59_0\;..\libgo\libgo;C:\Code\Projects\Cb_Projects\libgo.git\fuego-code-2014-trunk\smartgame;C:\Code\Projects\Cb_Projects\libgo.git\fuego-code-2014-trunk\features;C:\Code\Projects\Cb_Projects\libgo.git\fuego-code-2014-trunk\gtpengine;C:\Code\Projects\Cb_Projects\libgo.git\fuego-code-2014-trunk\gouct;C:\Code\Projects\Cb_Projects\libgo.git\fuego-code-2014-trunk\go;C:\Code\Projects\Cb_Projects\libgo.git\fuego-code-2014-trunk\fuegomain;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <CompileAs>CompileAsCpp</CompileAs>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalLibraryDirectories>C:\Code\Projects\Cb_Projects\libgo\gnugo-3.8\build\engine\Debug;C:\Code\Projects\Cb_Projects\libgo\gnugo-3.8\build\sgf\Debug;C:\Code\Projects\Cb_Projects\libgo\gnugo-3.8\build\utils\Debug;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>engine.lib;board.lib;sgf.lib;utils.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>C:\Code\MiddleVR_Build_Dependencies\Boost\boost_1_59_0\lib64-msvc-14.0;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -147,6 +147,7 @@
       <AdditionalIncludeDirectories>C:\Code\MiddleVR_Build_Dependencies\Boost\boost_1_59_0\;..\libgo\libgo;C:\Code\Projects\Cb_Projects\libgo.git\fuego-code-2014-trunk\smartgame;C:\Code\Projects\Cb_Projects\libgo.git\fuego-code-2014-trunk\features;C:\Code\Projects\Cb_Projects\libgo.git\fuego-code-2014-trunk\gtpengine;C:\Code\Projects\Cb_Projects\libgo.git\fuego-code-2014-trunk\gouct;C:\Code\Projects\Cb_Projects\libgo.git\fuego-code-2014-trunk\go;C:\Code\Projects\Cb_Projects\libgo.git\fuego-code-2014-trunk\fuegomain;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <CompileAs>CompileAsCpp</CompileAs>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <CallingConvention>Cdecl</CallingConvention>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>

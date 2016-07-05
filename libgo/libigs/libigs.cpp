@@ -861,7 +861,7 @@ LIBIGS_API bool  cbgo_igs_challenge(char* iUser, int iMyColor, int iBoardSize, i
 	else return false;
 }
 
-LIBIGS_API bool  cbgo_igs_say(char* iMsg)
+LIBIGS_API bool cbgo_igs_say(char* iMsg)
 {
 	cbgo_igs_writeline("say " + string(iMsg) );
 
