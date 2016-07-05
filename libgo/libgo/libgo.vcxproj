@@ -146,7 +146,7 @@
       <PreprocessorDefinitions>WIN32;NDEBUG;_WINDOWS;_USRDLL;LIBGO_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <AdditionalIncludeDirectories>C:\Code\MiddleVR_Build_Dependencies\Boost\boost_1_59_0\;..\libgo\libgo;C:\Code\Projects\Cb_Projects\libgo.git\fuego-code-2014-trunk\smartgame;C:\Code\Projects\Cb_Projects\libgo.git\fuego-code-2014-trunk\features;C:\Code\Projects\Cb_Projects\libgo.git\fuego-code-2014-trunk\gtpengine;C:\Code\Projects\Cb_Projects\libgo.git\fuego-code-2014-trunk\gouct;C:\Code\Projects\Cb_Projects\libgo.git\fuego-code-2014-trunk\go;C:\Code\Projects\Cb_Projects\libgo.git\fuego-code-2014-trunk\fuegomain;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <CompileAs>CompileAsCpp</CompileAs>
-      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
       <CallingConvention>Cdecl</CallingConvention>
     </ClCompile>
     <Link>
